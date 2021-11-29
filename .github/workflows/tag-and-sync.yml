@@ -1,0 +1,48 @@
+name: Tag post-release
+on:
+  pull_request:
+    branches: [ main ]
+    types: [ closed ]
+
+jobs:
+  get-tag:
+    runs-on: ubuntu-latest
+    outputs:
+      version-tag: ${{ steps.version-tag.outputs.TAG }}
+    # Runs if a push is made to develop from a release branch
+    if: ${{ github.event.pull_request.merged }} && ${{ startsWith(github.event.pull_request.head.ref, 'release') }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Check if merged pull request contained a tag
+        uses: actions-ecosystem/action-regex-match@v2
+        id: tag-regex
+        with:
+          text: ${{ github.event.pull_request.head.ref }}
+          regex: '(release|bugfix)\/(\d\.\d(\.\d)?)' 
+
+      - name: Check if tag exists
+        if: ${{ steps.tag-regex.outputs.match == '' }}
+        uses: actions/github-script@v3
+        with:
+          script: |
+              core.setFailed('Tag was not found')
+      - name: Export tag content
+        id: version-tag
+        run: echo "::set-output name=TAG::${{ steps.tag-regex.outputs.group2 }}"
+
+  tag-branch:
+    needs: get-tag
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Tag main branch
+        run: git tag "v${{ needs.get-tag.outputs.version-tag }}" 
+
+      - name: Push tag to origin
+        run: git push origin "v${{ needs.get-tag.outputs.version-tag }}"
