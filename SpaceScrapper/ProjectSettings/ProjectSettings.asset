@@ -880,6 +880,7 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Game Performance: 1
     UNet: 1
   luminIcon:
     m_Name: 
@@ -894,11 +895,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: 
+  cloudProjectId: f17d88f4-b913-4a16-823c-9db374b5b1eb
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Space Scrapper
+  organizationId: pinkgurugames
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
