@@ -1,3 +1,7 @@
+// Better Hierarchy Plugin
+// Author: Wokarol
+// Code is free to use and modify
+
 ﻿using System;
 using System.Collections.Generic;
 using UnityEditor;
