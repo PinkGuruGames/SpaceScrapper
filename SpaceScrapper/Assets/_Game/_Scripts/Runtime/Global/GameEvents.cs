@@ -1,4 +1,4 @@
-﻿namespace SpaceScrapper
+﻿namespace SpaceScrapper.Global
 {
     /// <summary>
     /// This class contains global events

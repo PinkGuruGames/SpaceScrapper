@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SpaceScrapper
+namespace SpaceScrapper.Global
 {
     /// <summary>
     /// This class houses references to globally accesible objects like a camera or player
@@ -12,32 +12,33 @@ namespace SpaceScrapper
         /// <summary>
         /// This class hold a reference to a Unity objects and ensures it will be safely set and reset
         /// </summary>
-        public struct ObjectRef<T> where T : Object
+        public struct Handle<T> where T : Object
         {
             public T Value { get; private set; }
 
-            public void Set(T newReference)
+            public void Bind(T sender)
             {
                 if (Value != null)
                 {
-                    Debug.LogWarning($"Overriding the object {GetName(Value)} with {GetName(newReference)} make sure it's expected behaviour!");
+                    Debug.LogWarning($"Overriding the object {GetName(Value)} with {GetName(sender)} make sure it's expected behaviour!");
                 }
 
-                Value = newReference;
+                Value = sender;
             }
 
-            public void Reset(T oldReference)
+            public void Unbind(T sender)
             {
-                if (Value != oldReference)
+                // We make sure that only the object whose reference we hold can remove itself
+                if (Value != sender)
                 {
-                    Debug.LogError($"Cannot reset value using {GetName(oldReference)} because the reference set is {GetName(Value)}!");
+                    Debug.LogError($"Cannot reset value using {GetName(sender)} because the reference set is {GetName(Value)}!");
                     return;
                 }
 
                 Value = null;
             }
 
-            public static implicit operator T(ObjectRef<T> or)
+            public static implicit operator T(Handle<T> or)
             {
                 return or.Value;
             }

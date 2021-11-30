@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SpaceScrapper
+namespace SpaceScrapper.Global
 {
     /// <summary>
     /// Backbone of the Game
