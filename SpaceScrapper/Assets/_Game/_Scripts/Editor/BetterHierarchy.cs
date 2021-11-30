@@ -2,7 +2,7 @@
 // Author: Wokarol
 // Code is free to use and modify
 
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -16,7 +16,12 @@ namespace Wokarol.EditorExtensions
         private const string mixedToggleStyleName = "OL ToggleMixed";
 
         private static bool includeNotImportant = true;
+        private static bool enableCore = true;
+        private static bool enableHeaders = true;
+
         private const string includeNotImportantPrefsKey = "{E0EF3D35-59F0-4531-8040-7341E3093C84}";
+        private const string enableCorePrefsKey = "{419C12E2-1372-44E3-876C-B7A936F523AA}";
+        private const string enableHeadersPrefsKey = "{9EAC62EB-3E05-4591-8B57-4BBA2212F11A}";
 
         // ===============================================================================================
 
@@ -48,14 +53,33 @@ namespace Wokarol.EditorExtensions
         static BetterHierarchy()
         {
             EditorApplication.hierarchyWindowItemOnGUI = DrawItem;
-            includeNotImportant = EditorPrefs.GetBool(includeNotImportantPrefsKey);
+            includeNotImportant = EditorPrefs.GetBool(includeNotImportantPrefsKey, true);
+            enableCore = EditorPrefs.GetBool(enableCorePrefsKey, true);
+            enableHeaders = EditorPrefs.GetBool(enableHeadersPrefsKey, true);
         }
 
         [MenuItem("Tools/BetterHierarchy/Toggle Non-Important")]
         public static void ToggleNonImportant()
         {
-            includeNotImportant = !includeNotImportant;
-            EditorPrefs.SetBool(includeNotImportantPrefsKey, includeNotImportant);
+            ToggleSetting(ref includeNotImportant, includeNotImportantPrefsKey);
+        }
+
+        [MenuItem("Tools/BetterHierarchy/Toggle Core")]
+        public static void ToggleCore()
+        {
+            ToggleSetting(ref enableCore, enableCorePrefsKey);
+        }
+
+        [MenuItem("Tools/BetterHierarchy/Toggle Headers")]
+        public static void ToggleHeaders()
+        {
+            ToggleSetting(ref enableHeaders, enableHeadersPrefsKey);
+        }
+
+        private static void ToggleSetting(ref bool flag, string key)
+        {
+            flag = !flag;
+            EditorPrefs.SetBool(key, includeNotImportant);
             EditorApplication.RepaintHierarchyWindow();
         }
 
@@ -70,14 +94,19 @@ namespace Wokarol.EditorExtensions
                 bool isHeader = go.name.StartsWith("---");
 
                 bool shouldHaveActivityToggle = !isHeader || go.transform.childCount > 0;
+                int numberOfIconsDraw = 0;
 
-                DrawComponentIcons(rect, go, out int numberOfIconsDraw);
-
-                if (shouldHaveActivityToggle)
+                if (enableCore)
                 {
-                    DrawActivityToggle(rect, go);
+                    DrawComponentIcons(rect, go, out numberOfIconsDraw);
+
+                    if (shouldHaveActivityToggle)
+                    {
+                        DrawActivityToggle(rect, go);
+                    }
                 }
-                if (isHeader)
+
+                if (isHeader && enableHeaders)
                 {
                     DrawHeader(rect, go, shouldHaveActivityToggle, numberOfIconsDraw);
                 }
