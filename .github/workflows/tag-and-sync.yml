@@ -10,7 +10,7 @@ jobs:
     outputs:
       version-tag: ${{ steps.version-tag.outputs.TAG }}
     # Runs if a push is made to develop from a release branch
-    if: ${{ github.event.pull_request.merged }} && ${{ startsWith(github.event.pull_request.head.ref, 'release') }}
+    if: ${{ github.event.pull_request.merged && startsWith(github.event.pull_request.head.ref, 'release') }}
 
     steps:
       - name: Checkout repo
