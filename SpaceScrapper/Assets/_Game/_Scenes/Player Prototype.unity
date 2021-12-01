@@ -625,10 +625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56d96a15925e1b64dab5cb7bed515d6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 50
-  acceleration: 2
-  dragMult: 0.2
-  dragEnabled: 1
+  config: {fileID: 11400000, guid: f9fc7da3945753a4283c804b60f49a32, type: 2}
 --- !u!50 &1426110314
 Rigidbody2D:
   serializedVersion: 4

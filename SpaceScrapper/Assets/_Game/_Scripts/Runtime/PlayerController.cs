@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float maxSpeed = 10f;
-    public float acceleration = 2f;
-    public float dragMult = 0.1f;
-    public bool dragEnabled = true;
+    [SerializeField] private InputConfig config;
 
-    Camera cam;
-    Rigidbody2D rb;
-    Vector2 inputAxes;
-    Vector2 curVelocity;
+    private Camera cam;
+    private Rigidbody2D rb;
+    private Vector2 velocity;
+
+    private Vector2 inputDirection;
+    private bool isBraking;
 
     // Start is called before the first frame update
     private void Start()
@@ -24,25 +23,42 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        inputAxes.x = Input.GetAxis("Horizontal");
-        inputAxes.y = Input.GetAxis("Vertical");
-        inputAxes.Normalize();
+        inputDirection.x = Input.GetAxisRaw("Horizontal");
+        inputDirection.y = Input.GetAxisRaw("Vertical");
+
+        if (inputDirection.y < 0 && config.Brake == InputConfig.BrakeKey.S)
+            inputDirection.y = 0;
+
+        inputDirection = config.WASDMultipliers.ApplyTo(inputDirection);
+
+        if (config.LocalSpaceDirections)
+        {
+            // I have no idea why right and up have to be flipped
+            // And why x has to be flipped?
+            inputDirection = transform.right * inputDirection.y + transform.up * -inputDirection.x;
+        }
+
+
+        inputDirection = Vector2.ClampMagnitude(inputDirection, 1);
+
+        isBraking = config.Brake switch
+        {
+            InputConfig.BrakeKey.S => Input.GetKey(KeyCode.S),
+            InputConfig.BrakeKey.Space => Input.GetKey(KeyCode.Space),
+            _ => false,
+        };
     }
 
     private void FixedUpdate()
     {
-        curVelocity = rb.velocity;
-        float curSqrMag = curVelocity.sqrMagnitude;
-        if(inputAxes.sqrMagnitude > 0.1)
-        {
-            curVelocity += inputAxes * acceleration;
-        }
-        if (dragEnabled && inputAxes.sqrMagnitude < 0.1)
-        {
-            curVelocity *= 1f - dragMult;
-        }
-        curVelocity = Vector2.ClampMagnitude(curVelocity, maxSpeed);
-        rb.velocity = curVelocity;
+        velocity = rb.velocity;
+        velocity += inputDirection * config.Acceleration;
+
+        velocity *= 1f - (isBraking ? config.BrakeDrag : config.ConstantDrag);
+
+        velocity = Vector2.ClampMagnitude(velocity, config.MaxSpeed);
+        rb.velocity = velocity;
+
         LookAtMouse();
     }
 
