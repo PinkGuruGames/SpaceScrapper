@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxSpeed: 50
   Acceleration: 2
-  ConstantDrag: 0.075
+  ConstantDrag: 0.025
   ApplyConstantDragAlways: 0
   ApplyDragIndpendently: 1
   BrakeDrag: 0.1

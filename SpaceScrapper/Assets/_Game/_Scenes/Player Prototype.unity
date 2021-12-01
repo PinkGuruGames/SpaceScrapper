@@ -625,9 +625,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56d96a15925e1b64dab5cb7bed515d6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  configA: {fileID: 11400000, guid: 29d8dc64692e694469dae34853279e6d, type: 2}
-  configB: {fileID: 11400000, guid: d6c905f902ae5a8419f7c1c933a7e1a2, type: 2}
-  useBAsBoost: 1
+  configA: {fileID: 11400000, guid: 8571d9707f503b148958daaef503f117, type: 2}
+  configB: {fileID: 11400000, guid: 3dbcf6344e25d0444ab42215fcd43416, type: 2}
+  useBAsBoost: 0
   boostKey: 304
 --- !u!50 &1426110314
 Rigidbody2D:
