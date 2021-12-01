@@ -61,7 +61,14 @@ public class PlayerController : MonoBehaviour
         velocity = rb.velocity;
         velocity += inputDirection * config.Acceleration;
 
-        velocity *= 1f - (isBraking ? config.BrakeDrag : config.ConstantDrag);
+        if (isBraking)
+        {
+            velocity *= 1f - config.BrakeDrag;
+        }
+        else if (inputDirection.magnitude < 0.1 || config.ApplyConstantDragAlways)
+        {
+            velocity *= 1f - config.ConstantDrag;
+        }
 
         velocity = Vector2.ClampMagnitude(velocity, config.MaxSpeed);
         rb.velocity = velocity;

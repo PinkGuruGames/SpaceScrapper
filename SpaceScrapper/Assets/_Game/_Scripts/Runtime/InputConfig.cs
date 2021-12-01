@@ -7,6 +7,7 @@ public class InputConfig : ScriptableObject
     public float MaxSpeed = 10f;
     public float Acceleration = 2f;
     public float ConstantDrag = 0.05f;
+    public bool ApplyConstantDragAlways = true;
     public float BrakeDrag = 0.2f;
 
     [Header("Input")]
