@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private InputConfig config;
+    [SerializeField] private InputConfig configA;
+    [SerializeField] private InputConfig configB;
+
+    private InputConfig config => configSwapped ? configB : configA;
+    private bool configSwapped = false;
 
     private Camera cam;
     private Rigidbody2D rb;
@@ -23,6 +27,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Tab))
+            configSwapped = !configSwapped;
+
         inputDirection.x = Input.GetAxisRaw("Horizontal");
         inputDirection.y = Input.GetAxisRaw("Vertical");
 
