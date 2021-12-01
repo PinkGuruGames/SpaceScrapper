@@ -15,6 +15,7 @@ MonoBehaviour:
   MaxSpeed: 100
   Acceleration: 10
   ConstantDrag: 0.1
+  ApplyConstantDragAlways: 1
   BrakeDrag: 0.1
   WASDMultipliers:
     Forward: 1

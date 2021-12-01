@@ -7,7 +7,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InputConfig configA;
     [SerializeField] private InputConfig configB;
 
-    private InputConfig config => configSwapped ? configB : configA;
+    [SerializeField] private bool useBAsBoost = false;
+    [SerializeField] private KeyCode boostKey = KeyCode.LeftShift;
+
+    private InputConfig Config
+    {
+        get
+        {
+            if (useBAsBoost)
+            {
+                return isBoosting ? configB : configA;
+            }
+            return configSwapped ? configB : configA;
+        }
+    }
+
     private bool configSwapped = false;
 
     private Camera cam;
@@ -16,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 inputDirection;
     private bool isBraking;
+    private bool isBoosting;
 
     // Start is called before the first frame update
     private void Start()
@@ -33,12 +48,17 @@ public class PlayerController : MonoBehaviour
         inputDirection.x = Input.GetAxisRaw("Horizontal");
         inputDirection.y = Input.GetAxisRaw("Vertical");
 
-        if (inputDirection.y < 0 && config.Brake == InputConfig.BrakeKey.S)
+        isBoosting = Input.GetKey(boostKey);
+
+        if (isBoosting && useBAsBoost)
+            inputDirection = Vector2.up;
+
+        if (inputDirection.y < 0 && Config.Brake == InputConfig.BrakeKey.S)
             inputDirection.y = 0;
 
-        inputDirection = config.WASDMultipliers.ApplyTo(inputDirection);
+        inputDirection = Config.WASDMultipliers.ApplyTo(inputDirection);
 
-        if (config.LocalSpaceDirections)
+        if (Config.LocalSpaceDirections)
         {
             // I have no idea why right and up have to be flipped
             // And why x has to be flipped?
@@ -48,7 +68,7 @@ public class PlayerController : MonoBehaviour
 
         inputDirection = Vector2.ClampMagnitude(inputDirection, 1);
 
-        isBraking = config.Brake switch
+        isBraking = Config.Brake switch
         {
             InputConfig.BrakeKey.S => Input.GetKey(KeyCode.S),
             InputConfig.BrakeKey.Space => Input.GetKey(KeyCode.Space),
@@ -59,18 +79,18 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         velocity = rb.velocity;
-        velocity += inputDirection * config.Acceleration;
+        velocity += inputDirection * Config.Acceleration;
 
         if (isBraking)
         {
-            velocity *= 1f - config.BrakeDrag;
+            velocity *= 1f - Config.BrakeDrag;
         }
-        else if (inputDirection.magnitude < 0.1 || config.ApplyConstantDragAlways)
+        else if (inputDirection.magnitude < 0.1 || Config.ApplyConstantDragAlways)
         {
-            velocity *= 1f - config.ConstantDrag;
+            velocity *= 1f - Config.ConstantDrag;
         }
 
-        velocity = Vector2.ClampMagnitude(velocity, config.MaxSpeed);
+        velocity = Vector2.ClampMagnitude(velocity, Config.MaxSpeed);
         rb.velocity = velocity;
 
         LookAtMouse();
