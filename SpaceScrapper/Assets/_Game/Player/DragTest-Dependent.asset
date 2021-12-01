@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de61cf5fdadedd048af346498c087f7a, type: 3}
-  m_Name: PewPew
+  m_Name: DragTest-Dependent
   m_EditorClassIdentifier: 
   MaxSpeed: 50
   Acceleration: 2
-  ConstantDrag: 0.01
-  ApplyConstantDragAlways: 1
-  ApplyDragIndpendently: 0
+  ConstantDrag: 0.075
+  ApplyConstantDragAlways: 0
+  ApplyDragIndpendently: 1
   BrakeDrag: 0.1
   WASDMultipliers:
     Forward: 1
     Back: 1
-    Left: 0
-    Right: 0
-  LocalSpaceDirections: 1
-  Brake: 1
+    Left: 1
+    Right: 1
+  LocalSpaceDirections: 0
+  Brake: 2

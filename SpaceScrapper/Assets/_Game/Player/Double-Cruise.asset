@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de61cf5fdadedd048af346498c087f7a, type: 3}
   m_Name: Double-Cruise
   m_EditorClassIdentifier: 
-  MaxSpeed: 100
-  Acceleration: 10
+  MaxSpeed: 150
+  Acceleration: 20
   ConstantDrag: 0.1
   ApplyConstantDragAlways: 1
   BrakeDrag: 0.1

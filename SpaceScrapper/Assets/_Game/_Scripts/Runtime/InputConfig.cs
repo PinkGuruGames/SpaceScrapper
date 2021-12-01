@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using NaughtyAttributes;
+using UnityEngine;
 
 [CreateAssetMenu]
 public class InputConfig : ScriptableObject
@@ -8,6 +9,7 @@ public class InputConfig : ScriptableObject
     public float Acceleration = 2f;
     public float ConstantDrag = 0.05f;
     public bool ApplyConstantDragAlways = true;
+    public bool ApplyDragIndpendently = false;
     public float BrakeDrag = 0.2f;
 
     [Header("Input")]

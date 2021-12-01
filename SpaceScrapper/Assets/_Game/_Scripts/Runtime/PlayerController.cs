@@ -85,9 +85,20 @@ public class PlayerController : MonoBehaviour
         {
             velocity *= 1f - Config.BrakeDrag;
         }
-        else if (inputDirection.magnitude < 0.1 || Config.ApplyConstantDragAlways)
+        else if (Config.ApplyConstantDragAlways)
         {
             velocity *= 1f - Config.ConstantDrag;
+        }
+        else if (!Config.ApplyDragIndpendently && inputDirection.magnitude < 0.1)
+        {
+            velocity *= 1f - Config.ConstantDrag;
+        }
+        else if (Config.ApplyDragIndpendently)
+        {
+            if (Mathf.Abs(inputDirection.x) < 0.1f)
+                velocity.x *= 1f - Config.ConstantDrag;
+            if (Mathf.Abs(inputDirection.y) < 0.1f)
+                velocity.y *= 1f - Config.ConstantDrag;
         }
 
         velocity = Vector2.ClampMagnitude(velocity, Config.MaxSpeed);
