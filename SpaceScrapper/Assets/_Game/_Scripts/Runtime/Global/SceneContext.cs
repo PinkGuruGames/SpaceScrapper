@@ -10,7 +10,7 @@ namespace SpaceScrapper.Global
 
 
         /// <summary>
-        /// This class hold a reference to a Unity objects and ensures it will be safely set and reset
+        /// This class holds a reference to a Unity objects and ensures it will be safely bound and unbound
         /// </summary>
         public struct Handle<T> where T : Object
         {
