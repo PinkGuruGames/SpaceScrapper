@@ -4,9 +4,9 @@ namespace SpaceScrapper
 {
     public class PlayerController : MonoBehaviour
     {
-        // References
-        [SerializeField, HideInInspector] private new Rigidbody rigidbody;
-        [SerializeField, HideInInspector] private Camera mainCamera;
+        [Header("References")]
+        [SerializeField] private new Rigidbody rigidbody;
+        [SerializeField] private Camera mainCamera;
 
         [Header("Options")]
         [SerializeField] private bool relativeMovement = false; // This could be later implemented as a setting, for now it's just for testing/prototyping purposes
