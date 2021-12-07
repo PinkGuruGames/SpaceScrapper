@@ -14,12 +14,12 @@ namespace SpaceScrapper
         [SerializeField] private bool autoBreaking = true; // Whether to have the auto breaking enabled, can be extended later for different flight assist mechanics
 
         [Header("Movement Values")]
-        [SerializeField] private float acceleration = 50;
-        [SerializeField] private float deceleration = 50;
+        [SerializeField, Tooltip("How fast the ship will accelerate when there is input from the player.")] private float acceleration = 50;
+        [SerializeField, Tooltip("How fast the ship will stop when there is no input. Has no effect with auto breaking disabled.")] private float deceleration = 50;
         [SerializeField] private float topSpeed = 12;
-        [SerializeField] private float minimumSpeed = 1;
-        [SerializeField] private float turnSpeed = 50;
-        [SerializeField] private float aimPrecision = 0.1f;
+        [SerializeField, Tooltip("Minimum speed until which the auto breaks work.")] private float minimumSpeed = 1;
+        [SerializeField, Tooltip("How fast the ship will turn towards the cursor.")] private float turnSpeed = 50;
+        [SerializeField] private float aimPrecision = 0.1f; // TODO: This should be calculated from the turnSpeed
 
         private Vector2 collectiveInput;
 
