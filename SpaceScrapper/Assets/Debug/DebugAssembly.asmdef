@@ -1,10 +1,10 @@
 {
     "name": "DebugAssembly",
     "rootNamespace": "",
-    "references": [],
-    "includePlatforms": [
-        "Editor"
+    "references": [
+        "GUID:a1d73af5f72ca4e929569ac515d86db8"
     ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
