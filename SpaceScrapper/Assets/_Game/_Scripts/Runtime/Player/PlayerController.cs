@@ -10,10 +10,12 @@ namespace SpaceScrapper
 
         [Header("Options")]
         [SerializeField] private bool relativeMovement = false; // This could be later implemented as a setting, for now it's just for testing/prototyping purposes
-        [SerializeField] private bool restrictTurnRate = false; // Whether the rotation rate should be limited or not. If it isn't, the ship produces some weird behaviour while the cursor is too close and shaken. 
+        [SerializeField] private bool restrictTurnRate = true; // Whether the rotation rate should be limited or not. If it isn't, the ship produces some weird behaviour while the cursor is too close and shaken. 
+        [SerializeField] private bool autoBreaking = true; // Whether to have the auto breaking enabled, can be extended later for different flight assist mechanics
 
         [Header("Movement Values")]
         [SerializeField] private float acceleration = 50;
+        [SerializeField] private float deceleration = 50;
         [SerializeField] private float topSpeed = 12;
         [SerializeField] private float turnSpeed = 50;
         [SerializeField] private float aimPrecision = 0.1f;
@@ -25,6 +27,11 @@ namespace SpaceScrapper
             collectiveInput.x = Input.GetAxisRaw("Horizontal");
             collectiveInput.y = Input.GetAxisRaw("Vertical");
             collectiveInput = collectiveInput.normalized;
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                autoBreaking ^= true;
+            }
         }
 
         private void FixedUpdate()
@@ -37,20 +44,28 @@ namespace SpaceScrapper
         {
             float currentSqrSpeed = rigidbody.velocity.sqrMagnitude;
 
-            if (collectiveInput.sqrMagnitude > 0.05f && currentSqrSpeed <= topSpeed * topSpeed)
+            if (collectiveInput.sqrMagnitude > 0.05f)
             {
                 if (relativeMovement)
                     rigidbody.AddRelativeForce(collectiveInput * acceleration);
                 else
                     rigidbody.AddForce(collectiveInput * acceleration);
             }
-            else if (currentSqrSpeed > 0.5f)
+            else if (autoBreaking)
             {
-                rigidbody.AddForce(-rigidbody.velocity.normalized * acceleration);
+                if (currentSqrSpeed > 0.5f)
+                {
+                    rigidbody.AddForce(-rigidbody.velocity.normalized * deceleration);
+                }
+                else
+                {
+                    rigidbody.velocity = Vector3.zero;
+                }
             }
-            else
+
+            if (currentSqrSpeed >= topSpeed * topSpeed)
             {
-                rigidbody.velocity = Vector3.zero;
+                rigidbody.velocity = rigidbody.velocity.normalized * topSpeed;
             }
         }
 
@@ -77,7 +92,7 @@ namespace SpaceScrapper
 
         public Vector3 GetWorldPositionOnPlane(Vector3 screenPosition, float z)
         {
-            Ray ray = Camera.main.ScreenPointToRay(screenPosition);
+            Ray ray = mainCamera.ScreenPointToRay(screenPosition);
             Plane xy = new Plane(Vector3.forward, new Vector3(0, 0, z));
             xy.Raycast(ray, out var distance);
             return ray.GetPoint(distance);

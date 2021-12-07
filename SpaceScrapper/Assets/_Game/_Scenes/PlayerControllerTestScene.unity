@@ -290,8 +290,10 @@ MonoBehaviour:
   rigidbody: {fileID: 729815166}
   mainCamera: {fileID: 170762289}
   relativeMovement: 0
-  restrictTurnRate: 0
+  restrictTurnRate: 1
+  autoBreaking: 1
   acceleration: 50
+  deceleration: 50
   topSpeed: 12
   turnSpeed: 50
   aimPrecision: 0.1
