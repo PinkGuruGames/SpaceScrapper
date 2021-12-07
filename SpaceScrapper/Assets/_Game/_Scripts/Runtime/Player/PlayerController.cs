@@ -56,7 +56,7 @@ namespace SpaceScrapper
             {
                 if (minimumSpeed != 0f)
                 {
-                    if (currentSqrSpeed > minimumSpeed)
+                    if (currentSqrSpeed > minimumSpeed * minimumSpeed)
                     {
                         rigidbody.AddForce(-rigidbody.velocity.normalized * deceleration);
                     }
