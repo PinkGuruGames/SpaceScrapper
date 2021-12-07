@@ -17,6 +17,7 @@ namespace SpaceScrapper
         [SerializeField] private float acceleration = 50;
         [SerializeField] private float deceleration = 50;
         [SerializeField] private float topSpeed = 12;
+        [SerializeField] private float minimumSpeed = 1;
         [SerializeField] private float turnSpeed = 50;
         [SerializeField] private float aimPrecision = 0.1f;
 
@@ -53,13 +54,23 @@ namespace SpaceScrapper
             }
             else if (autoBreaking)
             {
-                if (currentSqrSpeed > 0.5f)
+                if (minimumSpeed != 0f)
                 {
-                    rigidbody.AddForce(-rigidbody.velocity.normalized * deceleration);
+                    if (currentSqrSpeed > minimumSpeed)
+                    {
+                        rigidbody.AddForce(-rigidbody.velocity.normalized * deceleration);
+                    }
                 }
                 else
                 {
-                    rigidbody.velocity = Vector3.zero;
+                    if (currentSqrSpeed > 0.5f)
+                    {
+                        rigidbody.AddForce(-rigidbody.velocity.normalized * deceleration);
+                    }
+                    else
+                    {
+                        rigidbody.velocity = Vector3.zero;
+                    }
                 }
             }
 
