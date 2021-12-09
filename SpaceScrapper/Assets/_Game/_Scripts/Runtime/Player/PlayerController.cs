@@ -11,14 +11,17 @@ namespace SpaceScrapper
         [Header("Options")]
         [SerializeField] private bool relativeMovement = false; // This could be later implemented as a setting, for now it's just for testing/prototyping purposes
         [SerializeField] private bool restrictTurnRate = true; // Whether the rotation rate should be limited or not. If it isn't, the ship produces some weird behaviour while the cursor is too close and shaken. 
-        [SerializeField] private bool autoBreaking = true; // Whether to have the auto breaking enabled, can be extended later for different flight assist mechanics
+        [SerializeField] private bool autoBraking = true; // Whether to have the auto breaking enabled, can be extended later for different flight assist mechanics
+        [SerializeField] private bool freeMove = true; // Whether to have the auto breaking enabled, can be extended later for different flight assist mechanics
 
         [Header("Movement Values")]
-        [SerializeField, Tooltip("How fast the ship will accelerate when there is input from the player.")] private float acceleration = 50;
-        [SerializeField, Tooltip("How fast the ship will stop when there is no input. Has no effect with auto breaking disabled.")] private float deceleration = 50;
-        [SerializeField] private float topSpeed = 12;
-        [SerializeField, Tooltip("Minimum speed until which the auto breaks work.")] private float minimumSpeed = 1;
-        [SerializeField, Tooltip("How fast the ship will turn towards the cursor.")] private float turnSpeed = 50;
+        [SerializeField, Tooltip("How fast the ship will accelerate when there is input from the player.")] private float acceleration = 50f;
+        [SerializeField, Tooltip("How fast the ship will stop when there is no input. Has no effect with auto breaking disabled.")] private float deceleration = 50f;
+        [SerializeField, Tooltip("How fast the ship will brake in cruise mode.")] private float cruiseBrakeForce = 20f;
+        [SerializeField, Tooltip("How fast the ship will turn in cruise mode.")] private float cruiseTurnSpeed = 5f;
+        [SerializeField] private float topSpeed = 12f;
+        [SerializeField, Tooltip("Minimum speed until which the auto breaks work.")] private float minimumSpeed = 0f;
+        [SerializeField, Tooltip("How fast the ship will turn towards the cursor.")] private float turnSpeed = 50f;
         [SerializeField] private float aimPrecision = 0.1f; // TODO: This should be calculated from the turnSpeed
 
         private Vector2 collectiveInput;
@@ -31,17 +34,55 @@ namespace SpaceScrapper
 
             if (Input.GetKeyDown(KeyCode.F))
             {
-                autoBreaking ^= true;
+                autoBraking ^= true;
+            }
+            if(Input.GetKeyDown(KeyCode.Tab))
+            {
+                freeMove ^= true;
+                restrictTurnRate ^= true;
+                // TODO: Create coroutine that'd swap between cruise/battle mode
+                // During swap, no change to velocity, rotate towards velocity.
             }
         }
 
         private void FixedUpdate()
         {
-            Move();
-            Aim();
+            if (freeMove)
+            {
+                FreeMove();
+                Aim();
+            }
+            else
+            {
+                CruiseMove();
+            }
         }
 
-        private void Move()
+        private void CruiseMove()
+        {
+            float currentSqrSpeed = rigidbody.velocity.sqrMagnitude;
+
+            if (collectiveInput.y > 0.05f)
+            {
+                rigidbody.AddRelativeForce(Vector3.up * (collectiveInput.y * acceleration));
+            }
+            else if (collectiveInput.y < -0.05f)
+            {
+                if (currentSqrSpeed > 0.5f)
+                {
+                    rigidbody.AddForce(-rigidbody.velocity.normalized * cruiseBrakeForce);
+                }
+                else
+                {
+                    rigidbody.velocity = Vector3.zero;
+                }
+            }
+            // TODO: Fix cruise rotation controls
+            var angle = collectiveInput.x;
+            rigidbody.angularVelocity = angle * cruiseTurnSpeed * Time.deltaTime * Vector3.forward;
+        }
+
+        private void FreeMove()
         {
             float currentSqrSpeed = rigidbody.velocity.sqrMagnitude;
 
@@ -52,7 +93,7 @@ namespace SpaceScrapper
                 else
                     rigidbody.AddForce(collectiveInput * acceleration);
             }
-            else if (autoBreaking)
+            else if (autoBraking)
             {
                 if (minimumSpeed != 0f)
                 {
