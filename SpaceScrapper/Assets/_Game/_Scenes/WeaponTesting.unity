@@ -348,7 +348,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 736d68e2f42924a4aa116aa0ca09e06b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootInterval: 0.1
+  shootsPerTriggerHold: 3
+  shootInterval: 5
 --- !u!1 &961739749
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,7 +673,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1894143029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8057640c71b2eac4c93969754778bcb3, type: 3}
+  m_Script: {fileID: 11500000, guid: 736d68e2f42924a4aa116aa0ca09e06b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootCooldown: 0.2
+  shootsPerTriggerHold: -1
+  shootInterval: 0.1
