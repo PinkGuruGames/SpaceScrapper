@@ -349,8 +349,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootsPerTriggerHold: 3
-  shootInterval: 0.5
+  shootInterval: 0.1
   bullet: {fileID: 37422424784781445, guid: 2b84c3cbc9d3ca84fb8b8793c82b3c9f, type: 3}
+  spread: 2
 --- !u!1 &961739749
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,5 +679,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootsPerTriggerHold: -1
-  shootInterval: 0.1
+  shootInterval: 0.05
   bullet: {fileID: 37422424784781445, guid: 2b84c3cbc9d3ca84fb8b8793c82b3c9f, type: 3}
+  spread: 5

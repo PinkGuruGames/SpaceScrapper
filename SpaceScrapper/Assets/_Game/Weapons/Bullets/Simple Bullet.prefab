@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: defeee91358cf6640866f1494b8b336e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 15
   lifetime: 10
 --- !u!1 &3529354951280909650
 GameObject:

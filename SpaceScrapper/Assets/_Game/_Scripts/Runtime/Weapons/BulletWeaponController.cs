@@ -12,6 +12,8 @@ namespace SpaceScrapper
         [SerializeField] private float shootInterval = 0.1f;
         [Space]
         [SerializeField] private GameObject bullet = null;
+        [Space]
+        [SerializeField] private float spread;
 
         private float timeSinceLastShot = -1;
         private int shotsInSeries = 0;
@@ -57,8 +59,10 @@ namespace SpaceScrapper
 
         public void Shoot()
         {
-            Debug.Log("AAAAAAAA!");
-            Instantiate(bullet, transform.position, transform.rotation);
+            Quaternion rotationAroundForwad = Quaternion.AngleAxis(Random.Range(0f, 360f), Vector3.forward);
+            Quaternion deviationFromForward = Quaternion.AngleAxis(Random.Range(0f, spread), Vector3.right);
+
+            Instantiate(bullet, transform.position, transform.rotation * rotationAroundForwad * deviationFromForward);
         }
     }
 }
