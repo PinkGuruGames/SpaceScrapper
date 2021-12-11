@@ -7,7 +7,7 @@ namespace SpaceScrapper
     /// </summary>
     public class BulletWeaponController : WeaponController
     {
-        [Header("Inifnite = -1")]
+        [Tooltip("Inifnite = -1")]
         [SerializeField] private int shootsPerTriggerHold = -1;
         [SerializeField] private float shootInterval = 0.1f;
         [Space]
