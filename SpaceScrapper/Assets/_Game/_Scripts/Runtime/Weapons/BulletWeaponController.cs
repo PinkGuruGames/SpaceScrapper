@@ -10,6 +10,8 @@ namespace SpaceScrapper
         [Header("Inifnite = -1")]
         [SerializeField] private int shootsPerTriggerHold = -1;
         [SerializeField] private float shootInterval = 0.1f;
+        [Space]
+        [SerializeField] private GameObject bullet = null;
 
         private float timeSinceLastShot = -1;
         private int shotsInSeries = 0;
@@ -56,6 +58,7 @@ namespace SpaceScrapper
         public void Shoot()
         {
             Debug.Log("AAAAAAAA!");
+            Instantiate(bullet, transform.position, transform.rotation);
         }
     }
 }
