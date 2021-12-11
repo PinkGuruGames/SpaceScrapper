@@ -4,12 +4,12 @@ using UnityEngine;
 namespace SpaceScrapper.UserInterface
 {
 	/// <summary>
-	/// Base class for managing <see cref="UIReference"/>s and providing functionality to UI elements
+	/// Base class for managing <see cref="UIIndex"/>s and providing functionality to UI elements
 	/// </summary>
 	[DisallowMultipleComponent]
 	public abstract class UIController : MonoBehaviour
 	{
-		private Dictionary<string, Component> elements = new Dictionary<string, Component> ();
+		private Dictionary<string, UIIndex> elements = new Dictionary<string, UIIndex> ();
 
 
 		private void Start ()
@@ -21,11 +21,11 @@ namespace SpaceScrapper.UserInterface
 		}
 
 
-		public bool TryGet<T> (string identifier, out T reference) where T : Component
+		public bool TryGetByID<T> (string identifier, out T reference) where T : Component
 		{
-			if (elements.TryGetValue (identifier, out Component c))
+			if (elements.TryGetValue (identifier, out UIIndex uiRef))
 			{
-				reference = c as T;
+				reference = uiRef.GetComponent<T> ();
 				return reference != null;
 			}
 
@@ -33,35 +33,38 @@ namespace SpaceScrapper.UserInterface
 			return false;
 		}
 
+		public T GetByID<T> (string identifier) where T : Component
+		{
+			if (TryGetByID(identifier, out T value)) {
+				return value;
+			}
+			return null;
+		}
 
-		internal void Register (UIReference reference)
+
+		internal void Register (UIIndex reference)
 		{
 			if (elements == null)
 			{
-				elements = new Dictionary<string, Component> ();
+				elements = new Dictionary<string, UIIndex> ();
 			}
 
 			if (reference == null || !reference.Valid)
 				return;
 
-
-			if (reference.Prioritize)
+			if (!elements.TryAdd (reference.ID, reference))
 			{
-				elements[reference.ID] = reference.Reference;
-			}
-			else
-			{
-				elements.TryAdd (reference.ID, reference.Reference);
+				Debug.LogError ($"Duplicate UI ID: {reference.ID}");
 			}
 		}
 
-		internal void Unregister (UIReference reference)
+		internal void Unregister (UIIndex reference)
 		{
 			if (reference == null || !reference.Valid)
 				return;
 
 
-			if (elements.TryGetValue (reference.ID, out Component comp) && reference.Reference == comp)
+			if (elements.TryGetValue (reference.ID, out UIIndex comp) && reference == comp)
 			{
 				elements.Remove (reference.ID);
 			}
