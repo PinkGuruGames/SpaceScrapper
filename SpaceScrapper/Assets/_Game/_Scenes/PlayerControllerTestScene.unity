@@ -233,8 +233,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170762286}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -15}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -292,12 +292,39 @@ MonoBehaviour:
   inputData: {fileID: 729815169}
   acceleration: 50
   deceleration: 50
+  cruiseTopSpeed: 100
   cruiseBrakeForce: 20
-  cruiseTurnSpeed: 5
+  cruiseTurnSpeed: 50
+  cruiseMaxAngleOfAttack: 5
+  lateralCorrectionForce: 1
   topSpeed: 12
   minimumSpeed: 0
   turnSpeed: 50
   aimPrecision: 0.1
+  cruiseAcceleration:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 6.1649942
+      outSlope: 6.1649942
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.099509455
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.058164164
+      outSlope: 0.058164164
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 1
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &729815168
 Transform:
   m_ObjectHideFlags: 0

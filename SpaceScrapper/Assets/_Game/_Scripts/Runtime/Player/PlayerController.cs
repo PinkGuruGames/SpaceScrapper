@@ -10,21 +10,29 @@ namespace SpaceScrapper
 
         [Header("Movement Values")]
         [Tooltip("How fast the ship will accelerate when there is input from the player.")]
-        [SerializeField] private float acceleration = 50f;
+        [SerializeField] private float hoverAcceleration = 50f;
         [Tooltip("How fast the ship will stop when there is no input. Has no effect with auto breaking disabled.")]
-        [SerializeField] private float deceleration = 50f;
+        [SerializeField] private float hoverDeceleration = 50f;
+        [Tooltip("Speed until which the ship will accelerate.")]
+        [SerializeField] private float hoverTopSpeed = 100f;
+        [Tooltip("Minimum speed until which the auto breaks work.")]
+        [SerializeField] private float hoverMinimumSpeed = 0f;
+        [Tooltip("How fast the ship will turn towards the cursor.")]
+        [SerializeField] private float hoverTurnSpeed = 50f;
+        [Tooltip("TODO: This should be calculated from the turnSpeed and not be serialized")]
+        [SerializeField] private float aimPrecision = 0.1f; // TODO: This should be calculated from the turnSpeed
+        [Tooltip("Speed until which the ship will accelerate in cruise mode.")]
+        [SerializeField] private float cruiseTopSpeed = 12f;
         [Tooltip("How fast the ship will brake in cruise mode.")]
         [SerializeField] private float cruiseBrakeForce = 20f;
         [Tooltip("How fast the ship will turn in cruise mode.")]
         [SerializeField] private float cruiseTurnSpeed = 5f;
-        [Tooltip("Speed until which the ship will accelerate.")]
-        [SerializeField] private float topSpeed = 12f;
-        [Tooltip("Minimum speed until which the auto breaks work.")]
-        [SerializeField] private float minimumSpeed = 0f;
-        [Tooltip("How fast the ship will turn towards the cursor.")]
-        [SerializeField] private float turnSpeed = 50f;
-        [Tooltip("TODO: This should be calculated from the turnSpeed and not be serialized")]
-        [SerializeField] private float aimPrecision = 0.1f; // TODO: This should be calculated from the turnSpeed
+        [Tooltip("Lateral force to add.")]
+        [SerializeField] private float lateralCorrectionForce = 1f;
+        [Tooltip("Maximum angle of attack allowed before force is applied towards rotation.")]
+        [SerializeField] private float cruiseMaxAngleOfAttack = 5f;
+
+        [SerializeField] private AnimationCurve cruiseAcceleration;
 
         private void Update()
         {
@@ -48,10 +56,12 @@ namespace SpaceScrapper
         private void Cruise()
         {
             float currentSqrSpeed = rigidbody.velocity.sqrMagnitude;
+            float accelerationCurve = 1 - cruiseAcceleration.Evaluate(Mathf.Sqrt(currentSqrSpeed) / cruiseTopSpeed); //
+            //print(accelerationCurve);
 
             if (inputData.Movement.y > 0.05f)
             {
-                rigidbody.AddRelativeForce(Vector3.up * (inputData.Movement.y * acceleration));
+                rigidbody.AddRelativeForce(Vector3.up * (inputData.Movement.y * hoverAcceleration * accelerationCurve));
             }
             else if (inputData.Movement.y < -0.05f)
             {
@@ -65,8 +75,16 @@ namespace SpaceScrapper
                 }
             }
             // TODO: Fix cruise rotation controls
-            var angle = inputData.Movement.x;
-            rigidbody.angularVelocity = angle * cruiseTurnSpeed * Time.deltaTime * Vector3.forward;
+            var desiredRotation = -inputData.Movement.x;
+            rigidbody.angularVelocity = desiredRotation * cruiseTurnSpeed * Time.deltaTime * Vector3.forward;
+
+            var angle = Vector2.SignedAngle(transform.up, rigidbody.velocity);
+            var lateralForceToAdd = accelerationCurve * lateralCorrectionForce;
+            if (angle > cruiseMaxAngleOfAttack || angle < -cruiseMaxAngleOfAttack)
+            {
+                rigidbody.AddRelativeForce(transform.right * (-angle * lateralForceToAdd));
+            }
+            rigidbody.AddRelativeForce(-rigidbody.velocity.normalized * (lateralForceToAdd * Mathf.Abs(angle)));
         }
 
         private void FreeMove()
@@ -76,24 +94,24 @@ namespace SpaceScrapper
             if (inputData.Movement.sqrMagnitude > 0.05f)
             {
                 if (inputData.RelativeMode)
-                    rigidbody.AddRelativeForce(inputData.Movement * acceleration);
+                    rigidbody.AddRelativeForce(inputData.Movement * hoverAcceleration);
                 else
-                    rigidbody.AddForce(inputData.Movement * acceleration);
+                    rigidbody.AddForce(inputData.Movement * hoverAcceleration);
             }
             else if (inputData.FlightAssist)
             {
-                if (minimumSpeed != 0f)
+                if (hoverMinimumSpeed != 0f)
                 {
-                    if (currentSqrSpeed > minimumSpeed * minimumSpeed)
+                    if (currentSqrSpeed > hoverMinimumSpeed * hoverMinimumSpeed)
                     {
-                        rigidbody.AddForce(-rigidbody.velocity.normalized * deceleration);
+                        rigidbody.AddForce(-rigidbody.velocity.normalized * hoverDeceleration);
                     }
                 }
                 else
                 {
                     if (currentSqrSpeed > 0.5f)
                     {
-                        rigidbody.AddForce(-rigidbody.velocity.normalized * deceleration);
+                        rigidbody.AddForce(-rigidbody.velocity.normalized * hoverDeceleration);
                     }
                     else
                     {
@@ -102,9 +120,9 @@ namespace SpaceScrapper
                 }
             }
 
-            if (currentSqrSpeed >= topSpeed * topSpeed)
+            if (currentSqrSpeed >= hoverTopSpeed * hoverTopSpeed)
             {
-                rigidbody.velocity = rigidbody.velocity.normalized * topSpeed;
+                rigidbody.velocity = rigidbody.velocity.normalized * hoverTopSpeed;
             }
         }
 
@@ -114,7 +132,7 @@ namespace SpaceScrapper
             var angle = Vector3.SignedAngle(transform.up, aimDirection, Vector3.forward);
             if (angle > aimPrecision || angle < -aimPrecision)
             {
-                rigidbody.angularVelocity = angle * turnSpeed * Time.deltaTime * Vector3.forward;
+                rigidbody.angularVelocity = angle * hoverTurnSpeed * Time.deltaTime * Vector3.forward;
             }
             else
             {
