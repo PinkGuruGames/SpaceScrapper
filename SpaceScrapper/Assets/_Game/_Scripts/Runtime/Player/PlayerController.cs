@@ -9,13 +9,21 @@ namespace SpaceScrapper
         [SerializeField] private InputData inputData;
 
         [Header("Movement Values")]
-        [SerializeField, Tooltip("How fast the ship will accelerate when there is input from the player.")] private float acceleration = 50f;
-        [SerializeField, Tooltip("How fast the ship will stop when there is no input. Has no effect with auto breaking disabled.")] private float deceleration = 50f;
-        [SerializeField, Tooltip("How fast the ship will brake in cruise mode.")] private float cruiseBrakeForce = 20f;
-        [SerializeField, Tooltip("How fast the ship will turn in cruise mode.")] private float cruiseTurnSpeed = 5f;
+        [Tooltip("How fast the ship will accelerate when there is input from the player.")]
+        [SerializeField] private float acceleration = 50f;
+        [Tooltip("How fast the ship will stop when there is no input. Has no effect with auto breaking disabled.")]
+        [SerializeField] private float deceleration = 50f;
+        [Tooltip("How fast the ship will brake in cruise mode.")]
+        [SerializeField] private float cruiseBrakeForce = 20f;
+        [Tooltip("How fast the ship will turn in cruise mode.")]
+        [SerializeField] private float cruiseTurnSpeed = 5f;
+        [Tooltip("Speed until which the ship will accelerate.")]
         [SerializeField] private float topSpeed = 12f;
-        [SerializeField, Tooltip("Minimum speed until which the auto breaks work.")] private float minimumSpeed = 0f;
-        [SerializeField, Tooltip("How fast the ship will turn towards the cursor.")] private float turnSpeed = 50f;
+        [Tooltip("Minimum speed until which the auto breaks work.")]
+        [SerializeField] private float minimumSpeed = 0f;
+        [Tooltip("How fast the ship will turn towards the cursor.")]
+        [SerializeField] private float turnSpeed = 50f;
+        [Tooltip("TODO: This should be calculated from the turnSpeed and not be serialized")]
         [SerializeField] private float aimPrecision = 0.1f; // TODO: This should be calculated from the turnSpeed
 
         private void Update()
