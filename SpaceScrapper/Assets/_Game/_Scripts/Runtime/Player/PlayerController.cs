@@ -6,13 +6,7 @@ namespace SpaceScrapper
     {
         [Header("References")]
         [SerializeField] private new Rigidbody rigidbody;
-        [SerializeField] private Camera mainCamera;
-
-        [Header("Options")]
-        [SerializeField] private bool relativeMovement = false; // This could be later implemented as a setting, for now it's just for testing/prototyping purposes
-        [SerializeField] private bool restrictTurnRate = true; // Whether the rotation rate should be limited or not. If it isn't, the ship produces some weird behaviour while the cursor is too close and shaken. 
-        [SerializeField] private bool autoBraking = true; // Whether to have the auto breaking enabled, can be extended later for different flight assist mechanics
-        [SerializeField] private bool freeMove = true; // Whether to have the auto breaking enabled, can be extended later for different flight assist mechanics
+        [SerializeField] private InputData inputData;
 
         [Header("Movement Values")]
         [SerializeField, Tooltip("How fast the ship will accelerate when there is input from the player.")] private float acceleration = 50f;
@@ -24,49 +18,34 @@ namespace SpaceScrapper
         [SerializeField, Tooltip("How fast the ship will turn towards the cursor.")] private float turnSpeed = 50f;
         [SerializeField] private float aimPrecision = 0.1f; // TODO: This should be calculated from the turnSpeed
 
-        private Vector2 collectiveInput;
-
         private void Update()
         {
-            collectiveInput.x = Input.GetAxisRaw("Horizontal");
-            collectiveInput.y = Input.GetAxisRaw("Vertical");
-            collectiveInput = collectiveInput.normalized;
-
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                autoBraking ^= true;
-            }
-            if(Input.GetKeyDown(KeyCode.Tab))
-            {
-                freeMove ^= true;
-                restrictTurnRate ^= true;
-                // TODO: Create coroutine that'd swap between cruise/battle mode
-                // During swap, no change to velocity, rotate towards velocity.
-            }
+            // TODO: Create coroutine that'd swap between cruise/battle mode
+            // During swap, no change to velocity, rotate towards velocity.
         }
 
         private void FixedUpdate()
         {
-            if (freeMove)
+            if (inputData.CruiseMode)
+            {
+                Cruise();
+            }
+            else
             {
                 FreeMove();
                 Aim();
             }
-            else
-            {
-                CruiseMove();
-            }
         }
 
-        private void CruiseMove()
+        private void Cruise()
         {
             float currentSqrSpeed = rigidbody.velocity.sqrMagnitude;
 
-            if (collectiveInput.y > 0.05f)
+            if (inputData.Movement.y > 0.05f)
             {
-                rigidbody.AddRelativeForce(Vector3.up * (collectiveInput.y * acceleration));
+                rigidbody.AddRelativeForce(Vector3.up * (inputData.Movement.y * acceleration));
             }
-            else if (collectiveInput.y < -0.05f)
+            else if (inputData.Movement.y < -0.05f)
             {
                 if (currentSqrSpeed > 0.5f)
                 {
@@ -78,7 +57,7 @@ namespace SpaceScrapper
                 }
             }
             // TODO: Fix cruise rotation controls
-            var angle = collectiveInput.x;
+            var angle = inputData.Movement.x;
             rigidbody.angularVelocity = angle * cruiseTurnSpeed * Time.deltaTime * Vector3.forward;
         }
 
@@ -86,14 +65,14 @@ namespace SpaceScrapper
         {
             float currentSqrSpeed = rigidbody.velocity.sqrMagnitude;
 
-            if (collectiveInput.sqrMagnitude > 0.05f)
+            if (inputData.Movement.sqrMagnitude > 0.05f)
             {
-                if (relativeMovement)
-                    rigidbody.AddRelativeForce(collectiveInput * acceleration);
+                if (inputData.RelativeMode)
+                    rigidbody.AddRelativeForce(inputData.Movement * acceleration);
                 else
-                    rigidbody.AddForce(collectiveInput * acceleration);
+                    rigidbody.AddForce(inputData.Movement * acceleration);
             }
-            else if (autoBraking)
+            else if (inputData.FlightAssist)
             {
                 if (minimumSpeed != 0f)
                 {
@@ -123,31 +102,16 @@ namespace SpaceScrapper
 
         private void Aim()
         {
-            var aimDirection = GetWorldPositionOnPlane(Input.mousePosition, 0f) - transform.position;
-            if (restrictTurnRate)
+            var aimDirection = inputData.WorldMousePosition - transform.position;
+            var angle = Vector3.SignedAngle(transform.up, aimDirection, Vector3.forward);
+            if (angle > aimPrecision || angle < -aimPrecision)
             {
-                var angle = Vector3.SignedAngle(transform.up, aimDirection, Vector3.forward);
-                if (angle > aimPrecision || angle < -aimPrecision)
-                {
-                    rigidbody.angularVelocity = angle * turnSpeed * Time.deltaTime * Vector3.forward;
-                }
-                else
-                {
-                    rigidbody.angularVelocity = Vector3.zero;
-                }
+                rigidbody.angularVelocity = angle * turnSpeed * Time.deltaTime * Vector3.forward;
             }
             else
             {
-                transform.up = aimDirection;
+                rigidbody.angularVelocity = Vector3.zero;
             }
-        }
-
-        public Vector3 GetWorldPositionOnPlane(Vector3 screenPosition, float z)
-        {
-            Ray ray = mainCamera.ScreenPointToRay(screenPosition);
-            Plane xy = new Plane(Vector3.forward, new Vector3(0, 0, z));
-            xy.Raycast(ray, out var distance);
-            return ray.GetPoint(distance);
         }
     }
 }

@@ -252,6 +252,7 @@ GameObject:
   - component: {fileID: 729815168}
   - component: {fileID: 729815167}
   - component: {fileID: 729815166}
+  - component: {fileID: 729815169}
   m_Layer: 0
   m_Name: Player Ship
   m_TagString: Untagged
@@ -288,13 +289,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 729815166}
-  mainCamera: {fileID: 170762289}
-  relativeMovement: 0
-  restrictTurnRate: 1
-  autoBreaking: 1
+  inputData: {fileID: 729815169}
   acceleration: 50
   deceleration: 50
+  cruiseBrakeForce: 20
+  cruiseTurnSpeed: 5
   topSpeed: 12
+  minimumSpeed: 0
   turnSpeed: 50
   aimPrecision: 0.1
 --- !u!4 &729815168
@@ -313,6 +314,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &729815169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729815165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64a78a772201f3045bd91df03475ff81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 170762289}
+  forwardButton: 119
+  backwardButton: 115
+  leftwardButton: 97
+  rightwardButton: 100
+  relativeModeButton: 114
+  flightAssistToggleButton: 102
+  flightAssistHoldButton: 304
+  cruiseModeButton: 9
 --- !u!1 &1212218412
 GameObject:
   m_ObjectHideFlags: 0
