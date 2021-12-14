@@ -270,7 +270,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
@@ -290,17 +290,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 729815166}
   inputData: {fileID: 729815169}
-  hoverAcceleration: 50
-  hoverDeceleration: 50
-  hoverTopSpeed: 100
+  hoverAcceleration: 200
+  hoverDeceleration: 200
+  hoverTopSpeed: 50
   hoverMinimumSpeed: 0
   hoverTurnSpeed: 500
   cruiseAcceleration: 50
   cruiseDeceleration: 20
-  cruiseTopSpeed: 100
-  cruiseTurnSpeed: 50
+  cruiseTopSpeed: 15
+  cruiseTurnSpeed: 250
   lateralCorrectionForce: 1
-  cruiseMaxAngleOfAttack: 5
+  cruiseMaxAngleOfAttack: 20
   cruiseAccelerationCurve:
     serializedVersion: 2
     m_Curve:

@@ -36,17 +36,14 @@ namespace SpaceScrapper
         [Tooltip("How fast the ship should accelerate (X-Axis) in cruise mode in relation to its current speed (Y-Axis).")]
         [SerializeField] private AnimationCurve cruiseAccelerationCurve;
 
-        private float aimPrecision;
-        public void CalculateAimPrecision()
-        { 
-            // Calculating via Time.fixedDeltaTime because how much we turn by frame shouldn't exceed the aim precision, * 1.1f for a small safety net.
-            aimPrecision = hoverTurnSpeed * Time.fixedDeltaTime * 1.1f;
-        }
+        private float hoverBreakPrecision;
+        private float hoverAimPrecision;
 
-        private void Update()
+        private void Start()
         {
-            // This should be in Start() after testing is done, it's currently in update to allow updating hoverTurnSpeed in runtime to test;
-            CalculateAimPrecision();
+            // Calculating via Time.fixedDeltaTime because how much we turn/break per frame shouldn't exceed the aim precision/break force, * 1.1f for a small safety net.
+            hoverBreakPrecision = hoverDeceleration * Time.fixedDeltaTime * 1.1f;
+            hoverAimPrecision = hoverTurnSpeed * Time.fixedDeltaTime * 1.1f;
         }
 
         private void FixedUpdate()
@@ -121,7 +118,7 @@ namespace SpaceScrapper
                 }
                 else
                 {
-                    if (currentSqrSpeed > 0.5f)
+                    if (currentSqrSpeed > hoverBreakPrecision * hoverBreakPrecision)
                     {
                         rigidbody.AddForce(-rigidbody.velocity.normalized * hoverDeceleration);
                     }
@@ -141,13 +138,13 @@ namespace SpaceScrapper
         private void FreeAim()
         {
             var aimDirection = inputData.WorldMousePosition - transform.position;
-            var angle = Vector3.SignedAngle(transform.up, aimDirection, Vector3.forward);
+            var angle = Vector3.SignedAngle(transform.up, aimDirection, -Vector3.forward);
 
-            if (angle > aimPrecision || angle < -aimPrecision)
+            if (angle > hoverAimPrecision || angle < -hoverAimPrecision)
             {
                 var direction = angle < 0 ? -1 : 1; // TODO: Optimize
 
-                var deltaRotation = Quaternion.Euler(direction * hoverTurnSpeed * Time.deltaTime * Vector3.forward);
+                var deltaRotation = Quaternion.Euler(direction * hoverTurnSpeed * Time.deltaTime * -Vector3.forward);
                 rigidbody.MoveRotation(rigidbody.rotation * deltaRotation);
             }
             else
