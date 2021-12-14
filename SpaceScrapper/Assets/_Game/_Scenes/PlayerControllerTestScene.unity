@@ -290,37 +290,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 729815166}
   inputData: {fileID: 729815169}
-  acceleration: 50
-  deceleration: 50
+  hoverAcceleration: 50
+  hoverDeceleration: 50
+  hoverTopSpeed: 100
+  hoverMinimumSpeed: 0
+  hoverTurnSpeed: 500
   cruiseTopSpeed: 100
   cruiseBrakeForce: 20
   cruiseTurnSpeed: 50
-  cruiseMaxAngleOfAttack: 5
   lateralCorrectionForce: 1
-  topSpeed: 12
-  minimumSpeed: 0
-  turnSpeed: 50
-  aimPrecision: 0.1
+  cruiseMaxAngleOfAttack: 5
   cruiseAcceleration:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
-      inSlope: 6.1649942
-      outSlope: 6.1649942
+      value: 1
+      inSlope: -0.14575128
+      outSlope: -0.14575128
       tangentMode: 0
       weightedMode: 3
       inWeight: 0
-      outWeight: 0.099509455
+      outWeight: 0.6969147
     - serializedVersion: 3
       time: 1
-      value: 1
-      inSlope: 0.058164164
-      outSlope: 0.058164164
+      value: 0
+      inSlope: -6.8754396
+      outSlope: -6.8754396
       tangentMode: 0
       weightedMode: 3
-      inWeight: 1
+      inWeight: 0.10163337
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

@@ -17,10 +17,8 @@ namespace SpaceScrapper
         [SerializeField] private float hoverTopSpeed = 100f;
         [Tooltip("Minimum speed until which the auto breaks work.")]
         [SerializeField] private float hoverMinimumSpeed = 0f;
-        [Tooltip("How fast the ship will turn towards the cursor.")]
+        [Tooltip("How fast the ship will turn towards the cursor. Measuerd in degrees per second.")]
         [SerializeField] private float hoverTurnSpeed = 50f;
-        [Tooltip("TODO: This should be calculated from the turnSpeed and not be serialized")]
-        [SerializeField] private float aimPrecision = 0.1f; // TODO: This should be calculated from the turnSpeed
         [Tooltip("Speed until which the ship will accelerate in cruise mode.")]
         [SerializeField] private float cruiseTopSpeed = 12f;
         [Tooltip("How fast the ship will brake in cruise mode.")]
@@ -31,13 +29,15 @@ namespace SpaceScrapper
         [SerializeField] private float lateralCorrectionForce = 1f;
         [Tooltip("Maximum angle of attack allowed before force is applied towards rotation.")]
         [SerializeField] private float cruiseMaxAngleOfAttack = 5f;
-
+        [Tooltip("How fast the ship should accelerate (X-Axis) in cruise mode in relation to its current speed (Y-Axis).")]
         [SerializeField] private AnimationCurve cruiseAcceleration;
+
+        private float aimPrecision = 0.1f;
 
         private void Update()
         {
-            // TODO: Create coroutine that'd swap between cruise/battle mode
-            // During swap, no change to velocity, rotate towards velocity.
+            // This should be in Start() after testing is done, it's currently in update to allow updating hoverTurnSpeed in runtime to test;
+            aimPrecision = hoverTurnSpeed * Time.fixedDeltaTime * 1.1f;
         }
 
         private void FixedUpdate()
@@ -56,8 +56,7 @@ namespace SpaceScrapper
         private void Cruise()
         {
             float currentSqrSpeed = rigidbody.velocity.sqrMagnitude;
-            float accelerationCurve = 1 - cruiseAcceleration.Evaluate(Mathf.Sqrt(currentSqrSpeed) / cruiseTopSpeed); //
-            //print(accelerationCurve);
+            float accelerationCurve = cruiseAcceleration.Evaluate(Mathf.Sqrt(currentSqrSpeed) / cruiseTopSpeed); //
 
             if (inputData.Movement.y > 0.05f)
             {
@@ -74,6 +73,7 @@ namespace SpaceScrapper
                     rigidbody.velocity = Vector3.zero;
                 }
             }
+
             // TODO: Fix cruise rotation controls
             var desiredRotation = -inputData.Movement.x;
             rigidbody.angularVelocity = desiredRotation * cruiseTurnSpeed * Time.deltaTime * Vector3.forward;
@@ -130,13 +130,18 @@ namespace SpaceScrapper
         {
             var aimDirection = inputData.WorldMousePosition - transform.position;
             var angle = Vector3.SignedAngle(transform.up, aimDirection, Vector3.forward);
+
             if (angle > aimPrecision || angle < -aimPrecision)
             {
-                rigidbody.angularVelocity = angle * hoverTurnSpeed * Time.deltaTime * Vector3.forward;
+                var direction = angle < 0 ? -1 : 1; // TODO: Optimize
+
+                var deltaRotation = Quaternion.Euler(direction * hoverTurnSpeed * Time.deltaTime * Vector3.forward);
+                rigidbody.MoveRotation(rigidbody.rotation * deltaRotation);
             }
             else
             {
                 rigidbody.angularVelocity = Vector3.zero;
+                transform.up = aimDirection;
             }
         }
     }
