@@ -8,7 +8,7 @@ namespace SpaceScrapper
         [SerializeField] private new Rigidbody rigidbody;
         [SerializeField] private InputData inputData;
 
-        [Header("Movement Values")]
+        [Header("Hover Mode Movement Values")]
         [Tooltip("How fast the ship will accelerate when there is input from the player.")]
         [SerializeField] private float hoverAcceleration = 50f;
         [Tooltip("How fast the ship will stop when there is no input. Has no effect with auto breaking disabled.")]
@@ -19,67 +19,79 @@ namespace SpaceScrapper
         [SerializeField] private float hoverMinimumSpeed = 0f;
         [Tooltip("How fast the ship will turn towards the cursor. Measuerd in degrees per second.")]
         [SerializeField] private float hoverTurnSpeed = 50f;
+
+        [Header("Cruise Mode Movement Values")]
         [Tooltip("Speed until which the ship will accelerate in cruise mode.")]
-        [SerializeField] private float cruiseTopSpeed = 12f;
+        [SerializeField] private float cruiseAcceleration = 50f;
         [Tooltip("How fast the ship will brake in cruise mode.")]
-        [SerializeField] private float cruiseBrakeForce = 20f;
+        [SerializeField] private float cruiseDeceleration = 20f;
         [Tooltip("How fast the ship will turn in cruise mode.")]
+        [SerializeField] private float cruiseTopSpeed = 12f;
+        [Tooltip("How fast the ship will accelerate in cruise mode when there is input from the player.")]
         [SerializeField] private float cruiseTurnSpeed = 5f;
-        [Tooltip("Lateral force to add.")]
+        [Tooltip("Lateral force to add in cruise mode to simulate atmospheric physics.")]
         [SerializeField] private float lateralCorrectionForce = 1f;
-        [Tooltip("Maximum angle of attack allowed before force is applied towards rotation.")]
+        [Tooltip("Maximum angle of attack allowed in cruise mode.")]
         [SerializeField] private float cruiseMaxAngleOfAttack = 5f;
         [Tooltip("How fast the ship should accelerate (X-Axis) in cruise mode in relation to its current speed (Y-Axis).")]
-        [SerializeField] private AnimationCurve cruiseAcceleration;
+        [SerializeField] private AnimationCurve cruiseAccelerationCurve;
 
-        private float aimPrecision = 0.1f;
+        private float aimPrecision;
+        public void CalculateAimPrecision()
+        { 
+            // Calculating via Time.fixedDeltaTime because how much we turn by frame shouldn't exceed the aim precision, * 1.1f for a small safety net.
+            aimPrecision = hoverTurnSpeed * Time.fixedDeltaTime * 1.1f;
+        }
 
         private void Update()
         {
             // This should be in Start() after testing is done, it's currently in update to allow updating hoverTurnSpeed in runtime to test;
-            aimPrecision = hoverTurnSpeed * Time.fixedDeltaTime * 1.1f;
+            CalculateAimPrecision();
         }
 
         private void FixedUpdate()
         {
             if (inputData.CruiseMode)
             {
-                Cruise();
+                float accelerationMultiplier = cruiseAccelerationCurve.Evaluate(rigidbody.velocity.magnitude / cruiseTopSpeed);
+
+                CruiseMove(accelerationMultiplier);
+                CruiseAim(accelerationMultiplier);
             }
             else
             {
                 FreeMove();
-                Aim();
+                FreeAim();
             }
         }
 
-        private void Cruise()
+        private void CruiseMove(float accelerationMultiplier)
         {
-            float currentSqrSpeed = rigidbody.velocity.sqrMagnitude;
-            float accelerationCurve = cruiseAcceleration.Evaluate(Mathf.Sqrt(currentSqrSpeed) / cruiseTopSpeed); //
-
             if (inputData.Movement.y > 0.05f)
             {
-                rigidbody.AddRelativeForce(Vector3.up * (inputData.Movement.y * hoverAcceleration * accelerationCurve));
+                rigidbody.AddRelativeForce(Vector3.up * (inputData.Movement.y * cruiseAcceleration * accelerationMultiplier));
             }
             else if (inputData.Movement.y < -0.05f)
             {
-                if (currentSqrSpeed > 0.5f)
+                if (rigidbody.velocity.sqrMagnitude > 0.5f)
                 {
-                    rigidbody.AddForce(-rigidbody.velocity.normalized * cruiseBrakeForce);
+                    rigidbody.AddForce(-rigidbody.velocity.normalized * cruiseDeceleration);
                 }
                 else
                 {
                     rigidbody.velocity = Vector3.zero;
                 }
             }
+        }
 
-            // TODO: Fix cruise rotation controls
-            var desiredRotation = -inputData.Movement.x;
-            rigidbody.angularVelocity = desiredRotation * cruiseTurnSpeed * Time.deltaTime * Vector3.forward;
+        private void CruiseAim(float accelerationMultiplier)    // TODO: Fix cruise rotation controls
+        {
+            var desiredDirection = inputData.Movement.x;
+            var deltaRotation = Quaternion.Euler(desiredDirection * cruiseTurnSpeed * Time.deltaTime * Vector3.forward);
+            rigidbody.MoveRotation(rigidbody.rotation * deltaRotation);
 
-            var angle = Vector2.SignedAngle(transform.up, rigidbody.velocity);
-            var lateralForceToAdd = accelerationCurve * lateralCorrectionForce;
+            var angle = Vector3.SignedAngle(transform.up, rigidbody.velocity, Vector3.forward);
+            var lateralForceToAdd = accelerationMultiplier * lateralCorrectionForce;
             if (angle > cruiseMaxAngleOfAttack || angle < -cruiseMaxAngleOfAttack)
             {
                 rigidbody.AddRelativeForce(transform.right * (-angle * lateralForceToAdd));
@@ -126,7 +138,7 @@ namespace SpaceScrapper
             }
         }
 
-        private void Aim()
+        private void FreeAim()
         {
             var aimDirection = inputData.WorldMousePosition - transform.position;
             var angle = Vector3.SignedAngle(transform.up, aimDirection, Vector3.forward);

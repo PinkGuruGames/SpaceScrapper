@@ -295,12 +295,13 @@ MonoBehaviour:
   hoverTopSpeed: 100
   hoverMinimumSpeed: 0
   hoverTurnSpeed: 500
+  cruiseAcceleration: 50
+  cruiseDeceleration: 20
   cruiseTopSpeed: 100
-  cruiseBrakeForce: 20
   cruiseTurnSpeed: 50
   lateralCorrectionForce: 1
   cruiseMaxAngleOfAttack: 5
-  cruiseAcceleration:
+  cruiseAccelerationCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
