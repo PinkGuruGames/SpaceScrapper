@@ -19,7 +19,8 @@ namespace SpaceScrapper
         private float maxSpeed = 10f;
 
         [SerializeField]
-        private float drag = 0.1f;
+        [Tooltip("Maximum angle in degrees that thrusters can tilt to steer")]
+        private float maxSteerAngle = 45f;
 
         [SerializeField]
         private Transform thrusters;
@@ -39,22 +40,23 @@ namespace SpaceScrapper
             //default direction
             var cachedTransform = transform;
             var cachedForward = cachedTransform.forward;
-            var steer = -inputData.Movement.x;
+            var steer = inputData.Movement.x;
+            var thrustersPosition = thrusters.position;
 
-            rb.AddForceAtPosition(cachedTransform.right * (steer * steerPower), thrusters.position, ForceMode.Force);
+            if (steer != 0)
+            {
+                var steerThrustDirection =
+                    Vector3.RotateTowards(cachedForward, -steer * cachedTransform.right, maxSteerAngle * Mathf.Deg2Rad,
+                        0f);
+                var steerForce = steerThrustDirection * steerPower;
+                rb.AddForceAtPosition(steerThrustDirection * steerPower, thrustersPosition, ForceMode.Force);
+
+                Debug.DrawRay(thrustersPosition, -steerForce, Color.red);
+            }
 
             var forward = Vector3.Scale(new Vector3(1, 0, 1), cachedForward);
 
             PhysicsHelper.ApplyForceToReachVelocity(rb, forward * (maxSpeed * inputData.Movement.y), power);
-
-            // //moving forward
-            // var movingForward = Vector3.Cross(cachedForward, rb.velocity).y < 0;
-            //
-            // //move in direction
-            // rb.velocity =
-            //     Quaternion.AngleAxis(
-            //         Vector3.SignedAngle(rb.velocity, (movingForward ? 1f : 0f) * cachedForward, Vector3.up) *
-            //         drag, Vector3.up) * rb.velocity;
         }
     }
 }
