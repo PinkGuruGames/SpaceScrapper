@@ -2,37 +2,37 @@ using UnityEngine;
 
 namespace SpaceScrapper.UserInterface
 {
-	public sealed class UIIndex : MonoBehaviour
+	public sealed class UIWidget : MonoBehaviour
 	{
 
 		private UIController controller;
 
-		[SerializeField, Tooltip ("The identifier with which the reference will register itself in the parent controller.")]
+		[SerializeField, Tooltip("The identifier with which the reference will register itself in the parent controller.")]
 		private string identifier;
-		
+
 
 		public string ID => identifier;
-		public bool Valid => !string.IsNullOrEmpty (ID);
+		public bool Valid => !string.IsNullOrEmpty(ID);
 
 
-		private void OnEnable ()
+		private void OnEnable()
 		{
-			GetController ();
+			GetController();
 			if (controller != null)
 			{
-				controller.Register (this);
+				controller.Register(this);
 			}
 		}
 
-		private void OnDisable ()
+		private void OnDisable()
 		{
 			if (controller != null)
 			{
-				controller.Unregister (this);
+				controller.Unregister(this);
 			}
 		}
 
-		private void GetController ()
+		private void GetController()
 		{
 			if (controller != null)
 				return;

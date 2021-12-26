@@ -11,16 +11,16 @@ namespace SpaceScrapper.UserInterface
 	public sealed class UIManager : MonoBehaviour
 	{
 
-		private Dictionary<Type, UIController> controllers = new Dictionary<Type, UIController> ();
+		private Dictionary<Type, UIController> controllers = new Dictionary<Type, UIController>();
 
 
-		private void Awake ()
+		private void Awake()
 		{
 			// bind this to Game.SceneContext.?
 		}
 
 
-		public bool TryGet<T> (out T controller) where T : UIController
+		public bool TryGet<T>(out T controller) where T : UIController
 		{
 			if (controllers == null)
 			{
@@ -28,7 +28,7 @@ namespace SpaceScrapper.UserInterface
 				return false;
 			}
 
-			if (controllers.TryGetValue (typeof (T), out UIController ctrl))
+			if (controllers.TryGetValue(typeof(T), out UIController ctrl))
 			{
 				controller = ctrl as T;
 				return true;
@@ -39,29 +39,29 @@ namespace SpaceScrapper.UserInterface
 		}
 
 
-		internal void Register<T> (T controller) where T : UIController
+		internal void Register<T>(T controller) where T : UIController
 		{
 			if (controllers == null)
 			{
-				controllers = new Dictionary<Type, UIController> ();
+				controllers = new Dictionary<Type, UIController>();
 			}
 
 			if (controller == null)
 				return;
 
 
-			controllers.TryAdd (typeof (T), controller);
+			controllers.TryAdd(typeof(T), controller);
 		}
 
-		internal void Unregister<T> (T controller) where T : UIController
+		internal void Unregister<T>(T controller) where T : UIController
 		{
 			if (controllers == null)
 				return;
 
 
-			if (controllers.TryGetValue (typeof (T), out UIController ctrl) && controller == ctrl)
+			if (controllers.TryGetValue(typeof(T), out UIController ctrl) && controller == ctrl)
 			{
-				controllers.Remove (typeof (T));
+				controllers.Remove(typeof(T));
 			}
 		}
 
