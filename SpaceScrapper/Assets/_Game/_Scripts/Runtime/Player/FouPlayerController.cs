@@ -10,13 +10,13 @@ namespace SpaceScrapper
         private InputData inputData;
 
         [SerializeField]
-        private float steerPower = 500f;
+        private float steerPower = 2f;
 
         [SerializeField]
         private float power = 5f;
 
         [SerializeField]
-        private float maxSpeed = 10f;
+        private float maxSpeed = 20f;
 
         [SerializeField]
         [Tooltip("Maximum angle in degrees that thrusters can tilt to steer")]
@@ -39,7 +39,7 @@ namespace SpaceScrapper
         {
             //default direction
             var cachedTransform = transform;
-            var cachedForward = cachedTransform.forward;
+            var cachedForward = cachedTransform.up;
             var steer = inputData.Movement.x;
             var thrustersPosition = thrusters.position;
 
@@ -54,7 +54,7 @@ namespace SpaceScrapper
                 Debug.DrawRay(thrustersPosition, -steerForce, Color.red);
             }
 
-            var forward = Vector3.Scale(new Vector3(1, 0, 1), cachedForward);
+            var forward = Vector3.Scale(new Vector3(1, 1, 0), cachedForward);
 
             PhysicsHelper.ApplyForceToReachVelocity(rb, forward * (maxSpeed * inputData.Movement.y), power);
         }
