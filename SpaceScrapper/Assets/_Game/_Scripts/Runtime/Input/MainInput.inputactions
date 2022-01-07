@@ -3,12 +3,12 @@
     "maps": [
         {
             "name": "Weapons",
-            "id": "f017d59c-2139-4994-99d5-3ba1ef89b6bc",
+            "id": "4135397e-84ac-4f33-abb2-98e7fe4cdaf8",
             "actions": [
                 {
-                    "name": "Shoot",
+                    "name": "Fire",
                     "type": "Button",
-                    "id": "0ca5e3d6-93bc-4edf-ae73-8841784990ab",
+                    "id": "58b44e8f-7a46-4534-bb0e-fb9cec51e601",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -18,12 +18,12 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "c84ff065-0510-4531-b1ab-3efed2178ae5",
+                    "id": "3399a148-e6a2-4515-991f-e944bb8bd237",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shoot",
+                    "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
