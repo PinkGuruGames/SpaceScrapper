@@ -1,0 +1,34 @@
+{
+    "name": "MainInput",
+    "maps": [
+        {
+            "name": "Weapons",
+            "id": "f017d59c-2139-4994-99d5-3ba1ef89b6bc",
+            "actions": [
+                {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "0ca5e3d6-93bc-4edf-ae73-8841784990ab",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c84ff065-0510-4531-b1ab-3efed2178ae5",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
