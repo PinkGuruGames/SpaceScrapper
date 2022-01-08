@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// ReSharper disable CheckNamespace
 namespace SpaceScrapper.Weapons
 {
     /// <summary>
