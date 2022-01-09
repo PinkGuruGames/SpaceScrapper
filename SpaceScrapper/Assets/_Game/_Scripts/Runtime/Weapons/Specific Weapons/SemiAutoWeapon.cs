@@ -1,5 +1,4 @@
 using SpaceScrapper.Weapons;
-using SpaceScrapper.Weapons.Interfaces;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

@@ -1,4 +1,3 @@
-using SpaceScrapper.Weapons.Interfaces;
 using UnityEngine;
 
 // ReSharper disable CheckNamespace
@@ -30,7 +29,7 @@ namespace SpaceScrapper.Weapons
             if (_currentWeapon is AutomaticWeapon)
                 _mainInput.Weapons.Fire.canceled += _currentWeapon.ToggleShooting; // Maybe change subscribed method
 
-            if(_currentWeapon is IReloadable reloadable)
+            if(_currentWeapon is ReloadableWeapon reloadable)
                 _mainInput.Weapons.Reload.started += reloadable.Reload;
         }
 
@@ -41,7 +40,7 @@ namespace SpaceScrapper.Weapons
             _mainInput.Weapons.Fire.started -= _currentWeapon.ToggleShooting;
             _mainInput.Weapons.Fire.canceled -= _currentWeapon.ToggleShooting; // Maybe change subscribed method
             
-            if(_currentWeapon is IReloadable reloadable)
+            if(_currentWeapon is ReloadableWeapon reloadable)
                 _mainInput.Weapons.Reload.started -= reloadable.Reload;
         }
 
