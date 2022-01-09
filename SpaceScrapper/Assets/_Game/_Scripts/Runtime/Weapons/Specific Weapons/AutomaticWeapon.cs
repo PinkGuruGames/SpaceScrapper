@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace SpaceScrapper.Weapons
 {
-    public abstract class Gun : Weapon
+    public abstract class AutomaticWeapon : Weapon
     {
         protected internal override void Shoot(InputAction.CallbackContext context)
         {
