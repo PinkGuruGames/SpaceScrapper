@@ -15,7 +15,6 @@ namespace SpaceScrapper.Weapons
         private Coroutine _reloadingCoroutine;
         private bool _shootAfterReload;
 
-        [SerializeField] private float timeBetweenShots;
         [SerializeField] private int currentReserveAmmo;
         
         [field: SerializeField] public int MagazineSize { get; set; }
@@ -76,7 +75,7 @@ namespace SpaceScrapper.Weapons
 
         private IEnumerator Co_Shoot()
         {
-            var wait = new WaitForSeconds(timeBetweenShots);
+            var wait = new WaitForSeconds(TimeBetweenShots);
             while (true)
             {
                 Shoot();
