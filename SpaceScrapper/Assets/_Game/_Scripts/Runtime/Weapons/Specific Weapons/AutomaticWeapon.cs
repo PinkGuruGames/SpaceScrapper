@@ -69,7 +69,6 @@ namespace SpaceScrapper.Weapons
             }
             
             base.Shoot();
-            Debug.Log("Pew pew (automatic weapon)!!!");
             _currentAmmo--;
         }
 

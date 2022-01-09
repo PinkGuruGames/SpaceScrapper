@@ -12,6 +12,7 @@ namespace SpaceScrapper.Weapons
         
         protected virtual void Shoot()
         {
+            Debug.Log("Pew Pew!");
             // Sound etc.
         }
     }
