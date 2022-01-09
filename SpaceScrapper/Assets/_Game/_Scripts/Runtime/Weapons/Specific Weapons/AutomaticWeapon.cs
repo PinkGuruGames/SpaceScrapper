@@ -1,44 +1,47 @@
 using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using SpaceScrapper.Weapons.Interfaces;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// ReSharper disable CheckNamespace
 namespace SpaceScrapper.Weapons
 {
+    [SuppressMessage("ReSharper", "IteratorNeverReturns")]
     public class AutomaticWeapon : Weapon, IReloadable
     {
-        private int _currentReserveAmmo;
         private int _currentAmmo;
         private Coroutine _shootingCoroutine;
+        private Coroutine _reloadingCoroutine;
 
         [SerializeField] private float timeBetweenShots;
+        [SerializeField] private int currentReserveAmmo;
         
         [field: SerializeField] public int MagazineSize { get; set; }
         [field: SerializeField] public float ReloadTime { get; set; }
 
+        private void Start()
+        {
+            _currentAmmo = MagazineSize;
+        }
+
         public void Reload(InputAction.CallbackContext context)
         {
-            if (_currentReserveAmmo <= 0)
+            if (currentReserveAmmo <= 0 || _reloadingCoroutine is not null)
             {
                 // UI-Feedback, Sound Effects, other fancy things
                 return;
             }
 
-            StartCoroutine(Co_Reload());
+            if (_shootingCoroutine is not null)
+            {
+                StopCoroutine(_shootingCoroutine);
+                _shootingCoroutine = null;
+            }
+
+            _reloadingCoroutine = StartCoroutine(Co_Reload());
         }
-
-        protected override void Shoot()
-        {
-            base.Shoot();
-
-            Debug.Log("Pew pew (automatic weapon)!!!");
-            
-            if (_currentAmmo <= 0) // and auto-reload set in settings
-                Reload(new InputAction.CallbackContext());
-            else
-                _currentAmmo--;
-        }
-
+        
         protected internal override void ToggleShooting(InputAction.CallbackContext context)
         {
             if(_shootingCoroutine is null)
@@ -50,24 +53,17 @@ namespace SpaceScrapper.Weapons
             }
         }
 
-        private IEnumerator Co_Reload()
+        protected override void Shoot()
         {
-            yield return new WaitForSeconds(ReloadTime);
-            // Sound-Effects
-            // Other fancy things
+            if (_currentAmmo <= 0)
+            {
+                Reload(new InputAction.CallbackContext()); // TODO: only if auto-reload enabled in settings
+                return;
+            }
             
-            if (_currentReserveAmmo >= MagazineSize)
-            {
-                _currentReserveAmmo -= MagazineSize;
-                _currentAmmo = MagazineSize;
-                // UI-Feedback
-            }
-            else
-            {
-                _currentAmmo = _currentReserveAmmo;
-                _currentReserveAmmo = 0;
-                // UI-Feedback
-            }
+            base.Shoot();
+            Debug.Log("Pew pew (automatic weapon)!!!");
+            _currentAmmo--;
         }
 
         private IEnumerator Co_Shoot()
@@ -78,6 +74,31 @@ namespace SpaceScrapper.Weapons
                 Shoot();
                 yield return wait;
             }
+        }
+
+        private IEnumerator Co_Reload()
+        {
+            Debug.Log("Reload");
+            yield return new WaitForSeconds(ReloadTime);
+            // Sound-Effects
+            // Other fancy things
+            
+            if (currentReserveAmmo >= MagazineSize)
+            {
+                _currentAmmo = MagazineSize;
+                currentReserveAmmo -= MagazineSize;
+            }
+            else
+            {
+                _currentAmmo = currentReserveAmmo;
+                currentReserveAmmo = 0;
+                // Specific UI-Feedback
+            }
+            
+            // UI-Feedback
+
+            Debug.Log("Reload done!");
+            _reloadingCoroutine = null;
         }
     }
 }
