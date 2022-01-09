@@ -13,6 +13,7 @@ namespace SpaceScrapper.Weapons
         private int _currentAmmo;
         private Coroutine _shootingCoroutine;
         private Coroutine _reloadingCoroutine;
+        private bool _shootAfterReload;
 
         [SerializeField] private float timeBetweenShots;
         [SerializeField] private int currentReserveAmmo;
@@ -37,6 +38,7 @@ namespace SpaceScrapper.Weapons
             {
                 StopCoroutine(_shootingCoroutine);
                 _shootingCoroutine = null;
+                _shootAfterReload = true;
             }
 
             _reloadingCoroutine = StartCoroutine(Co_Reload());
@@ -44,6 +46,12 @@ namespace SpaceScrapper.Weapons
         
         protected internal override void ToggleShooting(InputAction.CallbackContext context)
         {
+            if (_shootAfterReload)
+            {
+                _shootAfterReload = false;
+                return;
+            }
+            
             if(_shootingCoroutine is null)
                 _shootingCoroutine = StartCoroutine(Co_Shoot());
             else
