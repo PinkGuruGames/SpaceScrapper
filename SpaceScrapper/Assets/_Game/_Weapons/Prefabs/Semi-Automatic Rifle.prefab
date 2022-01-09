@@ -112,5 +112,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <TimeBetweenShots>k__BackingField: 0.5
   currentReserveAmmo: 100
-  <MagazineSize>k__BackingField: 30
-  <ReloadTime>k__BackingField: 2
+  magazineSize: 30
+  reloadTime: 2
