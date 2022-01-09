@@ -6,11 +6,11 @@ namespace SpaceScrapper.Weapons
 {
     public abstract class Weapon : MonoBehaviour
     {
+        protected internal abstract void ToggleShooting(InputAction.CallbackContext context);
+        
         protected virtual void Shoot()
         {
             // Sound etc.
         }
-        
-        protected internal abstract void ToggleShooting(InputAction.CallbackContext context);
     }
 }
