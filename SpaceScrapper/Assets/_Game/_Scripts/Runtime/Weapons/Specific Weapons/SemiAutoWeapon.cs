@@ -8,20 +8,21 @@ namespace SpaceScrapper
 {
     public class SemiAutoWeapon : Weapon // Might change the name of the class
     {
-        private float _cooldownTime;
-        
-        [SerializeField] private float cooldown;
+        private float _cooldown;
 
         private void Update()
         {
-            if (_cooldownTime > 0)
-                _cooldownTime -= Time.deltaTime;
+            if (_cooldown > 0)
+                _cooldown -= Time.deltaTime;
         }
 
         protected internal override void ToggleShooting(InputAction.CallbackContext context)
         {
-            if(_cooldownTime <= 0)
-                Shoot();
+            if (_cooldown > 0)
+                return;
+            
+            Shoot();
+            _cooldown = TimeBetweenShots;
         }
     }
 }
