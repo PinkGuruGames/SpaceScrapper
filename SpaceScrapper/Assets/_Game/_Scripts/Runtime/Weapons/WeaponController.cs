@@ -26,7 +26,7 @@ namespace SpaceScrapper.Weapons
             _mainInput.Enable();
             
             _mainInput.Weapons.Fire.started += _currentWeapon.ToggleShooting;
-            if (_currentWeapon is AutomaticWeapon)
+            if (_currentWeapon is AutomaticWeapon or ChargeableWeapon)
                 _mainInput.Weapons.Fire.canceled += _currentWeapon.ToggleShooting; // Maybe change subscribed method
 
             if(_currentWeapon is ReloadableWeapon reloadable)
