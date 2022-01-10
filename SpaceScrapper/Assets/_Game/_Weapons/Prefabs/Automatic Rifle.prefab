@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1324117150254846904}
   - component: {fileID: 1324117150254846911}
   - component: {fileID: 1324117150254846910}
-  - component: {fileID: 1777324598817813203}
+  - component: {fileID: -3392701632076956337}
   m_Layer: 0
-  m_Name: Semi-Automatic Rifle
+  m_Name: Automatic Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b206de0c79a194ba4b8ac22ee2a4bc6d, type: 2}
+  - {fileID: 2100000, guid: 4ed0444d0e5a4e2b0b20410828bb17e6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,7 +98,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1777324598817813203
+--- !u!114 &-3392701632076956337
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,10 +107,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1324117150254846909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae22fd6a6143117ab9c52f4ecc9e2887, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f34e9f3b99b5bd3da0ebf6bdb08e4e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <TimeBetweenShots>k__BackingField: 0.1
-  currentReserveAmmo: 60
-  magazineSize: 8
+  <TimeBetweenShots>k__BackingField: 0.5
+  currentReserveAmmo: 100
+  magazineSize: 30
   reloadTime: 2

@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb33f6cc04d10be27a57437a285806cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 1324117150254846909, guid: 4233854abad8ffbd886699f05f1e8973, type: 3}
+  weaponPrefab: {fileID: 1324117150254846909, guid: 81ebf68928abac5919782a2b1e632ddc, type: 3}
   weaponParent: {fileID: 247255421}
 --- !u!65 &778381496
 BoxCollider:
