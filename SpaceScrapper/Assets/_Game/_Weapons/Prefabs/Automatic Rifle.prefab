@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f34e9f3b99b5bd3da0ebf6bdb08e4e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <TimeBetweenShots>k__BackingField: 0.5
+  <TimeBetweenShots>k__BackingField: 0.1
   currentReserveAmmo: 100
   magazineSize: 30
   reloadTime: 2
