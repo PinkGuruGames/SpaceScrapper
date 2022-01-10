@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 // ReSharper disable CheckNamespace
 namespace SpaceScrapper
 {
-    public class SemiAutoWeapon : Weapon // Might change the name of the class
+    public class SemiAutoWeapon : ReloadableWeapon // Might change the name of the class
     {
         private float _cooldown;
 

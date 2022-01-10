@@ -26,18 +26,6 @@ namespace SpaceScrapper.Weapons
             }
         }
 
-        protected override void Shoot()
-        {
-            if (CurrentAmmo <= 0)
-            {
-                Reload(new InputAction.CallbackContext()); // TODO: only if auto-reload enabled in settings
-                return;
-            }
-            
-            base.Shoot();
-            CurrentAmmo--;
-        }
-
         private IEnumerator Co_Shoot()
         {
             var wait = new WaitForSeconds(TimeBetweenShots);
