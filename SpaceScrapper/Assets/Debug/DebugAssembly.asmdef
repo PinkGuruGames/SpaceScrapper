@@ -1,0 +1,18 @@
+{
+    "name": "DebugAssembly",
+    "rootNamespace": "",
+    "references": [
+        "GUID:a1d73af5f72ca4e929569ac515d86db8"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
