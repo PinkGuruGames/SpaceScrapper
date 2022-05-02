@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace SpaceScrapper
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public class FouPlayerController : MonoBehaviour
     {
         [SerializeField]
@@ -27,12 +28,13 @@ namespace SpaceScrapper
         [SerializeField]
         private Transform shipCenterMass;
 
-        private Rigidbody rb;
+        private Rigidbody2D rb;
 
         public void Awake()
         {
-            rb = GetComponent<Rigidbody>();
-            rb.centerOfMass = shipCenterMass.position;
+            //set up rigidbody.
+            rb = GetComponent<Rigidbody2D>();
+            rb.centerOfMass = shipCenterMass.localPosition; //should always use localposition (as in relative to the rigidbody transform), never worldspace.
         }
 
         public void FixedUpdate()
@@ -49,12 +51,12 @@ namespace SpaceScrapper
                     Vector3.RotateTowards(cachedForward, -steer * cachedTransform.right, maxSteerAngle * Mathf.Deg2Rad,
                         0f);
                 var steerForce = steerThrustDirection * steerPower;
-                rb.AddForceAtPosition(steerThrustDirection * steerPower, thrustersPosition, ForceMode.Force);
+                rb.AddForceAtPosition(steerThrustDirection * steerPower, thrustersPosition, ForceMode2D.Force);
 
                 Debug.DrawRay(thrustersPosition, -steerForce, Color.red);
             }
 
-            var forward = Vector3.Scale(new Vector3(1, 1, 0), cachedForward);
+            var forward = Vector2.Scale(new Vector2(1, 1), cachedForward);
 
             PhysicsHelper.ApplyForceToReachVelocity(rb, forward * (maxSpeed * inputData.Movement.y), power);
         }

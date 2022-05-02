@@ -6,7 +6,7 @@ namespace SpaceScrapper
 {
     public static class PhysicsHelper
     {
-        public static void ApplyForceToReachVelocity(Rigidbody rigidbody, Vector3 velocity, float force = 1, ForceMode mode = ForceMode.Force)
+        public static void ApplyForceToReachVelocity(Rigidbody2D rigidbody, Vector3 velocity, float force = 1, ForceMode2D mode = ForceMode2D.Force)
         {
             if (force == 0 || velocity.magnitude == 0)
                 return;
