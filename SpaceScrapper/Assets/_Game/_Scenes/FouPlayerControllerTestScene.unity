@@ -492,9 +492,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputData: {fileID: 729815169}
   steerPower: 2
-  power: 5
-  maxSpeed: 20
+  power: 1.9
+  maxSpeed: 56.2
   maxSteerAngle: 45
+  steerMode: 1
+  steeringAlignmentCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.79136145
+      value: 1.1535734
+      inSlope: 0.041590326
+      outSlope: 0.041590326
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.8862307
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  steeringAlignmentTime: 1
   thrusters: {fileID: 224093954}
   shipCenterMass: {fileID: 1533611145}
 --- !u!50 &729815171
@@ -514,7 +549,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -778,7 +813,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.1638417, y: 1}
+    m_SensorSize: {x: 1.9742268, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

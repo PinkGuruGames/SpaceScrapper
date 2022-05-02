@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace SpaceScrapper
 {
+    //NOTE: this will need to be converted over to the InputSystem later on.
     public class InputData : MonoBehaviour
     {
         public Vector2 Movement => _movement;
@@ -70,10 +71,12 @@ namespace SpaceScrapper
      
         private void GetMousePosition(Vector3 screenPosition)
         {
-            Ray ray = mainCamera.ScreenPointToRay(screenPosition);
-            Plane xy = new Plane(Vector3.forward, new Vector3(0, 0, 0));
-            xy.Raycast(ray, out var distance);
-            _worldMousePosition = ray.GetPoint(distance);
+            //simplified version
+            _worldMousePosition = mainCamera.WorldToScreenPoint(screenPosition);
+            //Ray ray = mainCamera.ScreenPointToRay(screenPosition);
+            //Plane xy = new Plane(Vector3.forward, new Vector3(0, 0, 0));
+            //xy.Raycast(ray, out var distance);
+            //_worldMousePosition = ray.GetPoint(distance);
         }
     
         private void GetModeInputs()
@@ -85,6 +88,7 @@ namespace SpaceScrapper
             if (Input.GetKeyDown(flightAssistToggleButton) || Input.GetKeyDown(flightAssistHoldButton))
             {
                 _flightAssist ^= true;
+                Debug.Log("Flight Assist toggled!");
             }
             if (Input.GetKeyUp(flightAssistHoldButton))
             {

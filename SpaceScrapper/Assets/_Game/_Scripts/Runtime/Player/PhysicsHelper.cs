@@ -6,11 +6,18 @@ namespace SpaceScrapper
 {
     public static class PhysicsHelper
     {
-        public static void ApplyForceToReachVelocity(Rigidbody2D rigidbody, Vector3 velocity, float force = 1, ForceMode2D mode = ForceMode2D.Force)
+        public static void ApplyForceToReachVelocity(Rigidbody2D rigidbody, Vector2 velocity, float force = 1, ForceMode2D mode = ForceMode2D.Force)
         {
-            if (force == 0 || velocity.magnitude == 0)
+            if (force == 0)
                 return;
+            if(velocity.magnitude == 0)
+            {
+                Vector2 velocityDelta = velocity - rigidbody.velocity;
+                rigidbody.AddForce(velocityDelta * 0.25f * force, mode);
+                return;
+            }
 
+            //i dont understand the purpose of this line. isnt the input velocity supposed to be the target? why change it?
             velocity = velocity + velocity.normalized * 0.2f * rigidbody.drag;
 
             //force = 1 => need 1 s to reach velocity (if mass is 1) => force can be max 1 / Time.fixedDeltaTime
@@ -23,8 +30,10 @@ namespace SpaceScrapper
             }
             else
             {
-                var velocityProjectedToTarget = (velocity.normalized * Vector3.Dot(velocity, rigidbody.velocity) / velocity.magnitude);
-                rigidbody.AddForce((velocity - velocityProjectedToTarget) * force, mode);
+                //var velocityProjectedToTarget = (velocity.normalized * Vector3.Dot(velocity, rigidbody.velocity) / velocity.magnitude);
+                //rigidbody.AddForce((velocity - velocityProjectedToTarget) * force, mode);
+                Vector2 velocityDelta = velocity - rigidbody.velocity;
+                rigidbody.AddForce(velocityDelta * 0.25f * force, mode);
             }
         }
 
