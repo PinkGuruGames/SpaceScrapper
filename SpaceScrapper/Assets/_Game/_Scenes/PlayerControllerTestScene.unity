@@ -276,7 +276,6 @@ GameObject:
   m_Component:
   - component: {fileID: 729815168}
   - component: {fileID: 729815167}
-  - component: {fileID: 729815166}
   - component: {fileID: 729815169}
   - component: {fileID: 729815170}
   m_Layer: 0
@@ -286,22 +285,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!54 &729815166
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 729815165}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 0
-  m_CollisionDetection: 1
 --- !u!114 &729815167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,16 +292,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729815165}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e199a54b4c698bb45a8ed925ff3a1f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 729815166}
+  rigidbody: {fileID: 729815170}
   inputData: {fileID: 729815169}
   hoverAcceleration: 200
-  hoverDeceleration: 200
-  hoverTopSpeed: 50
+  hoverDeceleration: 250
+  hoverTopSpeed: 30
   hoverMinimumSpeed: 0
   hoverTurnSpeed: 500
   cruiseAcceleration: 50
@@ -390,25 +373,27 @@ MonoBehaviour:
   flightAssistToggleButton: 102
   flightAssistHoldButton: 304
   cruiseModeButton: 9
---- !u!114 &729815170
-MonoBehaviour:
+--- !u!50 &729815170
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729815165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4594d9a0582ce4dcb9e4cf9532d3d17b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputData: {fileID: 729815169}
-  steerPower: 2
-  power: 5
-  maxSpeed: 20
-  maxSteerAngle: 45
-  thrusters: {fileID: 1044942744}
-  shipCenterMass: {fileID: 39059178}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1044942743
 GameObject:
   m_ObjectHideFlags: 0

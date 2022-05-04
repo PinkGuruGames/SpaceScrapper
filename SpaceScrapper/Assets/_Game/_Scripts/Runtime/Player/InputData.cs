@@ -72,11 +72,11 @@ namespace SpaceScrapper
         private void GetMousePosition(Vector3 screenPosition)
         {
             //simplified version
-            _worldMousePosition = mainCamera.WorldToScreenPoint(screenPosition);
-            //Ray ray = mainCamera.ScreenPointToRay(screenPosition);
-            //Plane xy = new Plane(Vector3.forward, new Vector3(0, 0, 0));
-            //xy.Raycast(ray, out var distance);
-            //_worldMousePosition = ray.GetPoint(distance);
+            //_worldMousePosition = mainCamera.WorldToScreenPoint(screenPosition);
+            Ray ray = mainCamera.ScreenPointToRay(screenPosition);
+            Plane xy = new Plane(Vector3.forward, new Vector3(0, 0, 0));
+            xy.Raycast(ray, out var distance);
+            _worldMousePosition = ray.GetPoint(distance);
         }
     
         private void GetModeInputs()

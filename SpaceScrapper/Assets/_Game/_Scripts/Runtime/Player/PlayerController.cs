@@ -5,7 +5,7 @@ namespace SpaceScrapper
     public class PlayerController : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] private new Rigidbody rigidbody;
+        [SerializeField] private new Rigidbody2D rigidbody;
         [SerializeField] private InputData inputData;
 
         [Header("Hover Mode Movement Values")]
@@ -84,8 +84,8 @@ namespace SpaceScrapper
         private void CruiseAim(float accelerationMultiplier)    // TODO: Fix cruise rotation controls
         {
             var desiredDirection = inputData.Movement.x;
-            var deltaRotation = Quaternion.Euler(desiredDirection * cruiseTurnSpeed * Time.deltaTime * Vector3.forward);
-            rigidbody.MoveRotation(rigidbody.rotation * deltaRotation);
+            var deltaRotation = desiredDirection * cruiseTurnSpeed * Time.deltaTime; // * Vector3.forward) ;
+            rigidbody.MoveRotation(rigidbody.rotation + deltaRotation);
 
             var angle = Vector3.SignedAngle(transform.up, rigidbody.velocity, Vector3.forward);
             var lateralForceToAdd = accelerationMultiplier * lateralCorrectionForce;
@@ -138,18 +138,18 @@ namespace SpaceScrapper
         private void FreeAim()
         {
             var aimDirection = inputData.WorldMousePosition - transform.position;
-            var angle = Vector3.SignedAngle(transform.up, aimDirection, -Vector3.forward);
+            var angle = Vector2.SignedAngle(transform.up, aimDirection);
 
             if (angle > hoverAimPrecision || angle < -hoverAimPrecision)
             {
                 var direction = angle < 0 ? -1 : 1; // TODO: Optimize
 
-                var deltaRotation = Quaternion.Euler(direction * hoverTurnSpeed * Time.deltaTime * -Vector3.forward);
-                rigidbody.MoveRotation(rigidbody.rotation * deltaRotation);
+                var deltaRotation = direction * hoverTurnSpeed * Time.deltaTime;
+                rigidbody.MoveRotation(rigidbody.rotation + deltaRotation);
             }
             else
             {
-                rigidbody.angularVelocity = Vector3.zero;
+                rigidbody.angularVelocity = 0;
                 transform.up = aimDirection;
             }
         }
