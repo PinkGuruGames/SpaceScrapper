@@ -7,12 +7,12 @@
             "actions": [
                 {
                     "name": "verticalMovementAxis",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "3738debb-38b2-4906-9153-838047d2248b",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "horizontalMovementAxis",
@@ -138,17 +138,6 @@
                 },
                 {
                     "name": "",
-                    "id": "43ebf019-0539-4f27-b78e-0e7bbe71af0e",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard_Mouse",
-                    "action": "mousePosition",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "721fafef-c596-4648-992e-6b23383505ff",
                     "path": "<Keyboard>/f",
                     "interactions": "",
@@ -256,6 +245,17 @@
                     "action": "verticalMovementAxis",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "0888eda4-06b2-4ee7-90aa-5412dd88ec34",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard_Mouse",
+                    "action": "mousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
@@ -267,6 +267,11 @@
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
                     "isOptional": false,
                     "isOR": false
                 }

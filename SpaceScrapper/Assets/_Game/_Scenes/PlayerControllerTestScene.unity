@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 729815168}
   - component: {fileID: 729815167}
   - component: {fileID: 729815169}
+  - component: {fileID: 729815171}
   - component: {fileID: 729815170}
   m_Layer: 0
   m_Name: Player Ship
@@ -394,6 +395,64 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &729815171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729815165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: b84223ae587cd3d48961c77402a736ec, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3738debb-38b2-4906-9153-838047d2248b
+    m_ActionName: Gameplay/verticalMovementAxis[/Keyboard/s,/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 34e7222d-4d37-468c-91c4-f89e5cd95904
+    m_ActionName: Gameplay/horizontalMovementAxis[/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 57fa20c0-8024-4462-a57b-09dc41dc503c
+    m_ActionName: Gameplay/mousePosition[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: db43b10c-d1e2-4663-ae86-c4fa3ec0ce2f
+    m_ActionName: Gameplay/flightAssistHold[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a71665c5-b3a4-48ff-8437-f6ee22f00d42
+    m_ActionName: Gameplay/flightAssistToggle[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8a616ccd-b7d8-4fec-91ab-7b15ca71d20f
+    m_ActionName: Gameplay/flightModeSwitch[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e459ebc9-e618-41f8-ac79-b49c51fc2661
+    m_ActionName: Gameplay/menu[/Keyboard/escape]
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: Keyboard_Mouse
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 1955185180}
 --- !u!1 &1044942743
 GameObject:
   m_ObjectHideFlags: 0
