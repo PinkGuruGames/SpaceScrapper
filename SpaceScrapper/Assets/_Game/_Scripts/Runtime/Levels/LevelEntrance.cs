@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-namespace SpaceScrapper
+namespace SpaceScrapper.Levels
 {
     public class LevelEntrance : MonoBehaviour
     {
         [SerializeField]
-        private string levelName;
+        private LevelInfo levelInfo;
 
         [SerializeField]
         private Collider2D innerRing, outerRing;
@@ -22,7 +22,17 @@ namespace SpaceScrapper
         void Start()
         {
             //start out with a scrambled name.
-            nameDisplay.text = GetRandomLetters(levelName.Length);
+            nameDisplay.text = GetRandomLetters(levelInfo.LevelName.Length);
+        }
+
+        private void OnEnable()
+        {
+            levelInfo.Entrance.Bind(this);
+        }
+
+        private void OnDisable()
+        {
+            levelInfo.Entrance.Unbind(this);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -39,13 +49,13 @@ namespace SpaceScrapper
         private IEnumerator RevealName()
         {
             //totalDuration/nameLength = time per letter.
-            float timePerLetter = 1.2f / (float)levelName.Length;
+            float timePerLetter = 1.2f / (float)levelInfo.LevelName.Length;
             var wait = new WaitForSeconds(timePerLetter);
             //reveal one letter at a time.
-            for (int i = 0; i <= levelName.Length; i++)
+            for (int i = 0; i <= levelInfo.LevelName.Length; i++)
             {
                 //string + is kinda not the nicest, but it does the job for now.
-                string text = levelName.Substring(0, i) + GetRandomLetters(levelName.Length - i);
+                string text = levelInfo.LevelName.Substring(0, i) + GetRandomLetters(levelInfo.LevelName.Length - i);
                 nameDisplay.text = text;
                 yield return wait;
             }

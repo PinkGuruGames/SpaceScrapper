@@ -1047,7 +1047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a544db0782a206d43b8c58f468fe8d1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: Big Boi Factory
+  levelInfo: {fileID: 11400000, guid: 7ebdf226f25474f4d8e6be339366abea, type: 2}
   innerRing: {fileID: 1693623138}
   outerRing: {fileID: 1064924813}
   nameDisplay: {fileID: 1897647843}
@@ -1183,7 +1183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a544db0782a206d43b8c58f468fe8d1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: Deluvian Outpost
+  levelInfo: {fileID: 11400000, guid: 98270359a6c385641aec9f2cc95ff443, type: 2}
   innerRing: {fileID: 773303190}
   outerRing: {fileID: 1067198374}
   nameDisplay: {fileID: 1749505153}
@@ -1630,7 +1630,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.039519, y: 1}
+    m_SensorSize: {x: 1.9656358, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
