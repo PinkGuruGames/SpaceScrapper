@@ -50,7 +50,7 @@ namespace SpaceScrapper
         {
             if (inputData.CruiseMode)
             {
-                float accelerationMultiplier = cruiseAccelerationCurve.Evaluate(rigidbody.velocity.magnitude / cruiseTopSpeed);
+                float accelerationMultiplier = 1;//cruiseAccelerationCurve.Evaluate(rigidbody.velocity.magnitude / cruiseTopSpeed);
 
                 CruiseMove(accelerationMultiplier);
                 CruiseAim(accelerationMultiplier);
@@ -79,6 +79,7 @@ namespace SpaceScrapper
                     rigidbody.velocity = Vector3.zero;
                 }
             }
+            rigidbody.velocity = Vector2.ClampMagnitude(rigidbody.velocity, cruiseTopSpeed);
         }
 
         private void CruiseAim(float accelerationMultiplier)    // TODO: Fix cruise rotation controls
@@ -87,13 +88,13 @@ namespace SpaceScrapper
             var deltaRotation = desiredDirection * cruiseTurnSpeed * Time.deltaTime; // * Vector3.forward) ;
             rigidbody.MoveRotation(rigidbody.rotation + deltaRotation);
 
-            var angle = Vector3.SignedAngle(transform.up, rigidbody.velocity, Vector3.forward);
-            var lateralForceToAdd = accelerationMultiplier * lateralCorrectionForce;
-            if (angle > cruiseMaxAngleOfAttack || angle < -cruiseMaxAngleOfAttack)
-            {
-                rigidbody.AddRelativeForce(transform.right * (-angle * lateralForceToAdd));
-            }
-            rigidbody.AddRelativeForce(-rigidbody.velocity.normalized * (lateralForceToAdd * Mathf.Abs(angle)));
+            //var angle = Vector3.SignedAngle(transform.up, rigidbody.velocity, Vector3.forward);
+            //var lateralForceToAdd = accelerationMultiplier * lateralCorrectionForce;
+            //if (angle > cruiseMaxAngleOfAttack || angle < -cruiseMaxAngleOfAttack)
+            //{
+            //    rigidbody.AddRelativeForce(transform.right * (-angle * lateralForceToAdd));
+            //}
+            //rigidbody.AddRelativeForce(-rigidbody.velocity.normalized * (lateralForceToAdd * Mathf.Abs(angle)));
         }
 
         private void FreeMove()

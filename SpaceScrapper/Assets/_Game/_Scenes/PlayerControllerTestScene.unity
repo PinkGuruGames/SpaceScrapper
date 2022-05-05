@@ -305,11 +305,11 @@ MonoBehaviour:
   hoverTopSpeed: 30
   hoverMinimumSpeed: 0
   hoverTurnSpeed: 500
-  cruiseAcceleration: 50
-  cruiseDeceleration: 20
-  cruiseTopSpeed: 15
+  cruiseAcceleration: 53.5
+  cruiseDeceleration: 22.4
+  cruiseTopSpeed: 15.3
   cruiseTurnSpeed: 250
-  lateralCorrectionForce: 1
+  lateralCorrectionForce: 1.32
   cruiseMaxAngleOfAttack: 20
   cruiseAccelerationCurve:
     serializedVersion: 2
@@ -366,14 +366,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1955185180}
-  forwardButton: 119
-  backwardButton: 115
-  leftwardButton: 97
-  rightwardButton: 100
-  relativeModeButton: 114
-  flightAssistToggleButton: 102
-  flightAssistHoldButton: 304
-  cruiseModeButton: 9
 --- !u!50 &729815170
 Rigidbody2D:
   serializedVersion: 4
