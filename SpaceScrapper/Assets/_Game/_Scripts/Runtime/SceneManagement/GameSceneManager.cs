@@ -65,6 +65,7 @@ namespace SpaceScrapper
             loadingOperation.allowSceneActivation = true;
             //wait for loading to complete
             yield return loadingOperation;
+            currentScene = targetScene;
 
             //TODO: Initialize the newly loaded scene.
             //yield return SaveSystem.InitializeCurrentScene();
