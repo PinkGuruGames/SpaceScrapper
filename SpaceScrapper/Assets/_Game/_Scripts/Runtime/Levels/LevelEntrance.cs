@@ -21,8 +21,8 @@ namespace SpaceScrapper.Levels
         // Start is called before the first frame update
         void Start()
         {
-            //start out with a scrambled name.
-            nameDisplay.text = GetRandomLetters(levelInfo.LevelName.Length);
+            //start out with a scrambled name?
+            nameDisplay.text = showingRealName? levelInfo.LevelName : GetRandomLetters(levelInfo.LevelName.Length);
         }
 
         private void OnEnable()
