@@ -668,9 +668,11 @@ GameObject:
   - component: {fileID: 729815170}
   - component: {fileID: 729815171}
   - component: {fileID: 729815172}
+  - component: {fileID: 729815173}
+  - component: {fileID: 729815174}
   m_Layer: 0
   m_Name: Player Ship
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -707,14 +709,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 170762289}
-  forwardButton: 119
-  backwardButton: 115
-  leftwardButton: 97
-  rightwardButton: 100
-  relativeModeButton: 114
-  flightAssistToggleButton: 102
-  flightAssistHoldButton: 304
-  cruiseModeButton: 9
 --- !u!114 &729815170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -878,6 +872,48 @@ CompositeCollider2D:
       - {x: -0.1952894, y: -1.9891952}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!114 &729815173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729815165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: b84223ae587cd3d48961c77402a736ec, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Keyboard_Mouse
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 170762289}
+--- !u!114 &729815174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729815165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60486854edcbc9745890c0ebae070d91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &756560758
 GameObject:
   m_ObjectHideFlags: 0
