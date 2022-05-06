@@ -65,7 +65,7 @@ namespace SpaceScrapper.Levels
             }
             else if(insideInner is false && insideInnerRing is true)
             {
-                insideInner = false;
+                insideInnerRing = false;
                 PlayerInteractor.UnregisterInteractable(this);
             }
         }
@@ -105,6 +105,14 @@ namespace SpaceScrapper.Levels
             //setup level context info.
             Game.SceneContext.CurrentLevel.Bind(levelInfo);
             //throw new System.NotImplementedException("Level should be loading, but it hasnt been set up yet. - LevelEntrance");
+        }
+
+        /// <summary>
+        /// WARNING: This should only be called by the player, AFTER the player object was placed at this transforms position via the LevelInfo SharedHandle.
+        /// </summary>
+        public void UnbindLevelInfoFromContext()
+        {
+            Game.SceneContext.CurrentLevel.Unbind(levelInfo);
         }
     }
 }
