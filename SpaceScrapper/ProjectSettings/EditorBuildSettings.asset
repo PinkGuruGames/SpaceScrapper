@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_Game/_Scenes/FouPlayerControllerTestScene.unity
+    guid: 541fb6b13e1174da898014cb7e40e71e
+  - enabled: 1
+    path: Assets/_Game/_Scenes/Empty.unity
+    guid: d0996cf929562de4383b13a55ca15781
   m_configObjects: {}

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using SpaceScrapper.Global;
 
 namespace SpaceScrapper.Levels
 {
@@ -100,7 +101,10 @@ namespace SpaceScrapper.Levels
         public void Interact(PlayerInteractor interactor)
         {
             //Load Level
-            throw new System.NotImplementedException("Level should be loading, but it hasnt been set up yet. - LevelEntrance");
+            GameSceneManager.LoadSceneByName(levelInfo.SceneName);
+            //setup level context info.
+            Game.SceneContext.CurrentLevel.Bind(levelInfo);
+            //throw new System.NotImplementedException("Level should be loading, but it hasnt been set up yet. - LevelEntrance");
         }
     }
 }
