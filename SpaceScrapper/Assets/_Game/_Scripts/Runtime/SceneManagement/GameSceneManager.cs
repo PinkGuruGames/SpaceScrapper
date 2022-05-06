@@ -28,6 +28,7 @@ namespace SpaceScrapper
                 return;
             }
             DontDestroyOnLoad(gameObject);
+            currentScene = SceneManager.GetActiveScene().name;
         }
 
         //clean up the instance reference if necessary.
