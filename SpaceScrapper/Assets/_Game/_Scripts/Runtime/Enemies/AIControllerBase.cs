@@ -8,6 +8,7 @@ namespace SpaceScrapper
     [RequireComponent(typeof(LivingEntity))]
     public abstract class AIControllerBase : MonoBehaviour
     {
+        [Header("General AI Settings")]
         [SerializeField, Tooltip("How many frames are between each entity check for targetting")]
         private int entityCheckFrameInterval = 1;
 
