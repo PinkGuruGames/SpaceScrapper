@@ -15,7 +15,7 @@ namespace SpaceScrapper
                 _cooldown -= Time.deltaTime;
         }
 
-        protected internal override void ToggleShooting(InputAction.CallbackContext context)
+        protected internal override void ToggleShooting()
         {
             if (_cooldown > 0)
                 return;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SpaceScrapper.Weapons;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -24,8 +25,12 @@ namespace SpaceScrapper
         private float maxDistance;
         [SerializeField]
         private Transform turretBase;
+        [SerializeField]
+        private AutomaticWeapon weapon;
 
         private float currentAngle;
+
+        private bool isShooting = false;
 
         //Note: at some future point, we might want to consider taking the speed of the target into account when aiming
         protected override void Aim()
@@ -33,6 +38,11 @@ namespace SpaceScrapper
             float nextAngle;
             if(Target)
             {
+                if(isShooting is false)
+                {
+                    isShooting = true;
+                    weapon.ToggleShooting();
+                }
                 //first step is to check if the target is within the specified angle and distance limit.
                 Vector2 targetPos = Target.transform.position;
                 Vector2 pos = transform.position;
@@ -60,6 +70,11 @@ namespace SpaceScrapper
             }
             else
             {
+                if (isShooting is true)
+                {
+                    isShooting = false;
+                    weapon.ToggleShooting();
+                }
                 //no target given, return to default rotation (0)
                 nextAngle = Mathf.MoveTowards(currentAngle, 0, trackingSpeed * Time.deltaTime);
             }

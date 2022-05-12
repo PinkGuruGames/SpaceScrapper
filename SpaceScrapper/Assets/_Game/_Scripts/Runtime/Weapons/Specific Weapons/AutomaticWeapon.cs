@@ -9,7 +9,7 @@ namespace SpaceScrapper.Weapons
     [SuppressMessage("ReSharper", "IteratorNeverReturns")]
     public class AutomaticWeapon : ReloadableWeapon
     {
-        protected internal override void ToggleShooting(InputAction.CallbackContext context)
+        protected internal override void ToggleShooting()
         {
             if (ShootAfterReload)
             {

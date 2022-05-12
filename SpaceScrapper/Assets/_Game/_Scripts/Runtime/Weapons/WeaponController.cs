@@ -1,15 +1,16 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 // ReSharper disable CheckNamespace
 namespace SpaceScrapper.Weapons
 {
     /// <summary>
-    /// Controller for the entire system revolving around weapons and shooting.
-    /// Responsible for input, choosing the weapon etc.
+    /// Controller for Weapons that are used by the player.
+    /// Gets input events via PlayerInput.
     /// </summary>
     public class WeaponController : MonoBehaviour
     {
-        private MainInput _mainInput;
+        //private MainInput _mainInput;
         private Weapon _currentWeapon;
 
         [SerializeField] private GameObject weaponPrefab; // Automatically set in code
@@ -17,36 +18,34 @@ namespace SpaceScrapper.Weapons
 
         private void Awake()
         {
-            _mainInput = new MainInput(); // TODO: Remove this (only for testing purposes), probably global input instance
             InitWeapon();
         }
 
-        private void OnEnable()
-        {
-            _mainInput.Enable();
-            
-            _mainInput.Weapons.Fire.started += _currentWeapon.ToggleShooting;
-            if (_currentWeapon is AutomaticWeapon or ChargeableWeapon)
-                _mainInput.Weapons.Fire.canceled += _currentWeapon.ToggleShooting; // Maybe change subscribed method
-
-            if(_currentWeapon is ReloadableWeapon reloadable)
-                _mainInput.Weapons.Reload.started += reloadable.Reload;
-        }
-
-        private void OnDisable()
-        {
-            _mainInput.Disable();
-            
-            _mainInput.Weapons.Fire.started -= _currentWeapon.ToggleShooting;
-            _mainInput.Weapons.Fire.canceled -= _currentWeapon.ToggleShooting; // Maybe change subscribed method
-            
-            if(_currentWeapon is ReloadableWeapon reloadable)
-                _mainInput.Weapons.Reload.started -= reloadable.Reload;
-        }
-
+        /// <summary>
+        /// Instantiate the weapon prefab for now.
+        /// </summary>
         private void InitWeapon()
         {
             _currentWeapon = Instantiate(weaponPrefab, weaponParent).GetComponent<Weapon>();
+        }
+
+        //Input Events from PlayerInput
+        private void OnReload()
+        {
+            if( _currentWeapon != null && _currentWeapon is ReloadableWeapon wp)
+            {
+                wp.Reload();
+            }
+        }
+
+        private void OnFirePrimary(InputValue value)
+        {
+            _currentWeapon.ToggleShooting();
+        }
+
+        private void OnFireSecondary()
+        {
+
         }
     }
 }

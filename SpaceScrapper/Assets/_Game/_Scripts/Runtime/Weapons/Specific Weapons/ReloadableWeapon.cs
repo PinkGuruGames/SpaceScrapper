@@ -22,7 +22,7 @@ namespace SpaceScrapper.Weapons
             _currentAmmo = magazineSize;
         }
 
-        protected internal void Reload(InputAction.CallbackContext context)
+        protected internal void Reload()
         {
             if (currentReserveAmmo <= 0 || _reloadingCoroutine is not null)
             {
@@ -44,7 +44,7 @@ namespace SpaceScrapper.Weapons
         {
             if (_currentAmmo <= 0)
             {
-                Reload(new InputAction.CallbackContext()); // TODO: only if auto-reload enabled in settings
+                Reload(); // TODO: only if auto-reload enabled in settings
                 return;
             }
             _currentAmmo--;
@@ -75,6 +75,11 @@ namespace SpaceScrapper.Weapons
 
             Debug.Log("Reload done!");
             _reloadingCoroutine = null;
+        }
+
+        protected internal override void ToggleShooting()
+        {
+            //idk
         }
     }
 }

@@ -14,7 +14,7 @@ namespace SpaceScrapper.Weapons
 
         [SerializeField] private int chargingLimit;
 
-        protected internal override void ToggleShooting(InputAction.CallbackContext context)
+        protected internal override void ToggleShooting()
         {
             if (_charged)
             {
