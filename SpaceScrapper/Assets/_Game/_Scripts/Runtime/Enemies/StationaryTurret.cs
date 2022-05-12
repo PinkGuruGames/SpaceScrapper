@@ -51,9 +51,12 @@ namespace SpaceScrapper
                     Target = null;
                     return;
                 }
-                //rotate.
-                float deltaRotation = Mathf.Sign(offAngle) * trackingSpeed * Time.deltaTime;
-                nextAngle = Mathf.Clamp(currentAngle + deltaRotation, minAngle, maxAngle);
+                //change rotation
+                float deltaRotation = trackingSpeed * Time.deltaTime;
+                //this ensures not overrotating for aim.
+                nextAngle = Mathf.MoveTowards(currentAngle, offAngle, deltaRotation);
+                //Clamp to ensure the general rotation limits
+                nextAngle = Mathf.Clamp(nextAngle, minAngle, maxAngle);
             }
             else
             {
@@ -82,6 +85,9 @@ namespace SpaceScrapper
             Handles.DrawWireArc(transform.position, Vector3.forward, startPoint, maxAngle - minAngle, 1);
             Handles.DrawLine(transform.position, endPoint);
             Handles.DrawLine(transform.position, startPoint);
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, maxDistance);
         }
 #endif
     }

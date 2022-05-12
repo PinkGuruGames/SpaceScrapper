@@ -12,11 +12,6 @@ namespace SpaceScrapper
             throw new System.NotImplementedException();
         }
 
-        public override bool IsHostileTowards(LivingEntity other)
-        {
-            throw new System.NotImplementedException();
-        }
-
         protected override void Die()
         {
             base.Die();
