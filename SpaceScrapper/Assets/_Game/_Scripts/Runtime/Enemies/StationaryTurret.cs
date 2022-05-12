@@ -79,15 +79,19 @@ namespace SpaceScrapper
 #if UNITY_EDITOR
         private void OnDrawGizmosSelected()
         {
+            Vector3 position = transform.position;
             Vector3 startPoint = Quaternion.AngleAxis(minAngle, Vector3.forward) * transform.up;
             Vector3 endPoint = Quaternion.AngleAxis(maxAngle, Vector3.forward) * transform.up;
             Handles.color = Color.red;
-            Handles.DrawWireArc(transform.position, Vector3.forward, startPoint, maxAngle - minAngle, 1);
-            Handles.DrawLine(transform.position, endPoint);
-            Handles.DrawLine(transform.position, startPoint);
-
+            //the cone that defines the limits for aiming
+            Handles.DrawWireArc(position, Vector3.forward, startPoint, maxAngle - minAngle, 1);
+            Handles.DrawLine(position, position + endPoint);
+            Handles.DrawLine(position, position + startPoint);
+            //the aim direction
+            Handles.DrawLine(position, position + transform.up * 1.5f);
+            //"aggro range"
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(transform.position, maxDistance);
+            Gizmos.DrawWireSphere(position, maxDistance);
         }
 #endif
     }
