@@ -88,7 +88,7 @@ namespace SpaceScrapper
             Handles.DrawLine(position, position + endPoint);
             Handles.DrawLine(position, position + startPoint);
             //the aim direction
-            Handles.DrawLine(position, position + transform.up * 1.5f);
+            Handles.DrawLine(position, position + turretBase.up * 1.5f);
             //"aggro range"
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(position, maxDistance);
