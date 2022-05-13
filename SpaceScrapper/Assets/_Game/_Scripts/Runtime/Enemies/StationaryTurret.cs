@@ -38,11 +38,6 @@ namespace SpaceScrapper
             float nextAngle;
             if(Target)
             {
-                if(isShooting is false)
-                {
-                    isShooting = true;
-                    weapon.ToggleShooting();
-                }
                 //first step is to check if the target is within the specified angle and distance limit.
                 Vector2 targetPos = Target.transform.position;
                 Vector2 pos = transform.position;
@@ -60,6 +55,12 @@ namespace SpaceScrapper
                 {
                     Target = null;
                     return;
+                }
+                //only enable shooting after the previous distance and angle limit checks have succeeded.
+                if (isShooting is false)
+                {
+                    isShooting = true;
+                    weapon.ToggleShooting();
                 }
                 //change rotation
                 float deltaRotation = trackingSpeed * Time.deltaTime;
@@ -106,7 +107,7 @@ namespace SpaceScrapper
             Handles.DrawLine(position, position + turretBase.up * 1.5f);
             //"aggro range"
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(position, maxDistance);
+            Gizmos.DrawWireSphere(position,maxDistance);
         }
 #endif
     }
