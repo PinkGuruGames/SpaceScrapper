@@ -59,12 +59,16 @@ namespace SpaceScrapper
             //unload currentScene.
             if (string.IsNullOrEmpty(currentScene) is false)
             {
-                SceneManager.UnloadSceneAsync(currentScene);
+                yield return SceneManager.UnloadSceneAsync(currentScene);
             }
+
+            //Unload unused assets
+            yield return Resources.UnloadUnusedAssets();
 
             //load the target scene.
             AsyncOperation loadingOperation = SceneManager.LoadSceneAsync(targetScene);
             loadingOperation.allowSceneActivation = true;
+
             //wait for loading to complete
             yield return loadingOperation;
             currentScene = targetScene;
