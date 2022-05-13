@@ -45,7 +45,7 @@ namespace SpaceScrapper.Weapons
         private void InitializePool()
         {
 #if UNITY_EDITOR
-            if (Application.isEditor)
+            if (Application.isEditor && Application.isPlaying == false)
                 return;
 #endif
             dynamicPoolMaxSize = Mathf.Max(minimumPoolSize, dynamicPoolMaxSize); //make sure that the max isnt lower than the minimum
