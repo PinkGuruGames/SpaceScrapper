@@ -9,15 +9,20 @@ namespace SpaceScrapper.Weapons
         [field: SerializeField] protected float TimeBetweenShots { get; set; }
 
         [SerializeField]
-        private GameObject projectilePrefab; //TESTING ONLY
+        private ProjectilePool projectilePool; //TESTING ONLY
 
         protected internal abstract void ToggleShooting();
         
+        protected virtual void Start()
+        {
+            projectilePool.Initialize();
+        }
+
         protected virtual void Shoot()
         {
             Debug.Log("Pew Pew!");
             // Sound etc.
-            ProjectileBase projectile = Instantiate(projectilePrefab).GetComponent<ProjectileBase>();
+            ProjectileBase projectile = projectilePool.Get();
             projectile.FireWithParameters(null, transform.position, transform.up, 1); //THIS IS ONLY FOR TESTING YEAH!
         }
     }

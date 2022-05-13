@@ -17,6 +17,7 @@ namespace SpaceScrapper.Weapons
         {
             //nothing special really.
             target.Damage(SourceEntity, Damage, hitCollider, false);
+            ReturnToPool();
         }
 
         protected override void ProcessProjectileHit(ProjectileBase other)
@@ -30,8 +31,7 @@ namespace SpaceScrapper.Weapons
 
         protected override void ProcessStaticHit(Collider2D other)
         {
-            //just disable the object for now-- TODO
-            gameObject.SetActive(false);
+            ReturnToPool();
         }
 
         public override void FireWithParameters(LivingEntity source, Vector2 position, Vector2 direction, float damage)

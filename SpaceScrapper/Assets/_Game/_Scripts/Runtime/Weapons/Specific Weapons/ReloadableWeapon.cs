@@ -17,8 +17,9 @@ namespace SpaceScrapper.Weapons
         protected Coroutine ShootingCoroutine { get; set; }
         protected bool ShootAfterReload { get; set; }
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             _currentAmmo = magazineSize;
         }
 

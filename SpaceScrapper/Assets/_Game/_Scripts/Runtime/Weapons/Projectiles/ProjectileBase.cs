@@ -133,7 +133,7 @@ namespace SpaceScrapper.Weapons
         {
             SourceEntity = source;
             Damage = damage;
-            body.position = position;
+            transform.position = position;
             transform.up = direction;
             startTime = Time.time;
             gameObject.SetActive(true);

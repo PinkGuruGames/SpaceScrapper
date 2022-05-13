@@ -22,26 +22,36 @@ namespace SpaceScrapper.Weapons
         private int storedProjectiles;
         private int projectileInstances;
 
-        private void Awake()
+        /// <summary>
+        /// Used by Weapons to make sure that their assigned projectile pool is initialized.
+        /// </summary>
+        internal void Initialize()
         {
-            dynamicPoolMaxSize = Mathf.Max(minimumPoolSize, dynamicPoolMaxSize); //make sure that the max isnt lower than the minimum
-            pooledProjectiles = new ProjectileBase[dynamicPoolMaxSize];
-            //SceneManager.sceneUnloaded += InitializePool;
-            Debug.Log("Awake " + name);
+            //make sure that its not initialized already!
+            //conditions for being already initialized (in the current scene)
+            //- projectile array pooledProjectiles does not exist yet
+            //- projectiles should be stored, but first entry is null (destroyed)
+            Debug.Log("trying to initialize pool");
+            if(pooledProjectiles is null || (storedProjectiles > 0 && pooledProjectiles[0] == null))
+            {
+                InitializePool();
+                Debug.Log("initialize: success");
+            }
         }
 
-        private void OnEnable()
-        {
-            Debug.Log("OnEnable " + name); 
-        }
-
+        /// <summary>
+        /// Initializes the pool with the minimum amount of projectiles.
+        /// </summary>
         private void InitializePool()
         {
+            dynamicPoolMaxSize = Mathf.Max(minimumPoolSize, dynamicPoolMaxSize); //make sure that the max isnt lower than the minimum
+            projectileInstances = 0;
             pooledProjectiles = new ProjectileBase[dynamicPoolMaxSize];
             for(int i = 0; i < minimumPoolSize; i++)
             {
                 pooledProjectiles[i] = CreateProjectileInstance();
             }
+            storedProjectiles = minimumPoolSize;
         }
 
         /// <summary>
@@ -52,7 +62,8 @@ namespace SpaceScrapper.Weapons
         {
             if (storedProjectiles > 0)
             {
-                return pooledProjectiles[storedProjectiles--];
+                storedProjectiles--;
+                return pooledProjectiles[storedProjectiles];
             }
             else if (projectileInstances < dynamicPoolMaxSize)
             {
