@@ -17,16 +17,26 @@ namespace SpaceScrapper.Weapons
         private float speed;
 
         private float startTime;
+        private ProjectilePool pool;
 
         public LivingEntity SourceEntity { get; private set; }
         public float Damage { get; private set; }
+        public ProjectilePool Pool
+        {
+            get => pool;
+            set
+            {
+                if (pool == null)
+                    pool = value;
+                else
+                    Debug.LogWarning("Projectile already has a pool assigned, this shouldnt happen more than once.");
+            }
+        }
 
         protected Rigidbody2D Body => body;
         protected float Speed => speed;
 
-        //TODO: ProjectilePool pool {get set?}
-
-        private void Awake()
+        public virtual void Initialize()
         {
             if(body == null) 
                 body = GetComponent<Rigidbody2D>();
@@ -39,8 +49,17 @@ namespace SpaceScrapper.Weapons
             Move();
             if(Time.time - startTime >= lifetime)
             {
-                //TODO: Return to pool
+                ReturnToPool();
             }
+        }
+
+        /// <summary>
+        /// Deactivate the projectiles GameObject, and insert it back into the pool.
+        /// </summary>
+        protected void ReturnToPool()
+        {
+            gameObject.SetActive(false);
+            pool.Insert(this);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -117,6 +136,7 @@ namespace SpaceScrapper.Weapons
             body.position = position;
             transform.up = direction;
             startTime = Time.time;
+            gameObject.SetActive(true);
         }
 
     }
