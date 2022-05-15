@@ -10,6 +10,7 @@ namespace SpaceScrapper
         public override void Damage(LivingEntity source, float damage, Collider2D sourceCollider, bool ignoreWeakspot = false)
         {
             //throw new System.NotImplementedException();
+            CurrentHealth -= damage;
         }
 
         protected override void Die()
