@@ -110,5 +110,11 @@ namespace SpaceScrapper
         /// <param name="sceneName"></param>
         public static void LoadSceneByName(string sceneName) 
             => instance?.StartLoadingSceneByName(sceneName);
+
+        /// <summary>
+        /// Restarts the current scene. Should only be used on levels.
+        /// </summary>
+        public static void RestartScene()
+            => instance?.StartLoadingSceneByName(instance.currentScene);
     }
 }
