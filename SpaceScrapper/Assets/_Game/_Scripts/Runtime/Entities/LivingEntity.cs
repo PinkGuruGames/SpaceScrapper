@@ -68,8 +68,6 @@ namespace SpaceScrapper
         /// <returns></returns>
         public virtual bool CanDamage(LivingEntity other)
         {
-            if (other.faction == null)
-                return true;
             return faction.CanDamage(other.faction);
         }
 

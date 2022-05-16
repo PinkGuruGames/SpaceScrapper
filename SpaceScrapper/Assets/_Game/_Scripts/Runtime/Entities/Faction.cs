@@ -25,7 +25,7 @@ namespace SpaceScrapper
         {
             //entity doesnt belong to faction -> should be a player!
             //Its important that ALL entities other than player are assigned to a faction.
-            if(other is null)
+            if(other == null)
             {
                 return playerNoFactionStanding is Standing.Hostile;
             }
