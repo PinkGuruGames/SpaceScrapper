@@ -15,6 +15,8 @@ namespace SpaceScrapper.Weapons
 
         [SerializeField] private GameObject weaponPrefab; // Automatically set in code
         [SerializeField] private Transform weaponParent;
+        [SerializeField]
+        private Weapon testWeapon;
 
         private void Awake()
         {
@@ -26,7 +28,8 @@ namespace SpaceScrapper.Weapons
         /// </summary>
         private void InitWeapon()
         {
-            _currentWeapon = Instantiate(weaponPrefab, weaponParent).GetComponent<Weapon>();
+            //_currentWeapon = Instantiate(weaponPrefab, weaponParent).GetComponent<Weapon>();
+            _currentWeapon = testWeapon;
         }
 
         //Input Events from PlayerInput

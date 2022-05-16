@@ -11,11 +11,15 @@ namespace SpaceScrapper.Weapons
         [SerializeField]
         private ProjectilePool projectilePool; //TESTING ONLY
 
+        public LivingEntity OwnerEntity { get; private set; }
+
         protected internal abstract void ToggleShooting();
         
         protected virtual void Start()
         {
             projectilePool.Initialize();
+            //TODO: maybe find a better way to do this
+            OwnerEntity = GetComponentInParent<LivingEntity>();
         }
 
         protected virtual void Shoot()
@@ -23,7 +27,7 @@ namespace SpaceScrapper.Weapons
             Debug.Log("Pew Pew!");
             // Sound etc.
             ProjectileBase projectile = projectilePool.Get();
-            projectile.FireWithParameters(null, transform.position, transform.up, 1); //THIS IS ONLY FOR TESTING YEAH!
+            projectile.FireWithParameters(OwnerEntity, transform.position, transform.up, 1); //THIS IS ONLY FOR TESTING YEAH!
         }
     }
 }
