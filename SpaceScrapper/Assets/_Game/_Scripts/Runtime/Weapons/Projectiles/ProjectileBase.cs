@@ -86,11 +86,11 @@ namespace SpaceScrapper.Weapons
             if(hitDamageable != null)
             {
                 //1. check whether the damageable is an entity
-                if (hitDamageable is LivingEntity)
+                if (hitDamageable is LivingEntity otherEntity)
                 {
                     //hostility check
                     //non-hostile entities are only processed if the attack stems from the player.
-                    if (SourceEntity == null || SourceEntity.IsHostileTowards(hitDamageable as LivingEntity) || SourceEntity is PlayerEntity)
+                    if (SourceEntity == null || SourceEntity.CanDamage(otherEntity) || SourceEntity is PlayerEntity)
                     {
                         ProcessDamageEvent(hitDamageable, other);
                     }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace SpaceScrapper
 {
@@ -7,12 +8,23 @@ namespace SpaceScrapper
     /// </summary>
     public class PlayerEntity : LivingEntity
     {
+        [SerializeField]
+        private float defaultHealth = 100;
+
+        private void Start()
+        {
+            InitializeWithHealth(defaultHealth);
+        }
+
         public override void Damage(LivingEntity source, float damage, Collider2D sourceCollider, bool ignoreWeakspot = false)
         {
             //throw new System.NotImplementedException();
             CurrentHealth -= damage;
         }
 
+        /// <summary>
+        /// Method that defines how the entity dies. Is called automatically by LivingEntity.CurrentHealth, when the value is <= 0.
+        /// </summary>
         protected override void Die()
         {
             base.Die();

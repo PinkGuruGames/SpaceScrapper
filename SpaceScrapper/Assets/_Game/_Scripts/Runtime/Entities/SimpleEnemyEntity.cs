@@ -10,13 +10,18 @@ namespace SpaceScrapper
     {
         public override void Damage(LivingEntity source, float damage, Collider2D sourceCollider, bool ignoreWeakspot = false)
         {
-            throw new System.NotImplementedException();
+            CurrentHealth -= damage;
         }
 
+        /// <summary>
+        /// Method that defines how the entity dies. Is called automatically by LivingEntity.CurrentHealth, when the value is <= 0.
+        /// </summary>
         protected override void Die()
         {
             base.Die();
-            throw new System.NotImplementedException();
+            //WIP:
+            gameObject.SetActive(false);
+            //throw new System.NotImplementedException();
         }
     }
 }

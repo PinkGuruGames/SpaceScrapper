@@ -389,6 +389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: {fileID: 0}
+  defaultHealth: 100
 --- !u!212 &510464059
 SpriteRenderer:
   m_ObjectHideFlags: 0
