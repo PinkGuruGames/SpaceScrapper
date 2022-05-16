@@ -2,11 +2,12 @@
 
 namespace SpaceScrapper
 {
+    /// <summary>
+    /// Defines a simple enemy entity that is usually only comprised of a single collider.
+    /// This has very limited functionality because it doesnt need to do much.
+    /// </summary>
     public class SimpleEnemyEntity : LivingEntity
     {
-        //[SerializeField]
-        //private Faction faction; //The faction that this entity belongs to
-
         public override void Damage(LivingEntity source, float damage, Collider2D sourceCollider, bool ignoreWeakspot = false)
         {
             throw new System.NotImplementedException();
