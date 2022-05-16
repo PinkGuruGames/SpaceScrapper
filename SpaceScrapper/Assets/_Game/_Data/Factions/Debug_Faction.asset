@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08952cda384a61f4289578aeeb103a76, type: 3}
   m_Name: Debug_Faction
   m_EditorClassIdentifier: 
+  playerNoFactionStanding: 1
+  factionStandings:
+  - other: {fileID: 11400000, guid: 5331abe9af64060499e5dad1f50a18d0, type: 2}
+    standing: 1

@@ -83,7 +83,7 @@ namespace SpaceScrapper
             {
                 otherEntity = colliderBuffer[i].GetComponentInParent<LivingEntity>();
                 //check if the collider is part of a living entity
-                if(otherEntity && otherEntity.IsHostileTowards(this.EntityComponent))
+                if(otherEntity && this.EntityComponent.IsHostileTowards(otherEntity))
                 {
                     //Atm only set target to the found one if there is no target at all.
                     if(target == null)

@@ -32,7 +32,7 @@ namespace SpaceScrapper.Weapons
             //- projectile array pooledProjectiles does not exist yet
             //- projectiles should be stored, but first entry is null (destroyed)
             Debug.Log("trying to initialize pool");
-            if(pooledProjectiles is null || (storedProjectiles > 0 && pooledProjectiles[0] == null))
+            if(pooledProjectiles is null || (storedProjectiles > 0 && pooledProjectiles[0] == null) || pooledProjectiles.Length == 0)
             {
                 InitializePool();
                 Debug.Log("initialize: success");

@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 489262090}
   - component: {fileID: 489262089}
   - component: {fileID: 489262088}
+  - component: {fileID: 489262091}
   m_Layer: 7
   m_Name: TestTurret (1)
   m_TagString: Untagged
@@ -277,6 +278,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -66.723}
+--- !u!58 &489262091
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489262087}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &489431758
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,6 +723,7 @@ GameObject:
   - component: {fileID: 750184942}
   - component: {fileID: 750184941}
   - component: {fileID: 750184940}
+  - component: {fileID: 750184943}
   m_Layer: 7
   m_Name: TestTurret
   m_TagString: Untagged
@@ -765,6 +783,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -66.723}
+--- !u!58 &750184943
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750184939}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &935600380
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,6 +896,7 @@ GameObject:
   - component: {fileID: 1336848784}
   - component: {fileID: 1336848783}
   - component: {fileID: 1336848782}
+  - component: {fileID: 1336848785}
   m_Layer: 7
   m_Name: TestTurret (2)
   m_TagString: Untagged
@@ -884,7 +919,7 @@ MonoBehaviour:
   entityCheckFrameInterval: 4
   entityCheckMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   entityCheckRange: 19
   minAngle: -90
   maxAngle: 90
@@ -904,7 +939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78321b664b3111945a8bda9d7cc3d370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faction: {fileID: 11400000, guid: d50cd335708031e439f9cf9e90f05321, type: 2}
+  faction: {fileID: 11400000, guid: 5331abe9af64060499e5dad1f50a18d0, type: 2}
 --- !u!4 &1336848784
 Transform:
   m_ObjectHideFlags: 0
@@ -921,6 +956,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -66.723}
+--- !u!58 &1336848785
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336848781}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1434991852
 GameObject:
   m_ObjectHideFlags: 0
