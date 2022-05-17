@@ -68,7 +68,9 @@ namespace SpaceScrapper
             if(Time.frameCount >= lastEntityCheck + entityCheckFrameInterval)
             {
                 lastEntityCheck = Time.frameCount;
-                CheckForEntities();
+                //only need to search for a target if we dont have one already
+                if(target == null)
+                    CheckForEntities();
             }
         }
 
@@ -86,11 +88,8 @@ namespace SpaceScrapper
                 if(otherEntity && this.EntityComponent.IsHostileTowards(otherEntity))
                 {
                     //Atm only set target to the found one if there is no target at all.
-                    if(target == null)
-                    {
-                        Target = otherEntity;
-                        return;
-                    }
+                    Target = otherEntity;
+                    return;
                 }
             }
         }
