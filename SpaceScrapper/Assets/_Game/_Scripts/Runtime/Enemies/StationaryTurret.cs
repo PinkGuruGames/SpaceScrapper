@@ -21,6 +21,8 @@ namespace SpaceScrapper
         private float maxAngle;
         [SerializeField, Tooltip("The speed in angles per second, with which to track the target.")]
         private float trackingSpeed;
+        [SerializeField, Range(0, 20), Tooltip("The maximum allowed angle offset limit (absolute) for shooting.")]
+        private float shootingAngleLimit = 5;
         [SerializeField]
         private float maxDistance;
         [SerializeField]
@@ -31,6 +33,20 @@ namespace SpaceScrapper
         private float currentAngle;
 
         private bool isShooting = false;
+
+        public bool IsShooting
+        {
+            get => isShooting;
+            private set
+            {
+                //check if the value changes, then toggle shooting.
+                if (value != isShooting)
+                {
+                    weapon.ToggleShooting();
+                    isShooting = value;
+                }
+            }
+        }
 
         //Note: at some future point, we might want to consider taking the speed of the target into account when aiming
         protected override void Aim()
@@ -50,32 +66,28 @@ namespace SpaceScrapper
                 }
                 //check whether the angle to the target is within the bounds.
                 Vector2 direction = offset / distance; //normalized offset
-                float offAngle = Vector2.SignedAngle(transform.up, direction);
-                if(offAngle < minAngle || offAngle > maxAngle)
+                float angle = Vector2.SignedAngle(transform.up, direction);
+                //the offset angle
+                float offsetAngle = currentAngle - angle;
+                float absAngle = Mathf.Abs(offsetAngle);
+                if(angle < minAngle || angle > maxAngle)
                 {
                     Target = null;
                     return;
                 }
                 //only enable shooting after the previous distance and angle limit checks have succeeded.
-                if (isShooting is false)
-                {
-                    isShooting = true;
-                    weapon.ToggleShooting();
-                }
+                IsShooting = absAngle <= shootingAngleLimit;
+
                 //change rotation
                 float deltaRotation = trackingSpeed * Time.deltaTime;
                 //this ensures not overrotating for aim.
-                nextAngle = Mathf.MoveTowards(currentAngle, offAngle, deltaRotation);
+                nextAngle = Mathf.MoveTowards(currentAngle, angle, deltaRotation);
                 //Clamp to ensure the general rotation limits
                 nextAngle = Mathf.Clamp(nextAngle, minAngle, maxAngle);
             }
             else
             {
-                if (isShooting is true)
-                {
-                    isShooting = false;
-                    weapon.ToggleShooting();
-                }
+                IsShooting = false;
                 //no target given, return to default rotation (0)
                 nextAngle = Mathf.MoveTowards(currentAngle, 0, trackingSpeed * Time.deltaTime);
             }
