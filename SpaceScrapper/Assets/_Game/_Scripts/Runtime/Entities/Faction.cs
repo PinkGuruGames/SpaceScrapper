@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 using System.Collections.Generic;
 using System;
 
@@ -7,8 +8,9 @@ namespace SpaceScrapper
     [CreateAssetMenu(fileName = "new Faction", menuName = "Custom Data/Faction")]
     public class Faction : ScriptableObject
     {
-        [SerializeField, Tooltip("Are they hostile by default if the player doesnt belong to a faction?")]
-        private Standing playerNoFactionStanding = Standing.UNDEFINED;
+        [SerializeField, Tooltip("Are they hostile by default if the entity doesnt belong to a faction?")]
+        [FormerlySerializedAs("playerNoFactionStanding")]
+        private Standing defaultStandingWithFactionlessEntities = Standing.UNDEFINED;
 
         /// <summary>
         /// Define how the players standings towards other factions should be by default
@@ -27,7 +29,7 @@ namespace SpaceScrapper
             //Its important that ALL entities other than player are assigned to a faction.
             if(other == null)
             {
-                return playerNoFactionStanding is Standing.Hostile;
+                return defaultStandingWithFactionlessEntities is Standing.Hostile;
             }
             FactionStanding fs = factionStandings.Find(x => x.other == other);
             if (fs != null)
@@ -49,7 +51,7 @@ namespace SpaceScrapper
             //Its important that ALL entities other than player are assigned to a faction.
             if (other is null)
             {
-                return playerNoFactionStanding != Standing.Friendly;
+                return defaultStandingWithFactionlessEntities != Standing.Friendly;
             }
             FactionStanding fs = factionStandings.Find(x => x.other == other);
             if (fs != null)
@@ -71,12 +73,12 @@ namespace SpaceScrapper
             //Its important that ALL entities other than player are assigned to a faction.
             if (other is null)
             {
-                if(playerNoFactionStanding is Standing.Friendly)
+                if(defaultStandingWithFactionlessEntities is Standing.Friendly)
                 {
                     canAttack = false;
                     return false;
                 }
-                if (playerNoFactionStanding is Standing.Hostile)
+                if (defaultStandingWithFactionlessEntities is Standing.Hostile)
                 {
                     canAttack = true;
                     return true;
@@ -123,6 +125,18 @@ namespace SpaceScrapper
         private void SetStandingWithFaction(Faction sender, Standing s)
         {
             factionStandings.Find(x => x.other == sender).standing = s;
+        }
+
+        /// <summary>
+        /// Sets the standing of BOTH of these factions to the new standing.
+        /// Note: This is used at runtime to change standings between factions, and changes need to be saved. (mark dirty?)
+        /// </summary>
+        /// <param name="other">The other faction.</param>
+        /// <param name="s">The updated standing.</param>
+        public void OverrideStandingWithFaction(Faction other, Standing s)
+        {
+            this.SetStandingWithFaction(other, s);
+            other.SetStandingWithFaction(this, s);
         }
 
 
