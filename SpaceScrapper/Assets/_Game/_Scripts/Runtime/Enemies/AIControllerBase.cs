@@ -65,6 +65,7 @@ namespace SpaceScrapper
 
         protected virtual void Update()
         {
+            Move();
             Aim();
             //only check for entites every X frames.
             if(Time.frameCount >= lastEntityCheck + entityCheckFrameInterval)
@@ -74,11 +75,6 @@ namespace SpaceScrapper
                 if(target == null)
                     CheckForEntities();
             }
-        }
-
-        protected virtual void FixedUpdate()
-        {
-            Move();
         }
 
         /// <summary>
@@ -119,10 +115,9 @@ namespace SpaceScrapper
         /// <param name="to"></param>
         /// <param name="hit"></param>
         /// <returns>True if there is no collision.</returns>
-        protected bool PathIsClear(Vector2 from, Vector2 to, out RaycastHit2D hit)
+        protected bool PathIsClear(Vector2 from, Vector2 to)
         {
-            hit = Physics2D.Linecast(from, to, staticCollisionMask);
-            return !hit;
+            return !Physics2D.Linecast(from, to, staticCollisionMask);
         }
     }
 }

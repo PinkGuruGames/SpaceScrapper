@@ -29,15 +29,21 @@ namespace SpaceScrapper
         [SerializeField, Tooltip("Maximum distance, after which the drone will return to its starting position.")]
         private float leashRange;
 
+        //the position this drone started at
         private Vector2 startPosition;
+        //current position buffer (transform.position)
         private Vector2 currentPosition;
+        //current position buffer for the Target.
         private Vector2 targetPosition;
+        //distance from currentPosition to targetPosition
         private float distanceToTarget;
+        //the squared leashRange to reset position.
         private float leashSquareRange;
 
         //is this drone currently returning to its starting position?
         private bool returningToStartPos = false;
 
+        ///<summary>the last time the destination was changed.</summary>
         private float destinationChangeTime;
         //the position the entity was at during the last destination change.
         private Vector2 destinationStartPos;
@@ -72,6 +78,12 @@ namespace SpaceScrapper
         protected override void Aim()
         {
             //should hard aim on the target i guess.
+            if(Target)
+            { 
+                Vector2 direction = targetPosition - (Vector2)transform.position;
+                direction.Normalize();
+                transform.up = direction;
+            }
         }
 
         protected override void Move()
@@ -96,7 +108,9 @@ namespace SpaceScrapper
                     MoveToDestination();
                     return;
                 }
+                //the real distance to the target.
                 distanceToTarget = (targetPosition - currentPosition).magnitude;
+
                 //if within attack range but relatively close to target, jump a little way away (GetPointInCone)
                 if (distanceToTarget < hoverRange * 0.5f)
                 {
@@ -104,18 +118,29 @@ namespace SpaceScrapper
                     this.Destination = GetPointInCone(currentPosition, targetPosition, maxJump * 0.5f, maxJump, backJumpAngle);
                     return;
                 }
-                //Movement has many different goals:
-                //if within attack range- just hover in place (very minimal movement)
-                //and jump to a nearby spot every once in a while while keeping roughly the same distance
-                //
-                //if not within attack range, jump closer
-                //if within attack range but far away jump to the result of CalculatePointNearTarget.
-                //
-                //if too far away from startPosition, clear target and return to it.
+                //not in range.
+                if(distanceToTarget > hoverRange)
+                {
+                    //not in range for attacks, but in range for adjusting into range.
+                    if(distanceToTarget < hoverRange + hoverAdjustRange)
+                    {
+                        Destination = CalculatePointNearTarget(currentPosition, hoverRange, targetPosition, hoverAdjustRange);
+                        return;
+                    }
+                    //not in range at all, follow the target (pretty naive approach)
+                    transform.position = Vector2.MoveTowards(currentPosition, targetPosition, Time.deltaTime * followSpeed);
+                    return;
+                }
+                //-> perfectly in range, now just adjust the position (Destination) every X seconds, and move around a bit.
+                transform.position += (Vector3)Random.insideUnitCircle * Time.deltaTime;
             }
             else
             {
-                //No target, and sitting around the starting position.
+                //No target, move towards start position if needed.
+                if(Vector2.SqrMagnitude(currentPosition - startPosition) > 1)
+                {
+                    transform.position = Vector2.MoveTowards(currentPosition, startPosition, Time.deltaTime * followSpeed);
+                }
             }
         }
 
