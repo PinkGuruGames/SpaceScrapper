@@ -9,22 +9,22 @@ namespace SpaceScrapper
     public class HoveringDrone : AIControllerBase
     {
         [SerializeField, Header("Hovering Drone Settings")]
-        private CircleCollider2D collider;
-        [SerializeField]
+        private new CircleCollider2D collider;
+        [SerializeField, Tooltip("The range around the targetted entity.")]
         private float hoverRange = 15;
-        [SerializeField]
+        [SerializeField, Tooltip("The range for fast movement to adjust the drones position.")]
         private float hoverAdjustRange = 7;
         [SerializeField, Tooltip("The time it takes to get from one position to the next.")]
         private float adjustPositionDuration = 1f;
         [SerializeField]
         private AnimationCurve adjustPositionCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
-        [SerializeField, Tooltip("After how many seconds (on average) to change your hover position")]
+        [SerializeField, Tooltip("After how many seconds (on average) to change your hover position.")]
         private float adjustInterval = 5f;
         [SerializeField]
         private float hoverSpeed = 1f;
-        [SerializeField]
+        [SerializeField, Tooltip("The movement speed to use when following or returning to start.")]
         private float followSpeed = 3.5f;
-        [SerializeField]
+        [SerializeField, Tooltip("The angle range (absolute) to use when jumping away from the target.")]
         private float backJumpAngle = 30;
         [SerializeField, Tooltip("Maximum distance, after which the drone will return to its starting position.")]
         private float leashRange = 35;
@@ -115,7 +115,7 @@ namespace SpaceScrapper
                 //if within attack range but relatively close to target, jump a little way away (GetPointInCone)
                 if (distanceToTarget < hoverRange * 0.5f)
                 {
-                    Debug.Log("Too close!");
+                    //Debug.Log("Too close!");
                     float maxJump = hoverRange - distanceToTarget;
                     this.Destination = GetPointInCone(currentPosition, targetPosition, maxJump * 0.5f, maxJump, backJumpAngle);
                     return;
@@ -123,11 +123,11 @@ namespace SpaceScrapper
                 //not in range.
                 if(distanceToTarget > hoverRange)
                 {
-                    Debug.Log("Too far!");
+                    //Debug.Log("Too far!");
                     //not in range for attacks, but in range for adjusting into range.
                     if (distanceToTarget < hoverRange + hoverAdjustRange)
                     {
-                        Debug.Log("Jumping In");
+                        //Debug.Log("Jumping In");
                         Destination = CalculatePointNearTarget(currentPosition, hoverAdjustRange, targetPosition, hoverRange);
                         return;
                     }
@@ -135,7 +135,7 @@ namespace SpaceScrapper
                     transform.position = Vector2.MoveTowards(currentPosition, targetPosition, Time.deltaTime * followSpeed);
                     return;
                 }
-                Debug.Log("Just right");
+                //Debug.Log("Just right");
                 //-> perfectly in range, now just adjust the position (Destination) every X seconds, and move around a bit.
                 transform.position += (Vector3)Random.insideUnitCircle * Time.deltaTime;
             }
@@ -144,7 +144,7 @@ namespace SpaceScrapper
                 //No target, move towards start position if needed.
                 if(Vector2.SqrMagnitude(currentPosition - startPosition) > 1)
                 {
-                    transform.position = Vector2.MoveTowards(currentPosition, startPosition, Time.deltaTime * followSpeed);
+                    transform.position = Vector2.MoveTowards(currentPosition, startPosition, Time.deltaTime * followSpeed * 2f);
                 }
             }
         }
@@ -178,7 +178,7 @@ namespace SpaceScrapper
         /// </summary>
         private void ReturnToStart()
         {
-            Vector2 nextPosition = Vector2.MoveTowards(currentPosition, startPosition, Time.deltaTime * followSpeed);
+            Vector2 nextPosition = Vector2.MoveTowards(currentPosition, startPosition, Time.deltaTime * followSpeed * 2f);
             transform.position = nextPosition;
             if (Vector2.SqrMagnitude(nextPosition - startPosition) < 0.75f)
             {
@@ -194,7 +194,7 @@ namespace SpaceScrapper
             //if too far away from the starting position, clear target and return to it.
             if(Vector2.SqrMagnitude(startPosition - currentPosition) > leashSquareRange)
             {
-                Debug.Log("GOTTA GET BACK HOME!");
+                //Debug.Log("GOTTA GET BACK HOME!");
                 Target = null;
                 returningToStartPos = true;
             }
