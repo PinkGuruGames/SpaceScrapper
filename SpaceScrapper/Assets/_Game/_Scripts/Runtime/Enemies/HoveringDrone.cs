@@ -128,7 +128,7 @@ namespace SpaceScrapper
                     if (distanceToTarget < hoverRange + hoverAdjustRange)
                     {
                         Debug.Log("Jumping In");
-                        Destination = CalculatePointNearTarget(currentPosition, hoverRange, targetPosition, hoverAdjustRange);
+                        Destination = CalculatePointNearTarget(currentPosition, hoverAdjustRange, targetPosition, hoverRange);
                         return;
                     }
                     //not in range at all, follow the target (pretty naive approach)
