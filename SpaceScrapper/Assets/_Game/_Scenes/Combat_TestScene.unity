@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 22711057}
   - component: {fileID: 22711056}
   - component: {fileID: 22711055}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TestDrone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ MonoBehaviour:
     m_Bits: 1
   entityCheckRange: 20
   collider: {fileID: 22711056}
-  hoverRange: 15
+  hoverRange: 18
   hoverAdjustRange: 7
   adjustPositionDuration: 1
   adjustPositionCurve:
@@ -195,7 +195,7 @@ MonoBehaviour:
   hoverSpeed: 1
   followSpeed: 3.5
   backJumpAngle: 30
-  leashRange: 0
+  leashRange: 35
 --- !u!58 &22711056
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -808,7 +808,7 @@ GameObject:
   m_Component:
   - component: {fileID: 520312976}
   - component: {fileID: 520312977}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}

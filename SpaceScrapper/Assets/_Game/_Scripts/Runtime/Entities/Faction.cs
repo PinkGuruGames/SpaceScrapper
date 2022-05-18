@@ -12,6 +12,9 @@ namespace SpaceScrapper
         [FormerlySerializedAs("playerNoFactionStanding")]
         private Standing defaultStandingWithFactionlessEntities = Standing.UNDEFINED;
 
+        [SerializeField]
+        private bool allowFriendlyFire = false;
+
         /// <summary>
         /// Define how the players standings towards other factions should be by default
         /// </summary>
@@ -25,6 +28,8 @@ namespace SpaceScrapper
         /// <param name="other">The other faction.</param>
         public bool IsHostileTowards(Faction other)
         {
+            if (other == this)
+                return false;
             //entity doesnt belong to faction -> should be a player!
             //Its important that ALL entities other than player are assigned to a faction.
             if(other == null)
@@ -47,6 +52,8 @@ namespace SpaceScrapper
         /// <returns>True for Hostile or UNDEFINED (neutral) standing.</returns>
         public bool CanDamage(Faction other)
         {
+            if (other == this)
+                return allowFriendlyFire;
             //entity doesnt belong to faction -> should be a player!
             //Its important that ALL entities other than player are assigned to a faction.
             if (other is null)
