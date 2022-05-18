@@ -5,39 +5,176 @@ namespace SpaceScrapper
     /// <summary>
     /// A small drone that hovers around the area it started in, and flies in semi-random patterns to get in range of its target.
     /// </summary>
+    [RequireComponent(typeof(SimpleEnemyEntity), typeof(CircleCollider2D))]
     public class HoveringDrone : AIControllerBase
     {
+        [SerializeField, Header("Hovering Drone Settings")]
+        private CircleCollider2D collider;
         [SerializeField]
-        private float hoverRange;
+        private float hoverRange = 15;
         [SerializeField]
-        private float hoverAdjustRange;
+        private float hoverAdjustRange = 7;
+        [SerializeField, Tooltip("The time it takes to get from one position to the next.")]
+        private float adjustPositionDuration = 1f;
+        [SerializeField]
+        private AnimationCurve adjustPositionCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+        [SerializeField, Tooltip("After how many seconds (on average) to change your hover position")]
+        private float adjustInterval = 5f;
+        [SerializeField]
+        private float hoverSpeed = 1f;
+        [SerializeField]
+        private float followSpeed = 3.5f;
+        [SerializeField]
+        private float backJumpAngle = 30;
         [SerializeField, Tooltip("Maximum distance, after which the drone will return to its starting position.")]
         private float leashRange;
 
         private Vector2 startPosition;
+        private Vector2 currentPosition;
+        private Vector2 targetPosition;
+        private float distanceToTarget;
+        private float leashSquareRange;
+
+        //is this drone currently returning to its starting position?
+        private bool returningToStartPos = false;
+
+        private float destinationChangeTime;
+        //the position the entity was at during the last destination change.
+        private Vector2 destinationStartPos;
+
+        private Vector2 destination;
+        private Vector2 Destination 
+        {
+            get => destination;
+            set 
+            { 
+                if(value != destination)
+                {
+                    destination = value;
+                    destinationStartPos = currentPosition;
+                    destinationChangeTime = Time.time;
+                }
+            } 
+        }
+
+        private float TimeSinceDestinationChange => Time.time - destinationChangeTime;
 
         protected override void Awake()
         {
             base.Awake();
+            if (collider == null)
+                collider = GetComponent<CircleCollider2D>();
             startPosition = transform.position;
+            //pre-multiply some stuff
+            leashSquareRange = leashRange * leashRange;
         }
 
         protected override void Aim()
         {
-
+            //should hard aim on the target i guess.
         }
 
         protected override void Move()
         {
-            //Movement has many different goals:
-            //if within attack range- just hover in place (very minimal movement)
-            //and jump to a nearby spot every once in a while while keeping roughly the same distance
-            //
-            //if not within attack range, jump closer
-            //if within attack range but far away jump to the result of CalculatePointNearTarget.
-            //if within attack range but relatively close to target, jump a little way away (GetPointInCone)
-            //
-            //if too far away from startPosition, clear target and return to it.
+            currentPosition = transform.position;
+            //return to the original position.
+            if (returningToStartPos)
+            {
+                ReturnToStart();
+                return;
+            }
+            //check leash range.
+            CheckLeashRange();
+            //only if a target exists.
+            if (Target)
+            {
+                targetPosition = Target.transform.position;
+
+                //continue towards destionation if within the time frame.
+                if(TimeSinceDestinationChange < adjustPositionDuration)
+                {
+                    MoveToDestination();
+                    return;
+                }
+                distanceToTarget = (targetPosition - currentPosition).magnitude;
+                //if within attack range but relatively close to target, jump a little way away (GetPointInCone)
+                if (distanceToTarget < hoverRange * 0.5f)
+                {
+                    float maxJump = hoverRange - distanceToTarget;
+                    this.Destination = GetPointInCone(currentPosition, targetPosition, maxJump * 0.5f, maxJump, backJumpAngle);
+                    return;
+                }
+                //Movement has many different goals:
+                //if within attack range- just hover in place (very minimal movement)
+                //and jump to a nearby spot every once in a while while keeping roughly the same distance
+                //
+                //if not within attack range, jump closer
+                //if within attack range but far away jump to the result of CalculatePointNearTarget.
+                //
+                //if too far away from startPosition, clear target and return to it.
+            }
+            else
+            {
+                //No target, and sitting around the starting position.
+            }
+        }
+
+        /// <summary>
+        /// Move to the destination set via this.Destination. Uses an approximate Lerp with an animation curve.
+        /// </summary>
+        private void MoveToDestination()
+        {
+            //progress along the lerp
+            float progress = TimeSinceDestinationChange / adjustPositionDuration;
+            float t = adjustPositionCurve.Evaluate(progress);
+            //evaluate the lerp 
+            Vector2 nextPosition = Vector2.Lerp(destinationStartPos, destination, t);
+            //if the path is NOT clear, limit the next position, and set the destinationChangeTime to -100 to prevent MoveToDestination from being run.
+            RaycastHit2D hit;
+            if (hit = Physics2D.CircleCast(currentPosition, collider.radius, nextPosition-currentPosition, 1, base.staticCollisionMask))
+            {
+                nextPosition = hit.centroid;
+                destinationChangeTime = -100f;
+            }
+            //set position.
+            transform.position = nextPosition;
+            //Vector2 targetVelocity = delta / Time.deltaTime;
+            //body.velocity = targetVelocity;
+            
+        }
+
+        /// <summary>
+        /// Move the drone back to its starting position.
+        /// </summary>
+        private void ReturnToStart()
+        {
+            Vector2 nextPosition = Vector2.MoveTowards(currentPosition, startPosition, Time.deltaTime * followSpeed);
+            transform.position = nextPosition;
+            if (Vector2.SqrMagnitude(nextPosition - startPosition) < 0.75f)
+            {
+                returningToStartPos = false;
+            }
+        }
+
+        /// <summary>
+        /// Check if the distance to the starting position is too big
+        /// </summary>
+        private void CheckLeashRange()
+        {
+            //if too far away from the starting position, clear target and return to it.
+            if(Vector2.SqrMagnitude(startPosition - currentPosition) > leashSquareRange)
+            {
+                Target = null;
+                returningToStartPos = true;
+            }
+        }
+
+        protected override void CheckForEntities()
+        {
+            //ignore entities when returning to the starting position.
+            if (returningToStartPos)
+                return;
+            base.CheckForEntities();
         }
 
         //I would kinda want to find a better solution for this, but this is the best i can do, and it should work flawlessly.
@@ -52,7 +189,7 @@ namespace SpaceScrapper
         private Vector2 CalculatePointNearTarget(Vector2 p0, float r0, Vector2 p1, float r1)
         {
             //distance between the two points
-            float d = (p1-p0).magnitude;
+            float d = distanceToTarget;
             //segment length from p0 to the center of the ellipsoid (overlap)
             float a = (r0 * r0 - r1 * r1 + d * d) / (2 * d);
             //the center of the ellipsoid

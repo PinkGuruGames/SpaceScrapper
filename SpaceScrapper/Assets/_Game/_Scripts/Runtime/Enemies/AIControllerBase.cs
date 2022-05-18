@@ -15,6 +15,8 @@ namespace SpaceScrapper
         [SerializeField]
         private LayerMask entityCheckMask;
         [SerializeField]
+        protected LayerMask staticCollisionMask;
+        [SerializeField]
         private float entityCheckRange = 20;
 
         private LivingEntity entityComponent;
@@ -52,6 +54,7 @@ namespace SpaceScrapper
 
         /// <summary>
         /// Method that hanldes aim (rotation) and enables weapons if necessary.
+        /// Runs after Move.
         /// </summary>
         protected abstract void Aim();
 
@@ -62,7 +65,6 @@ namespace SpaceScrapper
 
         protected virtual void Update()
         {
-            Move();
             Aim();
             //only check for entites every X frames.
             if(Time.frameCount >= lastEntityCheck + entityCheckFrameInterval)
@@ -72,6 +74,11 @@ namespace SpaceScrapper
                 if(target == null)
                     CheckForEntities();
             }
+        }
+
+        protected virtual void FixedUpdate()
+        {
+            Move();
         }
 
         /// <summary>
@@ -87,6 +94,7 @@ namespace SpaceScrapper
                 //check if the collider is part of a living entity
                 if(otherEntity && this.EntityComponent.IsHostileTowards(otherEntity))
                 {
+                    //TODO: Line of sight check- there should be no *static* collision between the two entities.
                     //Atm only set target to the found one if there is no target at all.
                     Target = otherEntity;
                     return;
@@ -102,6 +110,19 @@ namespace SpaceScrapper
         {
             Target = null;
             lastEntityCheck = Time.frameCount;
+        }
+
+        /// <summary>
+        /// Checks if the direct path between two positions is free from static collision
+        /// </summary>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <param name="hit"></param>
+        /// <returns>True if there is no collision.</returns>
+        protected bool PathIsClear(Vector2 from, Vector2 to, out RaycastHit2D hit)
+        {
+            hit = Physics2D.Linecast(from, to, staticCollisionMask);
+            return !hit;
         }
     }
 }
