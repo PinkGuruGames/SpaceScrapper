@@ -10,6 +10,8 @@ namespace SpaceScrapper
     {
         [SerializeField, Header("Hovering Drone Settings")]
         private new CircleCollider2D collider;
+        [SerializeField]
+        private SemiAutoWeapon weapon;
         [SerializeField, Tooltip("The range around the targetted entity.")]
         private float hoverRange = 15;
         [SerializeField, Tooltip("The range for fast movement to adjust the drones position.")]
@@ -118,6 +120,7 @@ namespace SpaceScrapper
                     //Debug.Log("Too close!");
                     float maxJump = hoverRange - distanceToTarget;
                     this.Destination = GetPointInCone(currentPosition, targetPosition, maxJump * 0.5f, maxJump, backJumpAngle);
+                    weapon.ToggleShooting(); //shoot once when getting distance
                     return;
                 }
                 //not in range.
@@ -129,6 +132,7 @@ namespace SpaceScrapper
                     {
                         //Debug.Log("Jumping In");
                         Destination = CalculatePointNearTarget(currentPosition, hoverAdjustRange, targetPosition, hoverRange);
+                        weapon.ToggleShooting(); //shoot once when getting closer
                         return;
                     }
                     //not in range at all, follow the target (pretty naive approach)
