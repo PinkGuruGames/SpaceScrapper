@@ -318,6 +318,130 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Dialogue",
+            "id": "f53d345b-d0bd-4ba8-8840-fa3f38f84a6e",
+            "actions": [
+                {
+                    "name": "Skip",
+                    "type": "Button",
+                    "id": "ab2b40dd-a390-4073-abeb-3967b1cfe212",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Continue",
+                    "type": "Button",
+                    "id": "ae6066cb-d89f-402b-9f8c-ae65eb663375",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "5df5b917-8c4e-4894-bb49-f7725a6b5c9f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f302fa3f-aa7b-4ef1-a536-9b424e1acd82",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "66c14beb-d81c-48ab-b545-640b18911fc7",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Continue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e21572b-235c-486c-a023-d4327da75877",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "PauseMenu",
+            "id": "22d66776-1aca-4f00-af17-65da94626cec",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "fbda295d-8139-4983-b488-62fdfa97a91d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c852cd9a-5186-41d5-9940-b33e66d31cef",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "MainMenu",
+            "id": "90f27f3a-8eed-418e-802d-0f8deecea4a4",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "9dc4c8fc-50c7-461b-9944-a57ab1ab61f4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "51d83c50-a6c4-4527-a2cb-da1e179ef9c3",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
