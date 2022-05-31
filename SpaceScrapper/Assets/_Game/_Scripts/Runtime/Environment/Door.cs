@@ -8,7 +8,7 @@ namespace SpaceScrapper
     /// A very basic script for a door that can only be opened.
     /// </summary>
     [RequireComponent(typeof(Animator))]
-    public class Door : MonoBehaviour
+    public class Door : MonoBehaviour, ITriggerable 
     {
         private Animator animator;
 
@@ -24,5 +24,7 @@ namespace SpaceScrapper
         {
             animator.SetTrigger("Open");
         }
+
+        public void Trigger() => Open();
     }
 }
