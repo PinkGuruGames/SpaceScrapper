@@ -7,23 +7,21 @@ namespace SpaceScrapper
     /// <summary>
     /// A conditional trigger that runs when all specified entities have died.
     /// </summary>
-    public class EnemyDeadTrigger : MonoBehaviour
+    public class EnemyDeadTrigger : ConditionalTrigger
     {
         [SerializeField]
         private LivingEntity[] entities;
 
         private int count = 0;
-        private ITriggerable[] triggerables;
 
         // Start is called before the first frame update
-        void Start()
+        protected override void Start()
         {
+            base.Start();
             foreach(var e in entities)
             {
                 e.OnEntityDied += OnEntityDied;
             }
-            //Get Triggerables from same object or children.
-            triggerables = GetComponentsInChildren<ITriggerable>();
         }
 
         private void OnEntityDied()
@@ -31,10 +29,7 @@ namespace SpaceScrapper
             count++;
             if(count >= entities.Length)
             {
-                foreach(var t in triggerables)
-                {
-                    t.Trigger();
-                }
+                TriggerAll();
             }
         }
 

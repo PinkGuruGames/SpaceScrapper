@@ -1,7 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.UI;
+using SpaceScrapper.Global;
 using TMPro;
 using UnityEngine.InputSystem;
 
@@ -39,11 +39,21 @@ namespace SpaceScrapper
         private void Update()
         {
             if (current == null && testAsset != null)
-                StartDialogue(testAsset);
+                StartDialogue(testAsset, null);
         }
 #endif
+        private void OnEnable()
+        {
+            Game.SceneContext.DialogueHandler.Bind(this);
+        }
 
-        public void StartDialogue(DialogueAsset asset)
+        private void OnDisable()
+        {
+            Game.SceneContext.DialogueHandler.Unbind(this);
+        }
+
+
+        public void StartDialogue(DialogueAsset asset, Action onDialogueFinished)
         {
             //stop all coroutines.
             StopAllCoroutines();
@@ -65,7 +75,7 @@ namespace SpaceScrapper
                 targetText = overlayText;
             }
             //start the coroutine.
-            StartCoroutine(Co_ShowText(targetText, targetGroup));
+            StartCoroutine(Co_ShowText(targetText, targetGroup, onDialogueFinished));
         }
 
         /// <summary>
@@ -82,7 +92,7 @@ namespace SpaceScrapper
         /// <summary>
         /// Coroutine that displays the current dialogue text on the correct text field.
         /// </summary>
-        private IEnumerator Co_ShowText(TextMeshProUGUI targetText, CanvasGroup targetGroup)
+        private IEnumerator Co_ShowText(TextMeshProUGUI targetText, CanvasGroup targetGroup, Action onDialogueFinished)
         {
             //fade in the text group.
             for(float t = 0; t <= 1; t += Time.deltaTime)
@@ -100,6 +110,7 @@ namespace SpaceScrapper
 
                 yield return new WaitForSeconds(wait);
             }
+            onDialogueFinished?.Invoke();
             //fade out the text group.
             for (float t = 1; t > 0; t -= Time.deltaTime)
             {
