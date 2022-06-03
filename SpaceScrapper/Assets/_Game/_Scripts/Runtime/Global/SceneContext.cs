@@ -7,7 +7,9 @@ namespace SpaceScrapper.Global
     /// </summary>
     public class SceneContext
     {
-
+        //the scene context for the current level that is being played.
+        //will be cleared AFTER returning back to the level selection, and placing the player at the entrance.
+        public readonly SharedHandle<Levels.LevelInfo> CurrentLevel = new SharedHandle<Levels.LevelInfo>();
 
         /// <summary>
         /// This class holds a reference to a Unity objects and ensures it will be safely bound and unbound
