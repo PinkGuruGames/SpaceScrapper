@@ -11,7 +11,7 @@ namespace SpaceScrapper
     /// <summary>
     /// A simple enemy type that does not move, and only rotates to track its target.
     /// </summary>
-    [RequireComponent(typeof(SimpleEnemyEntity))]
+    //[RequireComponent(typeof(SimpleEnemyEntity))]
     public class StationaryTurret : AIControllerBase
     {
         [Header("Stationary Turret Settings")]
@@ -107,6 +107,8 @@ namespace SpaceScrapper
 #if UNITY_EDITOR
         private void OnDrawGizmosSelected()
         {
+            if (turretBase == null)
+                return;
             Vector3 position = transform.position;
             Vector3 startPoint = Quaternion.AngleAxis(minAngle, Vector3.forward) * transform.up;
             Vector3 endPoint = Quaternion.AngleAxis(maxAngle, Vector3.forward) * transform.up;

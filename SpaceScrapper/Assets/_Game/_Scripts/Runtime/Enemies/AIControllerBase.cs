@@ -5,7 +5,7 @@ namespace SpaceScrapper
     /// <summary>
     /// The baseclass for all AI controlled units, enemies and other.
     /// </summary>
-    [RequireComponent(typeof(LivingEntity))]
+    //[RequireComponent(typeof(LivingEntity))]
     public abstract class AIControllerBase : MonoBehaviour
     {
         [Header("General AI Settings")]
@@ -34,10 +34,10 @@ namespace SpaceScrapper
 
         protected LivingEntity EntityComponent => entityComponent;
         protected LayerMask EntityCheckMask => entityCheckMask;
-        protected LivingEntity Target
+        public LivingEntity Target
         {
             get => target;
-            set
+            protected set
             {
                 if (target != null)
                     target.OnEntityDied -= OnTargetDied;
@@ -60,7 +60,7 @@ namespace SpaceScrapper
 
         protected virtual void Awake()
         {
-            entityComponent = GetComponent<SimpleEnemyEntity>();
+            entityComponent = GetComponent<LivingEntity>();
         }
 
         protected virtual void Update()

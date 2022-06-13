@@ -10,6 +10,8 @@ namespace SpaceScrapper
     {
         [SerializeField, Tooltip("The Faction this Entity belongs to.")]
         private Faction faction;
+        [SerializeField]
+        private float defaultMaxHealth = 2f;
 
         private float currentHealth;
         private float maxHealth;
@@ -38,6 +40,12 @@ namespace SpaceScrapper
         {
             get => maxHealth;
             private set => maxHealth = value;
+        }
+
+        //set the current and max health to the default max health value.
+        protected virtual void Awake()
+        {
+            maxHealth = currentHealth = defaultMaxHealth;
         }
 
         /// <inheritdoc></inheritdoc>
