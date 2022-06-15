@@ -31,6 +31,8 @@ namespace SpaceScrapper.Bosses
         private GuardianBossCombatState combatState;
         [SerializeField]
         private GuardianBossDodgeAttackState dodgeAttackState;
+        [SerializeField]
+        private GuardianBossRamAttackState ramAttackState;
 
         private GuardianBossBehaviour activeState;
 
@@ -48,8 +50,10 @@ namespace SpaceScrapper.Bosses
         //Get-only properties for the states to work.
         internal GuardianBossCombatState CombatState => combatState;
         internal GuardianBossDodgeAttackState DodgeAttackState => dodgeAttackState;
+        internal GuardianBossRamAttackState RamAttackState => ramAttackState;
 
         internal Rigidbody2D Body => body;
+        internal Collider2D Collider => collider;
 
         //buffers to avoid allocating
         RaycastHit2D[] raycastHitBuffer = new RaycastHit2D[10];

@@ -14,14 +14,18 @@ namespace SpaceScrapper.Bosses
             //this is FixedUpdate, but launching rockets shouldnt be an issue in here. the timers work either way.
             guardian.LaunchRockets();
             //default movement pattern here:
-
+            guardian.FaceTarget();
+            guardian.Body.velocity = Vector2.zero;
         }
 
         internal override GuardianBossBehaviour MoveNext(GuardianBoss guardian)
         {
             if(Time.time - EnterTime >= abilityTimer)
             {
-                return guardian.DodgeAttackState; //return special ability state.
+                if (UnityEngine.Random.value < 0.5f)
+                    return guardian.DodgeAttackState; //return special ability state.
+                else
+                    return guardian.RamAttackState;
             }
             return this;
         }

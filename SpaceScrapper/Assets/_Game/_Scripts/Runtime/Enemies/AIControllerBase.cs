@@ -32,7 +32,7 @@ namespace SpaceScrapper
         //the last frame on which an entity check was performed.
         private int lastEntityCheck;
 
-        protected LivingEntity EntityComponent => entityComponent;
+        internal LivingEntity EntityComponent => entityComponent;
         protected LayerMask EntityCheckMask => entityCheckMask;
         public LivingEntity Target
         {
