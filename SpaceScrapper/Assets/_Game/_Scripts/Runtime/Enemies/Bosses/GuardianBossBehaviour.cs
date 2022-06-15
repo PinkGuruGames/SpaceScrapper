@@ -1,18 +1,47 @@
 ﻿using UnityEngine;
-using SpaceScrapper;
+using System;
 
 namespace SpaceScrapper.Bosses
 {
-    internal abstract class GuardianBossBehaviour
+    [Serializable]
+    public abstract class GuardianBossBehaviour
     {
+        protected float EnterTime { get; private set; }
+
         //for transitions
-        internal abstract void StateEnter(GuardianBoss guardian);
-        internal abstract void StateLeave(GuardianBoss guardian);
+        internal virtual void StateEnter(GuardianBoss guardian)
+        {
+            EnterTime = Time.time;
+        }
+
         //exit conditions.
         internal abstract GuardianBossBehaviour MoveNext(GuardianBoss guardian);
 
+        /// <summary>
+        /// Move the guardian boss. This is called in FixedUpdate due to relying on a Rigidbody2D.
+        /// </summary>
         internal abstract void Move(GuardianBoss guardian);
+    }
 
-        internal abstract void Aim(Transform target);
+    /// <summary>
+    /// Idle doesnt really do much.
+    /// </summary>
+    [Serializable]
+    public class GuardianBossIdleState : GuardianBossBehaviour
+    {
+        internal override void Move(GuardianBoss guardian)
+        {
+            return;
+        }
+
+        internal override GuardianBossBehaviour MoveNext(GuardianBoss guardian)
+        {
+            guardian.CheckForTarget();
+            if(guardian.Target)
+            {
+                return guardian.CombatState;
+            }
+            return this;
+        }
     }
 }

@@ -10,9 +10,16 @@ namespace SpaceScrapper.Weapons
         private int _currentAmmo;
         private Coroutine _reloadingCoroutine;
 
-        [SerializeField] private int currentReserveAmmo;
-        [SerializeField] private int magazineSize;
-        [SerializeField] private float reloadTime;
+        [SerializeField]
+        private bool hasInfiniteAmmo = false; //this might feel weird, but its useful for AI enemies that shouldnt care about ammo.
+
+        //Note: Hidden by the standard editor, conditionally shown via the ReloadableWeaponEditor (hasInfiniteAmmo). 
+        [HideInInspector, SerializeField] 
+        private int currentReserveAmmo;
+        [HideInInspector, SerializeField] 
+        private int magazineSize;
+        [HideInInspector, SerializeField]
+        private float reloadTime;
         
         protected Coroutine ShootingCoroutine { get; set; }
         protected bool ShootAfterReload { get; set; }
@@ -20,7 +27,7 @@ namespace SpaceScrapper.Weapons
         protected override void Start()
         {
             base.Start();
-            _currentAmmo = magazineSize;
+            _currentAmmo = hasInfiniteAmmo? int.MaxValue : magazineSize; //for all intents and purposes, int.MaxValue is infinite in the game.
         }
 
         protected internal void Reload()

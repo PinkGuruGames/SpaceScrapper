@@ -162,6 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <TimeBetweenShots>k__BackingField: 1
   projectilePool: {fileID: 11400000, guid: 4d76b61f1e3024b45ba6765ea08e3941, type: 2}
+  hasInfiniteAmmo: 1
   currentReserveAmmo: 800
   magazineSize: 800
   reloadTime: 0
@@ -324,6 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: {fileID: 11400000, guid: d50cd335708031e439f9cf9e90f05321, type: 2}
+  defaultMaxHealth: 2
 --- !u!58 &5631683932032652599
 CircleCollider2D:
   m_ObjectHideFlags: 0

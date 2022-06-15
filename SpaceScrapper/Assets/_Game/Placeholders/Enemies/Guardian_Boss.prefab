@@ -1,5 +1,57 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1028931534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1028931535}
+  - component: {fileID: 1028931536}
+  m_Layer: 0
+  m_Name: RocketLauncher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1028931535
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028931534}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.74}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8942575091391542157}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1028931536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028931534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae22fd6a6143117ab9c52f4ecc9e2887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <TimeBetweenShots>k__BackingField: 2.5
+  projectilePool: {fileID: 11400000, guid: 4d76b61f1e3024b45ba6765ea08e3941, type: 2}
+  hasInfiniteAmmo: 1
+  currentReserveAmmo: 0
+  magazineSize: 0
+  reloadTime: 0
+  burstSize: 1
+  burstInterval: 0.01
 --- !u!1 &2543498661656057114
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2543498661956144489}
-  - component: {fileID: 2543498661956144494}
+  - component: {fileID: 2018511146}
   m_Layer: 7
   m_Name: ShootSpot
   m_TagString: Untagged
@@ -115,7 +167,7 @@ Transform:
   m_Father: {fileID: 8348217070409708299}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
---- !u!114 &2543498661956144494
+--- !u!114 &2018511146
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,14 +176,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 2543498661956144488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f34e9f3b99b5bd3da0ebf6bdb08e4e2, type: 3}
+  m_Script: {fileID: 11500000, guid: ae22fd6a6143117ab9c52f4ecc9e2887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <TimeBetweenShots>k__BackingField: 1
+  <TimeBetweenShots>k__BackingField: 0
   projectilePool: {fileID: 11400000, guid: 4d76b61f1e3024b45ba6765ea08e3941, type: 2}
-  currentReserveAmmo: 800
-  magazineSize: 800
+  hasInfiniteAmmo: 1
+  currentReserveAmmo: 0
+  magazineSize: 0
   reloadTime: 0
+  burstSize: 2
+  burstInterval: 0.15
 --- !u!1 &2543498662919882372
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +228,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2650064861811333904}
-  - component: {fileID: 2543498661665717280}
   - component: {fileID: 3426460171154620843}
   - component: {fileID: 2543498661665717311}
   m_Layer: 7
@@ -190,9 +244,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3426460171154620842}
-  m_LocalRotation: {x: -0, y: -0, z: -0.0000004768371, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2, y: -0.17, z: -0.058}
-  m_LocalScale: {x: 0.21337888, y: 0.21337888, z: 0.21337888}
+  m_LocalScale: {x: 0.30743945, y: 0.30743945, z: 0.30743945}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2543498661656057115}
@@ -200,33 +254,6 @@ Transform:
   m_Father: {fileID: 8942575091391542157}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2543498661665717280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3426460171154620842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 265c5ed809177ce418f28abadbaad72e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entityCheckFrameInterval: 1
-  entityCheckMask:
-    serializedVersion: 2
-    m_Bits: 64
-  staticCollisionMask:
-    serializedVersion: 2
-    m_Bits: 1
-  entityCheckRange: 40
-  minAngle: -90
-  maxAngle: 90
-  trackingSpeed: 48.3
-  shootingAngleLimit: 3.81
-  maxDistance: 105.5
-  turretBase: {fileID: 2543498662919882373}
-  weapon: {fileID: 2543498661956144494}
 --- !u!58 &3426460171154620843
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -256,7 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: {fileID: 11400000, guid: d50cd335708031e439f9cf9e90f05321, type: 2}
-  defaultMaxHealth: 2
+  defaultMaxHealth: 15
   superEntity: {fileID: 8942575091391542193}
 --- !u!1 &5037948306507529516
 GameObject:
@@ -546,7 +573,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8942575090689592913}
-  - component: {fileID: 8942575090689592912}
+  - component: {fileID: 8942575091125433779}
   m_Layer: 7
   m_Name: ShootSpot
   m_TagString: Untagged
@@ -569,7 +596,7 @@ Transform:
   m_Father: {fileID: 8942575089856563985}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
---- !u!114 &8942575090689592912
+--- !u!114 &8942575091125433779
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -578,14 +605,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8942575090689592914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f34e9f3b99b5bd3da0ebf6bdb08e4e2, type: 3}
+  m_Script: {fileID: 11500000, guid: ae22fd6a6143117ab9c52f4ecc9e2887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <TimeBetweenShots>k__BackingField: 1
+  <TimeBetweenShots>k__BackingField: 0
   projectilePool: {fileID: 11400000, guid: 4d76b61f1e3024b45ba6765ea08e3941, type: 2}
-  currentReserveAmmo: 800
-  magazineSize: 800
+  hasInfiniteAmmo: 1
+  currentReserveAmmo: 0
+  magazineSize: 0
   reloadTime: 0
+  burstSize: 2
+  burstInterval: 0.15
 --- !u!1 &8942575091268500470
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,7 +625,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8942575091268500469}
-  - component: {fileID: 8942575091268500466}
   - component: {fileID: 8942575091268500467}
   - component: {fileID: 8942575091268500468}
   m_Layer: 7
@@ -612,9 +641,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8942575091268500470}
-  m_LocalRotation: {x: -0, y: -0, z: -0.0000004768371, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2, y: -0.17, z: -0.058}
-  m_LocalScale: {x: 0.21337888, y: 0.21337888, z: 0.21337888}
+  m_LocalScale: {x: 0.30743945, y: 0.30743945, z: 0.30743945}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8942575091348435778}
@@ -622,33 +651,6 @@ Transform:
   m_Father: {fileID: 8942575091391542157}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8942575091268500466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8942575091268500470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 265c5ed809177ce418f28abadbaad72e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entityCheckFrameInterval: 1
-  entityCheckMask:
-    serializedVersion: 2
-    m_Bits: 64
-  staticCollisionMask:
-    serializedVersion: 2
-    m_Bits: 1
-  entityCheckRange: 40
-  minAngle: -90
-  maxAngle: 90
-  trackingSpeed: 48.3
-  shootingAngleLimit: 3.81
-  maxDistance: 105.5
-  turretBase: {fileID: 8942575089940385260}
-  weapon: {fileID: 8942575090689592912}
 --- !u!58 &8942575091268500467
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -678,7 +680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: {fileID: 11400000, guid: d50cd335708031e439f9cf9e90f05321, type: 2}
-  defaultMaxHealth: 2
+  defaultMaxHealth: 15
   superEntity: {fileID: 8942575091391542193}
 --- !u!1 &8942575091348435779
 GameObject:
@@ -792,13 +794,14 @@ Transform:
   m_GameObject: {fileID: 8942575091391542194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.1, y: -160.4, z: -5.7}
-  m_LocalScale: {x: 9.372998, y: 9.372998, z: 9.372998}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8903847184800596308}
   - {fileID: 2650064861811333904}
   - {fileID: 8942575091268500469}
   - {fileID: 8077215374667740256}
+  - {fileID: 1028931535}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -843,74 +846,74 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 2089511277795368056}
     m_ColliderPaths:
-    - - X: 37663368
-        Y: 136492608
-      - X: -38557648
-        Y: 135413936
-      - X: -93831952
-        Y: 93574304
-      - X: -93076504
-        Y: 47173000
-      - X: -175304000
-        Y: -2870189
-      - X: -182506272
-        Y: -23374800
-      - X: -208407504
-        Y: -23016828
-      - X: -304183552
-        Y: -81305560
-      - X: -303307424
-        Y: -95426496
-      - X: -93904984
-        Y: -46361860
-      - X: -94279896
-        Y: -94614432
-      - X: -69161408
-        Y: -118555144
-      - X: 67598280
-        Y: -118034040
-      - X: 93106144
-        Y: -93765728
-      - X: 93417824
-        Y: -45975660
-      - X: 302121632
-        Y: -94601000
-      - X: 301997600
-        Y: -80332512
-      - X: 209046976
-        Y: -23721326
-      - X: 180562016
-        Y: -20911878
-      - X: 169437616
-        Y: 402668
-      - X: 93576416
-        Y: 46605672
-      - X: 94352992
-        Y: 93053216
+    - - X: 16073135
+        Y: 58249284
+      - X: -16454777
+        Y: 57788952
+      - X: -40043516
+        Y: 39933564
+      - X: -39721120
+        Y: 20131444
+      - X: -74812344
+        Y: -1224875
+      - X: -77885968
+        Y: -9975378
+      - X: -88939520
+        Y: -9822610
+      - X: -129812696
+        Y: -34697780
+      - X: -129438800
+        Y: -40724000
+      - X: -40074684
+        Y: -19785284
+      - X: -40234680
+        Y: -40377444
+      - X: -29515172
+        Y: -50594328
+      - X: 28848092
+        Y: -50371948
+      - X: 39733776
+        Y: -40015256
+      - X: 39866784
+        Y: -19620472
+      - X: 128932760
+        Y: -40371712
+      - X: 128879832
+        Y: -34282524
+      - X: 89212424
+        Y: -10123260
+      - X: 77056248
+        Y: -8924306
+      - X: 72308824
+        Y: 171842
+      - X: 39934460
+        Y: 19889334
+      - X: 40265876
+        Y: 39711188
   m_CompositePaths:
     m_Paths:
-    - - {x: -6.9161487, y: -11.855507}
-      - {x: 6.7598352, y: -11.803397}
-      - {x: 9.310615, y: -9.376562}
-      - {x: 9.34182, y: -4.5975747}
-      - {x: 30.212164, y: -9.460061}
-      - {x: 30.199747, y: -8.033243}
-      - {x: 20.904692, y: -2.372132}
-      - {x: 18.056196, y: -2.0911748}
-      - {x: 16.943756, y: 0.0402706}
-      - {x: 9.357642, y: 4.6605825}
-      - {x: 9.435289, y: 9.305329}
-      - {x: 3.766328, y: 13.6492605}
-      - {x: -3.8557715, y: 13.5413885}
-      - {x: -9.383195, y: 9.357417}
-      - {x: -9.307664, y: 4.717292}
-      - {x: -17.530403, y: -0.2870276}
-      - {x: -18.250647, y: -2.3374796}
-      - {x: -20.840757, y: -2.3016865}
-      - {x: -30.418356, y: -8.130572}
-      - {x: -30.330708, y: -9.542642}
-      - {x: -9.390498, y: -4.636225}
-      - {x: -9.427981, y: -9.461452}
+    - - {x: -2.9515247, y: -5.059426}
+      - {x: 2.8848166, y: -5.0371876}
+      - {x: 3.9733777, y: -4.0015144}
+      - {x: 3.986716, y: -1.962056}
+      - {x: 12.893275, y: -4.0371323}
+      - {x: 12.887971, y: -3.4282448}
+      - {x: 8.921237, y: -1.0123254}
+      - {x: 7.705618, y: -0.8924177}
+      - {x: 7.230876, y: 0.017188}
+      - {x: 3.9934464, y: 1.9889488}
+      - {x: 4.026577, y: 3.9711268}
+      - {x: 1.6073046, y: 5.8249283}
+      - {x: -1.6454844, y: 5.77889}
+      - {x: -4.004351, y: 3.9933429}
+      - {x: -3.9721253, y: 2.0131364}
+      - {x: -7.481238, y: -0.1224962}
+      - {x: -7.7886167, y: -0.9975375}
+      - {x: -8.893958, y: -0.9822648}
+      - {x: -12.981269, y: -3.4697945}
+      - {x: -12.943845, y: -4.072392}
+      - {x: -4.0074687, y: -1.9785676}
+      - {x: -4.02346, y: -4.037752}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!114 &8942575091391542192
@@ -925,7 +928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bf1863fb048f154aa009c9420bcb90e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityCheckFrameInterval: 1
+  entityCheckFrameInterval: 5
   entityCheckMask:
     serializedVersion: 2
     m_Bits: 64
@@ -933,6 +936,45 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   entityCheckRange: 80
+  body: {fileID: 8942575091391542158}
+  weaponTransforms:
+  - {fileID: 2543498662919882373}
+  - {fileID: 8942575089940385260}
+  gunWeapons:
+  - {fileID: 0}
+  - {fileID: 0}
+  rocketLauncher: {fileID: 1028931536}
+  collider: {fileID: 8942575091391542159}
+  combatState:
+    abilityTimer: 5
+  dodgeAttackState:
+    dodgeDistance: 6
+    dodgeTime: 1
+    dodgeInterval: 0.2
+    dodgeCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
 --- !u!114 &8942575091391542193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -946,7 +988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: {fileID: 11400000, guid: d50cd335708031e439f9cf9e90f05321, type: 2}
-  defaultMaxHealth: 2
+  defaultMaxHealth: 50
 --- !u!1001 &8942575091445376703
 PrefabInstance:
   m_ObjectHideFlags: 0
