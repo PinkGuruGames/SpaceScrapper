@@ -122,7 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 7153827300133037550}
   lifetime: 20
-  speed: 40
+  speed: 40.12
 --- !u!61 &7153827300133037548
 BoxCollider2D:
   m_ObjectHideFlags: 0
