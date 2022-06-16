@@ -111,6 +111,7 @@ namespace SpaceScrapper
                 yield return new WaitForSeconds(wait);
             }
             onDialogueFinished?.Invoke();
+            yield return null;
             //fade out the text group.
             for (float t = 1; t > 0; t -= Time.deltaTime)
             {
