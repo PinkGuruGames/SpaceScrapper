@@ -15,10 +15,12 @@ MonoBehaviour:
   type: 0
   lines:
   - '"Woah, what is this place?"'
-  - '[AI] I suppose you''d call this a "space factory".'
-  - '[AI] Since it is a factory... in space.'
-  - '[AI] On that note, I will be giving you some weapons so you can defend us.'
-  - '"Ok, cool."'
+  - '[AI] This is- was an Endra factory.'
+  - '"That''s ancient history!"'
+  - '[AI] Anyway, I shall equip your ship with a weapon to defend us.'
+  - '"Okay, but why?"'
+  - '[AI] Don''t think that just because this place is ancient, it won''t be able
+    to defend itself.'
   - . . .
   - '[AI] There, all done and ready.'
-  - '[AI] Now, please get us out of here, alive if possible.'
+  - '[AI] Now, please get us out of here. Alive, if possible.'

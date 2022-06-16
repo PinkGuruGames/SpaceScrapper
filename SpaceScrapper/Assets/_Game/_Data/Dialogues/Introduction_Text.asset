@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   lines:
-  - '[In the far reaches of sector DF-472, 1742 days since departure]'
+  - '[In the far reaches of sector DF-372, 1742 days since departure]'
   - 'System: Automated distress signal received.'
   - Signature matched in local data.
   - 'Assessment: friendly.'
