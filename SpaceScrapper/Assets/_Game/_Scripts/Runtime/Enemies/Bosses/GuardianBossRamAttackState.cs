@@ -23,7 +23,7 @@ namespace SpaceScrapper.Bosses
         private float chargeDamage = 7f;
 
         private Vector2 headingDirection;
-        private List<Collider2D> ignoredColliders = new List<Collider2D>(10);
+        private readonly List<Collider2D> ignoredColliders = new List<Collider2D>(10);
 
         private bool shouldStop = false;
         private float stopTime = float.PositiveInfinity;
@@ -112,7 +112,14 @@ namespace SpaceScrapper.Bosses
         {
             //check exit condition back to combat state.
             if (shouldStop && Time.time - stopTime > collisionStaggerTime || isDone)
+            {
+                //reenable collisions.
+                for(int i = 0; i < ignoredColliders.Count; i++)
+                {
+                    Physics2D.IgnoreCollision(guardian.Collider, ignoredColliders[i], false);
+                }
                 return guardian.CombatState;
+            }
             return this;
         }
     }
