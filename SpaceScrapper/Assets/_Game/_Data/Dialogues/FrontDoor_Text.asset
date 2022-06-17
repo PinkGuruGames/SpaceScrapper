@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   lines:
-  - Looks like I'm in the right place.
-  - But I can't get in this way.
+  - '"Looks like I''m in the right place."'
+  - '"But I can''t get in this way."'

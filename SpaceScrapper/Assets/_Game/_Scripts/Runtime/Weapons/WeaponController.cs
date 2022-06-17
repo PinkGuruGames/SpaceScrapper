@@ -13,10 +13,14 @@ namespace SpaceScrapper.Weapons
         //private MainInput _mainInput;
         private Weapon _currentWeapon;
 
-        [SerializeField] private GameObject weaponPrefab; // Automatically set in code
-        [SerializeField] private Transform weaponParent;
+        [SerializeField] 
+        private GameObject weaponPrefab; // Automatically set in code
+        [SerializeField] 
+        private Transform weaponParent;
         [SerializeField]
         private Weapon testWeapon;
+
+        public bool ActiveWeapons { get; set; } = true;
 
         private void Awake()
         {
@@ -43,7 +47,8 @@ namespace SpaceScrapper.Weapons
 
         private void OnFirePrimary(InputValue value)
         {
-            _currentWeapon.ToggleShooting();
+            if(ActiveWeapons && _currentWeapon)
+                _currentWeapon.ToggleShooting();
         }
 
         private void OnFireSecondary()

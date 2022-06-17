@@ -14,13 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   lines:
-  - '"Woah, what is this place?"'
-  - '[AI] This is- was an Endra factory.'
-  - '"That''s ancient history!"'
-  - '[AI] Anyway, I shall equip your ship with a weapon to defend us.'
-  - '"Okay, but why?"'
-  - '[AI] Don''t think that just because this place is ancient, it won''t be able
-    to defend itself.'
+  - '[AI] "Hello, thank you for coming to my rescue."'
+  - '"I haven''t done anything yet."'
+  - '"First tell me who you are, and what happened here."'
+  - '[AI] "I am of technological nature, I have no interest in harming you."'
+  - '[AI] "Regarding my objectives and this place, all I''m legally allowed to tell
+    you is that this used to be an Endra factory."'
+  - '"Endra? Then this place is ancient history."'
+  - '[AI] "Let me propose a deal, a temporary contract."'
+  - '"Go on."'
+  - '[AI] "I will equip your ship with weaponry from this place."'
+  - '[AI] "In return, you will get both of us out of here."'
+  - '[AI] "Additionally, I will offer you to meet with my representatives."'
+  - '"Sounds... good...? Yeah, let''s get out of here."'
+  - '[AI] "Very well, let me upgrade your ship with this old equipment."'
   - . . .
-  - '[AI] There, all done and ready.'
-  - '[AI] Now, please get us out of here. Alive, if possible.'
+  - . . .

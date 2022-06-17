@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 1
   lines:
   - '"So, how does this work?"'
-  - '[AI] Click the baddies, keep flying.'
-  - '[AI] Think of this as practice.'
+  - '[AI] "Keep shooting, and don''t stop moving."'
+  - '[AI] "That should be simple enough."'
   - '[[Hold left click to shoot]]'

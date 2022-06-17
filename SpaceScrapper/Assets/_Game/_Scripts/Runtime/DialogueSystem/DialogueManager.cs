@@ -104,11 +104,12 @@ namespace SpaceScrapper
             //display all the text
             for (int i = 0; i < current.Lines.Length; i++)
             {
-                float wait = durationPerWord * (CountSpacesInString(current.Lines[i]) + 1);
+                //float wait = durationPerWord * (CountSpacesInString(current.Lines[i]) + 1);
 
                 targetText.text = current.Lines[i];
 
-                yield return new WaitForSeconds(wait);
+                //words^0.8 * durationPerWord. not fully linear progression.
+                yield return new WaitForSeconds(Mathf.Pow(CountSpacesInString(current.Lines[i]) + 1, 0.8f) * durationPerWord);
             }
             onDialogueFinished?.Invoke();
             yield return null;
