@@ -103,6 +103,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "databaseOpenClose",
+                    "type": "Button",
+                    "id": "c899477f-940c-4a2e-a8f0-f31917faf231",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -334,6 +343,17 @@
                     "processors": "",
                     "groups": "Keyboard_Mouse",
                     "action": "continue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ed19a52c-5d52-4d8d-9c91-60cd2009862e",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "databaseOpenClose",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

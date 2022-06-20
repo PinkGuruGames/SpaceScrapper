@@ -96,6 +96,7 @@ namespace SpaceScrapper
             overlayGroup.alpha = 0;
             fullscreenText.text = "";
             fullscreenGroup.alpha = 0;
+            forceNext = false;
         }
 
         /// <summary>
@@ -113,6 +114,7 @@ namespace SpaceScrapper
             //display all the text
             for (int i = 0; i < current.Lines.Length; i++)
             {
+                forceNext = false;
                 //float wait = durationPerWord * (CountSpacesInString(current.Lines[i]) + 1);
 
                 targetText.text = current.Lines[i];
@@ -121,7 +123,6 @@ namespace SpaceScrapper
                 float waitTime = Mathf.Pow(CountSpacesInString(current.Lines[i]) + 1, 0.8f) * durationPerWord;
                 float next = Time.time + waitTime;
                 yield return new WaitUntil(()=> next <= Time.time || forceNext);
-                forceNext = false;
             }
             onDialogueFinished?.Invoke();
             yield return null;
