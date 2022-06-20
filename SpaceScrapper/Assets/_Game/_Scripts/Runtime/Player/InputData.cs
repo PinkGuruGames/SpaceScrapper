@@ -11,6 +11,9 @@ namespace SpaceScrapper
         [Header("Camera")]
         [SerializeField] 
         private Camera mainCamera;
+        [Header("Pause Menu")] //this is temporary for the demo.
+        [SerializeField]
+        private PauseMenu pauseMenu;
         [Header("Input Settings")]
         [SerializeField]
         private PlayerInput playerInput;
@@ -22,6 +25,7 @@ namespace SpaceScrapper
         private string pauseMenuActionMapName;
         [SerializeField, HideInInspector]
         private string dialogueScreenActionMapName;
+
 
         //runtime buffers for input values.
         private Vector2 _movement;
@@ -87,6 +91,20 @@ namespace SpaceScrapper
         private void OnMousePosition(InputValue value)
         {
             _screenMousePosition = value.Get<Vector2>();
+        }
+
+        private void OnMenu()
+        {
+            if(pauseMenu.gameObject.activeSelf)
+            {
+                pauseMenu.Resume();
+                ActivatePauseMenuControls();
+            }
+            else
+            {
+                pauseMenu.Pause();
+                ActivateGameplayControls();
+            }
         }
 #pragma warning restore IDE0051 // Remove unused private members
     }

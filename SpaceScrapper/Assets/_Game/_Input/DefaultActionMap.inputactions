@@ -320,6 +320,34 @@
             ]
         },
         {
+            "name": "PauseMenu",
+            "id": "22d66776-1aca-4f00-af17-65da94626cec",
+            "actions": [
+                {
+                    "name": "menu",
+                    "type": "Button",
+                    "id": "fbda295d-8139-4983-b488-62fdfa97a91d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c852cd9a-5186-41d5-9940-b33e66d31cef",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard_Mouse",
+                    "action": "menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "Dialogue",
             "id": "f53d345b-d0bd-4ba8-8840-fa3f38f84a6e",
             "actions": [
@@ -382,34 +410,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "PauseMenu",
-            "id": "22d66776-1aca-4f00-af17-65da94626cec",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "fbda295d-8139-4983-b488-62fdfa97a91d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "c852cd9a-5186-41d5-9940-b33e66d31cef",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
