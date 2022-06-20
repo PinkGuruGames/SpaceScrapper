@@ -35,6 +35,8 @@ namespace SpaceScrapper
 
         private DialogueAsset current;
 
+        private bool forceNext;
+
 #if UNITY_EDITOR
         private void Update()
         {
@@ -45,11 +47,18 @@ namespace SpaceScrapper
         private void OnEnable()
         {
             Game.SceneContext.DialogueHandler.Bind(this);
+            continueActionRef.action.performed += OnContinue;
         }
+
 
         private void OnDisable()
         {
             Game.SceneContext.DialogueHandler.Unbind(this);
+            continueActionRef.action.performed -= OnContinue;
+        }
+        private void OnContinue(InputAction.CallbackContext obj)
+        {
+            forceNext = true;
         }
 
 
@@ -109,7 +118,10 @@ namespace SpaceScrapper
                 targetText.text = current.Lines[i];
 
                 //words^0.8 * durationPerWord. not fully linear progression.
-                yield return new WaitForSeconds(Mathf.Pow(CountSpacesInString(current.Lines[i]) + 1, 0.8f) * durationPerWord);
+                float waitTime = Mathf.Pow(CountSpacesInString(current.Lines[i]) + 1, 0.8f) * durationPerWord;
+                float next = Time.time + waitTime;
+                yield return new WaitUntil(()=> next <= Time.time || forceNext);
+                forceNext = false;
             }
             onDialogueFinished?.Invoke();
             yield return null;

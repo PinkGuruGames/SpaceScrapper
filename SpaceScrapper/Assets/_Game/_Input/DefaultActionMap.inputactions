@@ -94,6 +94,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "continue",
+                    "type": "Button",
+                    "id": "65784cbb-c0c7-4b79-812e-b042c1a00036",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -316,6 +325,17 @@
                     "action": "fireSecondary",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a757af0b-fdbd-4ec2-9227-d42d9112f809",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard_Mouse",
+                    "action": "continue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -352,7 +372,7 @@
             "id": "f53d345b-d0bd-4ba8-8840-fa3f38f84a6e",
             "actions": [
                 {
-                    "name": "Skip",
+                    "name": "skip",
                     "type": "Button",
                     "id": "ab2b40dd-a390-4073-abeb-3967b1cfe212",
                     "expectedControlType": "Button",
@@ -361,7 +381,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Continue",
+                    "name": "continue",
                     "type": "Button",
                     "id": "ae6066cb-d89f-402b-9f8c-ae65eb663375",
                     "expectedControlType": "Button",
@@ -370,7 +390,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pause",
+                    "name": "menu",
                     "type": "Button",
                     "id": "5df5b917-8c4e-4894-bb49-f7725a6b5c9f",
                     "expectedControlType": "Button",
@@ -387,7 +407,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Skip",
+                    "action": "skip",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -398,7 +418,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Continue",
+                    "action": "continue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -409,7 +429,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pause",
+                    "action": "menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -11662,6 +11662,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dialogue_System_Screens
       objectReference: {fileID: 0}
+    - target: {fileID: 920497306381098358, guid: d955ea69eb3f53944867a618dd7381b0, type: 3}
+      propertyPath: skipActionRef
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 920497306381098358, guid: d955ea69eb3f53944867a618dd7381b0, type: 3}
+      propertyPath: continueActionRef
+      value: 
+      objectReference: {fileID: -4978595783601976833, guid: b84223ae587cd3d48961c77402a736ec, type: 3}
     - target: {fileID: 920497306381098359, guid: d955ea69eb3f53944867a618dd7381b0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
