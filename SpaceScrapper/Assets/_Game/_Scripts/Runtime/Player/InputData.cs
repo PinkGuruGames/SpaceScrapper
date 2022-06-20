@@ -98,12 +98,12 @@ namespace SpaceScrapper
             if(pauseMenu.gameObject.activeSelf)
             {
                 pauseMenu.Resume();
-                ActivatePauseMenuControls();
+                ActivateGameplayControls();
             }
             else
             {
                 pauseMenu.Pause();
-                ActivateGameplayControls();
+                ActivatePauseMenuControls();
             }
         }
 #pragma warning restore IDE0051 // Remove unused private members
