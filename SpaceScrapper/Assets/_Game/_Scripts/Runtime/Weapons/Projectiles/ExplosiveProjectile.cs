@@ -4,6 +4,11 @@ namespace SpaceScrapper.Weapons
 {
     public class ExplosiveProjectile : ProjectileBase
     {
+        [SerializeField]
+        private float explosionRadius;
+
+        private Collider2D[] colliderBuffer = new Collider2D[10];
+
         protected override void Move()
         {
             //throw new System.NotImplementedException();
@@ -28,7 +33,18 @@ namespace SpaceScrapper.Weapons
 
         protected void Explode()
         {
-            throw new System.NotImplementedException();
+            int count = Physics2D.OverlapCircleNonAlloc(transform.position, explosionRadius, colliderBuffer);
+            for(int i = 0; i < count; i++)
+            {
+                var c = colliderBuffer[i];
+                if (c.gameObject.isStatic)
+                    continue;
+                IDamageable id = c.GetComponent<IDamageable>();
+                if (id != null)
+                {
+                    id.Damage(SourceEntity, this.Damage, c, true);
+                }
+            }
         }
     }
 }

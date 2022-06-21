@@ -11,6 +11,7 @@ namespace SpaceScrapper
         public override void Damage(LivingEntity source, float damage, Collider2D sourceCollider, bool ignoreWeakspot = false)
         {
             CurrentHealth -= damage;
+            ShowHitFlash();
         }
 
         /// <summary>

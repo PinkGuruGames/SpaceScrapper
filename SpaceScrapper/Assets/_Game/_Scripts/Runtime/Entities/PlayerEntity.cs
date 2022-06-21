@@ -20,6 +20,7 @@ namespace SpaceScrapper
         {
             //throw new System.NotImplementedException();
             CurrentHealth -= damage;
+            ShowHitFlash();
         }
 
         /// <summary>

@@ -1,5 +1,7 @@
 using UnityEngine;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace SpaceScrapper
 {
@@ -13,8 +15,18 @@ namespace SpaceScrapper
         [SerializeField]
         private float defaultMaxHealth = 2f;
 
+        [SerializeField, Header("Rendering")]
+        private MeshRenderer[] renderers;
+        [SerializeField]
+        private Material hitFlashMaterial;
+        [SerializeField, Range(0.05f, 0.5f)]
+        private float hitFlashDuration = 0.05f;
+
         private float currentHealth;
         private float maxHealth;
+
+        private Coroutine hitFlashRoutine;
+        private Dictionary<MeshRenderer, Material> materials;
 
         public event Action OnEntityDied;
         public event Action<float> OnHealthChanged;
@@ -59,6 +71,12 @@ namespace SpaceScrapper
         protected virtual void Awake()
         {
             maxHealth = currentHealth = defaultMaxHealth;
+            //set up the dictionary.
+            materials = new Dictionary<MeshRenderer, Material>(renderers.Length);
+            foreach(MeshRenderer renderer in renderers)
+            {
+                materials.Add(renderer, renderer.material);
+            }
         }
 
         private void OnEnable()
@@ -117,6 +135,39 @@ namespace SpaceScrapper
         {
             MaxHealth = maxHealth;
             CurrentHealth = maxHealth;
+        }
+
+        /// <summary>
+        /// Shows a hit flash by swapping out the material of the renderers
+        /// </summary>
+        protected void ShowHitFlash()
+        {
+            if (hitFlashRoutine != null)
+            {
+                StopCoroutine(hitFlashRoutine);
+                hitFlashRoutine = null;
+            }
+            if(CurrentHealth > 0) //only if not already dead.
+                hitFlashRoutine = StartCoroutine(Co_HitFlash());
+        }
+
+        /// <summary>
+        /// coroutine that swaps out the materials of the renderers to produce a "hitflash" effect.
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator Co_HitFlash()
+        {
+            //apply hitflash material.
+            foreach(var r in renderers)
+            {
+                r.sharedMaterial = hitFlashMaterial;
+            }
+            yield return new WaitForSeconds(hitFlashDuration);
+            //re-assign the original material. but via sharedMaterial to avoid instancing new materials.
+            foreach(var r in renderers)
+            {
+                r.sharedMaterial = materials[r];
+            }
         }
     }
 }

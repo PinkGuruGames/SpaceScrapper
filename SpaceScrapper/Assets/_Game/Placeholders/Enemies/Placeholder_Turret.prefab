@@ -326,6 +326,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faction: {fileID: 11400000, guid: d50cd335708031e439f9cf9e90f05321, type: 2}
   defaultMaxHealth: 3
+  renderers:
+  - {fileID: 4820728894381752709}
+  - {fileID: 2615385850561903509}
+  hitFlashMaterial: {fileID: 2100000, guid: c94fd960219597440b594f81f06e4e82, type: 2}
+  hitFlashDuration: 0.05
 --- !u!58 &5631683932032652599
 CircleCollider2D:
   m_ObjectHideFlags: 0
