@@ -17,6 +17,9 @@ namespace SpaceScrapper
         private float maxHealth;
 
         public event Action OnEntityDied;
+        public event Action<float> OnHealthChanged;
+        public event Action<float> OnMaxHealthChanged;
+        public event Action OnBecameActive;
 
         /// <summary>
         /// The current amount of health this entity has. public get, protected set.
@@ -29,7 +32,12 @@ namespace SpaceScrapper
             {
                 if (value <= 0)
                     Die();
-                currentHealth = Mathf.Clamp(value, 0, maxHealth);
+                float clampedHealth = Mathf.Clamp(value, 0, maxHealth);
+                if (clampedHealth != currentHealth)
+                {
+                    currentHealth = clampedHealth;
+                    OnHealthChanged?.Invoke(clampedHealth);
+                }
             }
         }
 
@@ -39,13 +47,23 @@ namespace SpaceScrapper
         public float MaxHealth
         {
             get => maxHealth;
-            private set => maxHealth = value;
+            private set
+            {
+                if (value != maxHealth)
+                    OnMaxHealthChanged?.Invoke(value);
+                maxHealth = value;
+            }
         }
 
         //set the current and max health to the default max health value.
         protected virtual void Awake()
         {
             maxHealth = currentHealth = defaultMaxHealth;
+        }
+
+        private void OnEnable()
+        {
+            OnBecameActive?.Invoke();
         }
 
         /// <inheritdoc></inheritdoc>
