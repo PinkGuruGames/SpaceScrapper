@@ -18,9 +18,9 @@ namespace SpaceScrapper.Weapons
         [SerializeField]
         private GameObject projectilePrefab;
 
-        private ProjectileBase[] pooledProjectiles;
-        private int storedProjectiles;
-        private int projectileInstances;
+        private ProjectileBase[] pooledProjectiles = null;
+        private int storedProjectiles = 0;
+        private int projectileInstances = 0;
 
         /// <summary>
         /// Used by Weapons to make sure that their assigned projectile pool is initialized.
@@ -32,7 +32,7 @@ namespace SpaceScrapper.Weapons
             //- projectile array pooledProjectiles does not exist yet
             //- projectiles should be stored, but first entry is null (destroyed)
             Debug.Log("trying to initialize pool");
-            if(pooledProjectiles is null || (storedProjectiles > 0 && pooledProjectiles[0] == null) || pooledProjectiles.Length == 0)
+            if(pooledProjectiles == null || (storedProjectiles > 0 && pooledProjectiles[0] == null) || pooledProjectiles.Length == 0 || storedProjectiles == 0)
             {
                 InitializePool();
                 Debug.Log("initialize: success");

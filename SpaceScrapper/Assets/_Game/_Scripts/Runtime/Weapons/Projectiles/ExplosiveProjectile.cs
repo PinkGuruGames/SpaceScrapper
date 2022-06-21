@@ -6,6 +6,8 @@ namespace SpaceScrapper.Weapons
     {
         [SerializeField]
         private float explosionRadius;
+        [SerializeField]
+        private LayerMask explosionMask;
 
         private Collider2D[] colliderBuffer = new Collider2D[10];
 
@@ -31,11 +33,12 @@ namespace SpaceScrapper.Weapons
         protected override void ProcessStaticHit(Collider2D other)
         {
             Explode();
+            base.ProcessStaticHit(other);
         }
 
         protected void Explode()
         {
-            int count = Physics2D.OverlapCircleNonAlloc(transform.position, explosionRadius, colliderBuffer);
+            int count = Physics2D.OverlapCircleNonAlloc(transform.position, explosionRadius, colliderBuffer, explosionMask);
             for(int i = 0; i < count; i++)
             {
                 var c = colliderBuffer[i];

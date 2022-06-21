@@ -13229,6 +13229,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1028931536, guid: 7bcbd4f57505caa46b1909233c9375bc, type: 3}
+      propertyPath: projectilePool
+      value: 
+      objectReference: {fileID: 11400000, guid: c00179bec16e54c4bbf9a8499e5881e3, type: 2}
     - target: {fileID: 8903847184800596308, guid: 7bcbd4f57505caa46b1909233c9375bc, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.56162
@@ -13319,7 +13323,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8942575091391542159, guid: 7bcbd4f57505caa46b1909233c9375bc, type: 3}
       propertyPath: m_ColliderPaths.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8942575091391542192, guid: 7bcbd4f57505caa46b1909233c9375bc, type: 3}
       propertyPath: ramAttackState.ramSpeed
@@ -13359,7 +13363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8942575091391542194, guid: 7bcbd4f57505caa46b1909233c9375bc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7bcbd4f57505caa46b1909233c9375bc, type: 3}

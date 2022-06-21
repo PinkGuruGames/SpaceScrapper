@@ -113,6 +113,7 @@ namespace SpaceScrapper.Weapons
         /// </summary>
         /// <param name="other"></param>
         protected abstract void ProcessProjectileHit(ProjectileBase other);
+
         /// <summary>
         /// Process coming into context with a static collider or trigger.
         /// </summary>
