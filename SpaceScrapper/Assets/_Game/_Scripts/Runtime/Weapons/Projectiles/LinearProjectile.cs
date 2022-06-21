@@ -27,11 +27,10 @@ namespace SpaceScrapper.Weapons
             {
                 return;
             }
-        }
-
-        protected override void ProcessStaticHit(Collider2D other)
-        {
-            ReturnToPool();
+            if(other is ExplosiveProjectile && SourceEntity.CanDamage(other.SourceEntity))
+            {
+                this.ReturnToPool();
+            }
         }
 
         public override void FireWithParameters(LivingEntity source, Vector2 position, Vector2 direction, float damage)

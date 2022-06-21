@@ -22,8 +22,10 @@ namespace SpaceScrapper.Weapons
         protected override void ProcessProjectileHit(ProjectileBase other)
         {
             //Explosive Projectiles can be made to detonate by enemy linear projectiles.
-            if(SourceEntity.CanDamage(other.SourceEntity) && other is LinearProjectile)
+            if (SourceEntity.CanDamage(other.SourceEntity) && other is LinearProjectile lp)
+            {
                 Explode();
+            }
         }
 
         protected override void ProcessStaticHit(Collider2D other)

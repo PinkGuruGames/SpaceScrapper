@@ -15,6 +15,8 @@ namespace SpaceScrapper.Weapons
         private float lifetime;
         [SerializeField]
         private float speed;
+        [SerializeField]
+        protected GameObject hitParticlesPrefab;
 
         private float startTime;
         private ProjectilePool pool;
@@ -115,7 +117,16 @@ namespace SpaceScrapper.Weapons
         /// Process coming into context with a static collider or trigger.
         /// </summary>
         /// <param name="other">The collider that was hit.</param>
-        protected abstract void ProcessStaticHit(Collider2D other);
+        protected virtual void ProcessStaticHit(Collider2D other)
+        {
+            ReturnToPool();
+            //this is super dirty but lol
+            if (hitParticlesPrefab == null)
+                return;
+            var particles = Instantiate(hitParticlesPrefab, transform.position, Quaternion.identity);
+            Destroy(particles, 2f);
+        }
+
         /// <summary>
         /// Process coming into contact with a damageable object. 
         /// Always deal damage, hostility check for LivingEntities has already been done.
