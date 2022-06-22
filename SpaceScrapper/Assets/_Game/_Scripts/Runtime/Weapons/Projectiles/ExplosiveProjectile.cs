@@ -50,6 +50,7 @@ namespace SpaceScrapper.Weapons
                     id.Damage(SourceEntity, this.Damage, c, true);
                 }
             }
+            base.ReturnToPool();
         }
     }
 }

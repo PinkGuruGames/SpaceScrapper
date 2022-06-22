@@ -22,8 +22,23 @@ namespace SpaceScrapper.Weapons
             //always follow target.
             Vector2 offset = (Vector2)target.position - Body.position;
             float angle = Vector2.SignedAngle(Vector2.up, offset);
-            Body.rotation = angle;
-            Body.velocity = (Quaternion.Euler(0, 0, angle) * Vector3.up) * base.Speed;
+
+            float angleOffset = angle - Body.rotation;
+            float sign = Mathf.Sign(angleOffset);
+            float absAngle = Mathf.Abs(angleOffset);
+
+            //check if we are accidentally trying the longer rotation.
+            if(absAngle > 180)
+            {
+                absAngle = 360 - absAngle;
+                sign *= -1;
+            }
+
+            float deltaUnsigned = Mathf.Min(Time.deltaTime * turnSpeed, absAngle);
+            float deltaSigned = deltaUnsigned * sign;
+
+            Body.rotation += deltaSigned;
+            Body.velocity = (Quaternion.Euler(0, 0, Body.rotation) * Vector3.up) * base.Speed;
         }
     }
 }

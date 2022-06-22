@@ -154,4 +154,4 @@ MonoBehaviour:
   explosionMask:
     serializedVersion: 2
     m_Bits: 192
-  turnSpeed: 30
+  turnSpeed: 90
