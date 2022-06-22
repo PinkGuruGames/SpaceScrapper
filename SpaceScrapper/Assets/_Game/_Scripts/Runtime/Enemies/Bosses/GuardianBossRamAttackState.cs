@@ -86,7 +86,7 @@ namespace SpaceScrapper.Bosses
                 }
                 //ignore collision between the hit collider and the guardians own collider.
                 ignoredColliders.Add(other);
-                Physics2D.IgnoreCollision(guardian.Collider, other);
+                Physics2D.IgnoreCollision(guardian.Collider, other, true);
 
                 //process damage events.
                 IDamageable damageable = other.GetComponent<IDamageable>();
