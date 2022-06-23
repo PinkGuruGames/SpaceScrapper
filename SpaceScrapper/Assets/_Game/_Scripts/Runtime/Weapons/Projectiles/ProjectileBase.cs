@@ -62,6 +62,7 @@ namespace SpaceScrapper.Weapons
         {
             gameObject.SetActive(false);
             pool.Insert(this);
+            SpawnHitParticles();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -121,11 +122,6 @@ namespace SpaceScrapper.Weapons
         protected virtual void ProcessStaticHit(Collider2D other)
         {
             ReturnToPool();
-            //this is super dirty but lol
-            if (hitParticlesPrefab == null)
-                return;
-            var particles = Instantiate(hitParticlesPrefab, transform.position, Quaternion.identity);
-            Destroy(particles, 2f);
         }
 
         /// <summary>
@@ -151,6 +147,18 @@ namespace SpaceScrapper.Weapons
             transform.up = direction;
             startTime = Time.time;
             gameObject.SetActive(true);
+        }
+
+        /// <summary>
+        /// Instantiates the hit particles prefab, and destroys it after 2 seconds.
+        /// </summary>
+        protected void SpawnHitParticles()
+        {
+            //this is super dirty but lol
+            if (hitParticlesPrefab == null)
+                return;
+            var particles = Instantiate(hitParticlesPrefab, transform.position, Quaternion.identity);
+            Destroy(particles, 2f);
         }
 
     }

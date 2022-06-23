@@ -57,6 +57,7 @@ namespace SpaceScrapper.Bosses
 
         //buffers to avoid allocating
         RaycastHit2D[] raycastHitBuffer = new RaycastHit2D[10];
+        ContactPoint2D[] contactBuffer = new ContactPoint2D[10];
 
         protected override void Awake()
         {
@@ -106,6 +107,12 @@ namespace SpaceScrapper.Bosses
         protected override void Move()
         {
             ActiveState.Move(this);
+        }
+
+        protected override void OnTargetDied()
+        {
+            ActiveState = idleState; //override idle as active state.
+            base.OnTargetDied();
         }
 
         //Methods that expose functionality to GuardianBossBehaviour state classes.
@@ -159,6 +166,17 @@ namespace SpaceScrapper.Bosses
         {
             int hitCount = collider.Cast(direction, raycastHitBuffer, distance);
             return new ReadOnlySpan<RaycastHit2D>(raycastHitBuffer, 0, hitCount);
+        }
+
+        /// <summary>
+        /// Gets the contacts that the rigidbody of the boss currently has.
+        /// </summary>
+        /// <param name="amount">the amount of elements to iterate over</param>
+        /// <returns>returns reference to the contact buffer, which avoids allocation.</returns>
+        internal ContactPoint2D[] GetContacts(out int amount)
+        {
+            amount = Body.GetContacts(contactBuffer);
+            return contactBuffer;
         }
     }
 }

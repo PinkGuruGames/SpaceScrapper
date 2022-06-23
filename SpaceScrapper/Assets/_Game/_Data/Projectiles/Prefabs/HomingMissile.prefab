@@ -149,7 +149,7 @@ MonoBehaviour:
   body: {fileID: 7153827300133037550}
   lifetime: 15
   speed: 25
-  hitParticlesPrefab: {fileID: 0}
+  hitParticlesPrefab: {fileID: 6756808488346961764, guid: 3326271009a7b4b44a26a559523e94ec, type: 3}
   explosionRadius: 5
   explosionMask:
     serializedVersion: 2

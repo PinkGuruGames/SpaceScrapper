@@ -21,6 +21,10 @@ namespace SpaceScrapper.Bosses
         private float collisionStaggerTime = 1.2f;
         [SerializeField]
         private float chargeDamage = 7f;
+        [SerializeField]
+        private float stunFloatVelocity = 2f;
+        [SerializeField]
+        private GameObject thrusterParticles;
 
         private Vector2 headingDirection;
         private readonly List<Collider2D> ignoredColliders = new List<Collider2D>(10);
@@ -36,9 +40,9 @@ namespace SpaceScrapper.Bosses
             if (shouldStop)
             {
                 //override velocity with zero.
-                guardian.Body.velocity = Vector2.zero;
+                guardian.Body.velocity = -headingDirection * stunFloatVelocity;
             }
-            else
+            else if (Time.time > EnterTime + windupTime) //only move if the windup is complete
             {
                 //always reset the velocity, so it stays "constant"
                 guardian.Body.velocity = headingDirection * ramSpeed;
@@ -62,6 +66,7 @@ namespace SpaceScrapper.Bosses
             isDone = false;
             guardian.FaceTarget();
             headingDirection = guardian.transform.up;
+            thrusterParticles.SetActive(true);
             base.StateEnter(guardian);
         }
 
@@ -73,6 +78,10 @@ namespace SpaceScrapper.Bosses
             for (int i = 0; i < x; i++)
             {
                 var contact = contactBuffer[i];
+                //only main-body collisions should be handled in here.
+                //this might cause a problem with the way the turrets will now collide with the player without doing damage, but thats a sacrifice im willing to make.
+                if (contact.otherCollider != guardian.Collider)
+                    continue;
                 //check for static collision first.
                 Collider2D other = contact.collider;
                 if (other.gameObject.isStatic)
@@ -118,6 +127,7 @@ namespace SpaceScrapper.Bosses
                 {
                     Physics2D.IgnoreCollision(guardian.Collider, ignoredColliders[i], false);
                 }
+                thrusterParticles.SetActive(false);
                 return guardian.CombatState;
             }
             return this;

@@ -15,7 +15,23 @@ namespace SpaceScrapper.Bosses
             guardian.LaunchRockets();
             //default movement pattern here:
             guardian.FaceTarget();
-            guardian.Body.velocity = Vector2.zero;
+
+            //check for overlap with collision through collision contacts, try to get out of them.
+            ContactPoint2D[] contacts = guardian.GetContacts(out int n);
+            if (n > 0)
+            {
+                //just a 0 0 vector for velocity that will be added to.
+                Vector2 vel = default;
+                for(int i = 0; i < n; i++)
+                {
+                    //add the contact normal to the velocity. this should hopefully make it move out of collision.
+                    vel += contacts[i].normal;
+                }
+            }
+            else
+            {
+                guardian.Body.velocity = Vector2.zero;
+            }
         }
 
         internal override GuardianBossBehaviour MoveNext(GuardianBoss guardian)
