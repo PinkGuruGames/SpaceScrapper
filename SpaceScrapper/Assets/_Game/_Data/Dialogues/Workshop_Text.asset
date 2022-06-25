@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 096d980241a430e4db55d9e02a856a37, type: 3}
+  m_Name: Workshop_Text
+  m_EditorClassIdentifier: 
+  type: 0
+  lines:
+  - '[AI] "Hello, thank you for coming to my rescue."'
+  - '"I haven''t done anything yet."'
+  - '"First tell me who you are, and what happened here."'
+  - '[AI] "I am of technological nature, I have no interest in harming you."'
+  - '[AI] "Regarding my objectives and this place, all I''m legally allowed to tell
+    you is that this used to be an Endra factory."'
+  - '"Endra? Then this place is ancient history."'
+  - '[AI] "Let me propose a deal, a temporary contract."'
+  - '"Go on."'
+  - '[AI] "I will equip your ship with weaponry from this place."'
+  - '[AI] "In return, you will get both of us out of here."'
+  - '[AI] "Additionally, I will offer you to meet with my representatives."'
+  - '"Sounds... good...? Yeah, let''s get out of here."'
+  - '[AI] "Very well, let me upgrade your ship with this old equipment."'
+  - . . .
+  - . . .

@@ -69,9 +69,45 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "interact",
+                    "name": "reload",
                     "type": "Button",
-                    "id": "459fbccd-bc30-46ca-8382-35c8a827f72b",
+                    "id": "06144a9b-c7d3-4f78-932f-1d0b1f8b6834",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "firePrimary",
+                    "type": "Value",
+                    "id": "36fdb215-54af-4dfc-a18c-fbab420b20ba",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "fireSecondary",
+                    "type": "Value",
+                    "id": "7abba8bc-bc9b-4837-b1a9-4dcf8862ece5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "continue",
+                    "type": "Button",
+                    "id": "65784cbb-c0c7-4b79-812e-b042c1a00036",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "databaseOpenClose",
+                    "type": "Button",
+                    "id": "c899477f-940c-4a2e-a8f0-f31917faf231",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -268,23 +304,180 @@
                 },
                 {
                     "name": "",
-                    "id": "a838bd27-035d-48ce-ac6d-2c4c250b05fa",
-                    "path": "<Keyboard>/f",
+                    "id": "f1171c48-c383-4ca4-b45e-3bf8d5eb6a52",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard_Mouse",
-                    "action": "interact",
+                    "action": "reload",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "802e2192-5ce2-4c18-b3f1-005e17f6687e",
-                    "path": "<Keyboard>/enter",
+                    "id": "03d9bc58-c5a9-4f6b-8245-41b23edd5e01",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard_Mouse",
-                    "action": "interact",
+                    "action": "firePrimary",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e79ace06-2ade-4499-a60a-7fe27a98374e",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard_Mouse",
+                    "action": "fireSecondary",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a757af0b-fdbd-4ec2-9227-d42d9112f809",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard_Mouse",
+                    "action": "continue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ed19a52c-5d52-4d8d-9c91-60cd2009862e",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "databaseOpenClose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "PauseMenu",
+            "id": "22d66776-1aca-4f00-af17-65da94626cec",
+            "actions": [
+                {
+                    "name": "menu",
+                    "type": "Button",
+                    "id": "fbda295d-8139-4983-b488-62fdfa97a91d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c852cd9a-5186-41d5-9940-b33e66d31cef",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard_Mouse",
+                    "action": "menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Dialogue",
+            "id": "f53d345b-d0bd-4ba8-8840-fa3f38f84a6e",
+            "actions": [
+                {
+                    "name": "skip",
+                    "type": "Button",
+                    "id": "ab2b40dd-a390-4073-abeb-3967b1cfe212",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "continue",
+                    "type": "Button",
+                    "id": "ae6066cb-d89f-402b-9f8c-ae65eb663375",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "menu",
+                    "type": "Button",
+                    "id": "5df5b917-8c4e-4894-bb49-f7725a6b5c9f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f302fa3f-aa7b-4ef1-a536-9b424e1acd82",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "66c14beb-d81c-48ab-b545-640b18911fc7",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "continue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e21572b-235c-486c-a023-d4327da75877",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "MainMenu",
+            "id": "90f27f3a-8eed-418e-802d-0f8deecea4a4",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "9dc4c8fc-50c7-461b-9944-a57ab1ab61f4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "51d83c50-a6c4-4527-a2cb-da1e179ef9c3",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

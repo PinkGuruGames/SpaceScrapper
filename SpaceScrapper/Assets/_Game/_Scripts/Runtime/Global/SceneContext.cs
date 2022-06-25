@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using SpaceScrapper.Levels;
 
 namespace SpaceScrapper.Global
 {
@@ -9,10 +10,15 @@ namespace SpaceScrapper.Global
     {
         //the scene context for the current level that is being played.
         //will be cleared AFTER returning back to the level selection, and placing the player at the entrance.
-        public readonly SharedHandle<Levels.LevelInfo> CurrentLevel = new SharedHandle<Levels.LevelInfo>();
+        public readonly SharedHandle<LevelInfo> CurrentLevel = new SharedHandle<LevelInfo>();
+
+        public readonly SharedHandle<DialogueManager> DialogueHandler = new SharedHandle<DialogueManager>();
+
+        public readonly SharedHandle<GameObject> PlayerObject = new SharedHandle<GameObject>();
 
         /// <summary>
-        /// This class holds a reference to a Unity objects and ensures it will be safely bound and unbound
+        /// !!Use SharedHandle for readonly fields and properties!!
+        /// This struct holds a reference to a Unity objects and ensures it will be safely bound and unbound
         /// </summary>
         public struct Handle<T> where T : Object
         {
