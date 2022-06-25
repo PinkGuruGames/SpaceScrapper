@@ -14,5 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   lines:
-  - THE END
-  - . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  - <color=#2be3ca>"Why would it register us, and why was it still active?"
+  - <color=#2be3ca>"I thought Endra hasn't been around for a few millenia?"
+  - <color=#46b860>[AI] . . .
+  - <color=#2be3ca>"Yeah. I want to know whoever you're working for, and what is
+    happening."
+  - <color=#46b860>[AI] "I hope, for your sake, that you are aware of the risks of
+    involving yourself in this matter."
+  - <color=#2be3ca>"I know. Just get me to your representatives." <i>(What's left
+    to lose anyway?)</i>

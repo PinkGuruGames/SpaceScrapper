@@ -14,19 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   lines:
-  - '[AI] "Hello, thank you for coming to my rescue."'
-  - '"I haven''t done anything yet."'
-  - '"First tell me who you are, and what happened here."'
-  - '[AI] "I am of technological nature, I have no interest in harming you."'
-  - '[AI] "Regarding my objectives and this place, all I''m legally allowed to tell
-    you is that this used to be an Endra factory."'
-  - '"Endra? Then this place is ancient history."'
-  - '[AI] "Let me propose a deal, a temporary contract."'
-  - '"Go on."'
-  - '[AI] "I will equip your ship with weaponry from this place."'
-  - '[AI] "In return, you will get both of us out of here."'
-  - '[AI] "Additionally, I will offer you to meet with my representatives."'
-  - '"Sounds... good...? Yeah, let''s get out of here."'
-  - '[AI] "Very well, let me upgrade your ship with this old equipment."'
+  - <color=#46b860>[AI] "Hello, thank you for coming to my rescue."
+  - <color=#2be3ca>"I haven't done anything yet."
+  - <color=#2be3ca>"First tell me who you are, and what happened here."
+  - <color=#46b860>[AI] "I am of technological nature, I have no interest in harming
+    you."
+  - <color=#46b860>[AI] "Regarding my objectives and this place, all I'm legally
+    allowed to tell you is that this used to be an Endra factory."
+  - <color=#2be3ca>"Endra? Then this place is ancient history."
+  - <color=#46b860>[AI] "Let me propose a deal, a temporary contract."
+  - <color=#2be3ca>"Go on."
+  - <color=#46b860>[AI] "I will equip your ship with weaponry from this place."
+  - <color=#46b860>[AI] "In return, you will get both of us out of here."
+  - <color=#46b860>[AI] "Additionally, I will offer you to meet with my representatives."
+  - <color=#2be3ca>"Sounds... good...? Yeah, let's get out of here."
+  - <color=#46b860>[AI] "Very well, let me upgrade your ship with this old equipment."
   - . . .
   - . . .

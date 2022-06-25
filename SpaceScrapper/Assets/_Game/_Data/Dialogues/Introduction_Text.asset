@@ -15,10 +15,10 @@ MonoBehaviour:
   type: 0
   lines:
   - '[Sector DF-372 - 15274 days since departure]'
-  - 'System: Automated distress signal received.'
-  - Signature matched in local data.
-  - 'Assessment: friendly.'
-  - Projected coordinates loaded into navigation.
-  - Approaching target....
-  - Proceed with caution.
+  - <color=#d1d1d1>Automated distress signal received.
+  - <color=#d1d1d1>Signature matched in local data.
+  - '<color=#d1d1d1>Assessment: friendly.'
+  - <color=#d1d1d1>Projected coordinates loaded into navigation.
+  - <color=#d1d1d1>Approaching target....
+  - <color=#d1d1d1>Proceed with caution.
   - '[[Use W/A/S/D to move]]'

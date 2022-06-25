@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   lines:
-  - '"Gah, finally."'
-  - '"I was starting to lose hope on Sector DF-372."'
-  - '"Too much emptiness everywhere."'
+  - <color=#2be3ca>"Gah, finally."
+  - <color=#2be3ca>"I was starting to lose hope on Sector DF-372."
+  - <color=#2be3ca>"Too much emptiness everywhere."

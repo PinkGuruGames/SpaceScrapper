@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   lines:
-  - '"Looks like I''m in the right place."'
-  - '"But I can''t get in this way."'
+  - <color=#2be3ca>"Looks like I'm in the right place."
+  - <color=#2be3ca>"But I can't get in this way."

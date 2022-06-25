@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   lines:
-  - '"So, how does this work?"'
-  - '[AI] "Keep shooting, and don''t stop moving."'
-  - '[AI] "That should be simple enough."'
+  - <color=#2be3ca>"So, how does this work?"
+  - <color=#46b860>[AI] "Keep shooting, and don't stop moving."
+  - <color=#46b860>[AI] "That should be simple enough."
   - '[[Hold left click to shoot]]'
