@@ -29,7 +29,10 @@ namespace SpaceScrapper
         protected override void Die()
         {
             base.Die();
-            throw new System.NotImplementedException();
+            GetComponent<PlayerController>().enabled = false;
+            this.enabled = false;
+            GetComponent<Collider2D>().enabled = false;
+            //throw new System.NotImplementedException();
         }
     }
 }
