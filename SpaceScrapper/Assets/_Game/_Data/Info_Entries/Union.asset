@@ -13,4 +13,11 @@ MonoBehaviour:
   m_Name: Union
   m_EditorClassIdentifier: 
   title: The Union
-  description: 
+  description: "The United Systems of the 8th Wing, commonly referred to simply as
+    \u201CThe Union\u201D, is a political union of 280 of the first 548 colonised
+    solar systems in the <b>Interim Galaxy</b>. With its massive amounts of controlled
+    planets with valuable resources they are generally perceived as very wealthy,
+    which is also represented by the golden crest on their common banner. \r\nMembers
+    of the Union generally value the conflicting concepts of wealth and artistic
+    expression above all and are hesitant to resort to military violence in any given
+    situation.\r\n\n"

@@ -13,4 +13,9 @@ MonoBehaviour:
   m_Name: Empire
   m_EditorClassIdentifier: 
   title: The Ordalian Empire
-  description: 
+  description: The Ordalian Empire is the dominant military and political force of
+    the <b>old galaxies</b>. Most of the wealth they acquire through predominantly
+    trading of resources is invested into scientific research and technological advancement,
+    to make as much as possible out of what they have. Through that funding, the
+    <b>Forbnis Research Team</b> was able to increase the accuracy of wormhole technology
+    enough to allow for cheap and fast galactic travel among other achievements.

@@ -13,4 +13,15 @@ MonoBehaviour:
   m_Name: Endra
   m_EditorClassIdentifier: 
   title: Endra Corp.
-  description: 
+  description: 'Endra Corp. is the name of one of the most influential tech-corporations
+    in history. They initially started off as a research team for Artificial Intelligence,
+    and quickly got traction when they aided in the development of the first near-sentient
+    AI, around 8 million years ago. They later moved on to developing highly efficient
+    and fully autonomous drones for military use.
+
+    Predating even the <b>Ordalian
+    Empire</b> it later integrated itself in, the company has now long been shut
+    down due to multiple major violations of various peace-keeping and anti-exploitation
+    treaties with <b>KAL-19</b> and its moons.
+
+'

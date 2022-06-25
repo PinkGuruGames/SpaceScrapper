@@ -13,4 +13,9 @@ MonoBehaviour:
   m_Name: Ship
   m_EditorClassIdentifier: 
   title: My Spaceship
-  description: 
+  description: An old <b>Adris V7</b>. The model was manufactured by <b>Limrey Machinery
+    Ltd. </b>, released to the public 5 million years ago and has not undergone many
+    changes in later versions. It is a private travel-class ship, meaning that it
+    has great defensive capabilities to keep the passengers in good shape, but is
+    legally required to be pacifist. Therefore, any kind of weaponry is unavailable
+    for purchase.

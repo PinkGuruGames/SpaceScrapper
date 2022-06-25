@@ -13,4 +13,10 @@ MonoBehaviour:
   m_Name: Humanity
   m_EditorClassIdentifier: 
   title: Humanity
-  description: 
+  description: 'Humanity has come a long way since the first men landed on the moon.
+    Over the course of millions of years, humans have established their presence
+    in multiple solar systems and even different galaxies. Technology has become
+    advanced enough to prolong human life, and humans have become so genetically
+    diverse that some populations are classified as aliens in some nations. In lieu
+    of that, humans that attempt to keep the genes of ancient 3000s era humanity
+    intact, built a large following of pseudo-aristocratic purists. '

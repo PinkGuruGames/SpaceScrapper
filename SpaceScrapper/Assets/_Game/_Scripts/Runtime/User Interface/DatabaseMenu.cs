@@ -32,6 +32,9 @@ namespace SpaceScrapper
             group.interactable = false;
             group.blocksRaycasts = false;
 
+            descriptionText.text = string.Empty;
+            titleText.text = string.Empty;
+
             //ew linq haha, but who cares its a one-time thing.
             foreach(var entry in entries.OrderBy(x => x.Title))
             {

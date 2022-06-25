@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 220811cf1c059544d93baf4db7b8a5fc, type: 3}
-  m_Name: DF-372
+  m_Name: Old Galaxies
   m_EditorClassIdentifier: 
-  title: Sector DF-372
-  description: 'The Sector DF-372 is located near the outer edge of the <b>Interim
-    Galaxy</b>. It is mostly uninhabited, but an infamous haven for refugees and
-    questionable corporations due to the lack of attention of any government of surrounding
-    forces. '
+  title: Old Galaxies
+  description: "\u201COld galaxies\u201D is a blanket term used that includes the
+    Milky Way, Andromeda, and Triangulum Galaxies. The resources in these galaxies
+    have been largely used up, and only few thousands of viable solar systems still
+    exist."

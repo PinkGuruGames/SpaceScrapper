@@ -13,4 +13,9 @@ MonoBehaviour:
   m_Name: KAL19
   m_EditorClassIdentifier: 
   title: KAL-19
-  description: 
+  description: "KAL-19 was once a working colony planet, chosen because of the natural
+    occurrence of many valuable minerals. It has been liberated by a revolution of
+    the working class, and officially established as an equal business partner of
+    the <b>Ordalian Empire</b> 2.5 million years after its founding. \r\nThe treaties
+    between KAL-19 and the <b>Ordalian Empire</b> were meant to ensure healthy trading
+    conditions for both parties.\r\n"

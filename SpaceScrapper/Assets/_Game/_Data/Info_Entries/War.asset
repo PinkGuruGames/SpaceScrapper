@@ -13,4 +13,9 @@ MonoBehaviour:
   m_Name: War
   m_EditorClassIdentifier: 
   title: The Great War
-  description: 
+  description: The Great Intergalactic War is what the latest war between the <b>Ordalian
+    Empire</b> and the <b>Union</b> was named, based on its unprecedented magnitude.
+    An unimaginable number of lives were lost to the horrifying nature of <b>artificial
+    supernovas</b>. Both sides lost the majority of their critical political infrastructure
+    to the war. The order of events and the full extent of the losses are yet to
+    be documented in detail.
