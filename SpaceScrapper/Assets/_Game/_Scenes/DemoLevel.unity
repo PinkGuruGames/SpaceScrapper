@@ -4109,8 +4109,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 367.26505, y: 0}
-  m_SizeDelta: {x: 332.53, y: 0}
+  m_AnchoredPosition: {x: -127.88, y: 0}
+  m_SizeDelta: {x: 255.77, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &671190396
 MonoBehaviour:
@@ -4132,7 +4132,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '
+  m_text: '<b>Controls:</b>
 
     Move:
 
@@ -4142,10 +4142,10 @@ MonoBehaviour:
 
     Skip dialogue:
 
-    Pause Menu:
+    Pause
+    Menu:
 
-    Database
-    (toggle)'
+    Database (toggle)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9140,8 +9140,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -309.64, y: -150.60101}
-  m_SizeDelta: {x: 601.402, y: 280.822}
+  m_AnchoredPosition: {x: -139.078, y: -150.60101}
+  m_SizeDelta: {x: 260.277, y: 280.822}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1509720585
 MonoBehaviour:
@@ -9163,7 +9163,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '<b>Controls:</b>
+  m_text: '
 
     W/A/S/D
 
@@ -9209,7 +9209,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 4
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
