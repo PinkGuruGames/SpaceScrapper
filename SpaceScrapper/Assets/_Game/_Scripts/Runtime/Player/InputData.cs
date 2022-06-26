@@ -49,6 +49,7 @@ namespace SpaceScrapper
                 return ray.GetPoint(distance);
             }
         }
+        public Vector2 ScreenMousePosition => _screenMousePosition;
         public bool RelativeMode => _relativeMode;
         public bool FlightAssist => _flightAssist | _flightAssistOverride;
         public bool CruiseMode => _cruiseMode;
