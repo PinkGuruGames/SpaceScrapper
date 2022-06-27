@@ -18,6 +18,8 @@ namespace SpaceScrapper
         private float maxVelocity = 10;
         [SerializeField] 
         private float maxLean = 30;
+        [SerializeField, Range(0, 1)]
+        private float minimumLeanRelative = 0.2f;
         [Space]
         [SerializeField, Range(0, 1)] 
         private float leanLerp = 0.8f;
@@ -45,6 +47,10 @@ namespace SpaceScrapper
             Vector3 leanAxis = Vector3.Cross(up, leanDir);
 
             Vector3 localLeanAxis = transform.parent.InverseTransformDirection(leanAxis);
+
+            //limit lean on the local right axis by simple multiplication (attempt)
+            leanAngle *= Mathf.Max(minimumLeanRelative, Mathf.Abs(Vector3.Dot(leanDir, transform.right)));
+
             targetLocalLean = Quaternion.AngleAxis(leanAngle, localLeanAxis);
 
             currentLocalLean = Quaternion.Lerp(currentLocalLean, targetLocalLean, leanLerp);
