@@ -9801,18 +9801,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 6041643294046458870}
-        m_TargetAssemblyTypeName: SpaceScrapper.Weapons.WeaponController, SpaceScrapper
-        m_MethodName: set_ActiveWeapons
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1652404204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12864,6 +12852,10 @@ PrefabInstance:
       propertyPath: renderers.Array.data[12]
       value: 
       objectReference: {fileID: 497713017}
+    - target: {fileID: 7094935917192525137, guid: b2bd519c8b67f3940af9366b33324862, type: 3}
+      propertyPath: <ActiveWeapons>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7094935917192525141, guid: b2bd519c8b67f3940af9366b33324862, type: 3}
       propertyPath: m_DefaultActionMap
       value: 32a275e4-0c20-4daf-abf0-2e9f962242b5

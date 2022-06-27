@@ -20,6 +20,7 @@ namespace SpaceScrapper.Weapons
         [SerializeField]
         private Weapon testWeapon;
 
+        [field: SerializeField]
         public bool ActiveWeapons { get; set; } = true;
 
         private void Awake()
