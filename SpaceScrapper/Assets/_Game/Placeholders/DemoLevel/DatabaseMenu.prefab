@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: This is the title of the entry
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 30487165937924a4dbe09feda939427a, type: 2}
+  m_sharedMaterial: {fileID: 8774310434705243877, guid: 30487165937924a4dbe09feda939427a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
+  m_Color: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -415,7 +415,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 5, y: -0.000061035156}
+  m_AnchoredPosition: {x: 5, y: 0}
   m_SizeDelta: {x: -10, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6809341619628235709
@@ -470,6 +470,7 @@ GameObject:
   - component: {fileID: 6809341619671507206}
   - component: {fileID: 6809341619671507207}
   - component: {fileID: 4232511467101901654}
+  - component: {fileID: 329017784}
   m_Layer: 5
   m_Name: DatabaseMenu
   m_TagString: Untagged
@@ -550,6 +551,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d1acf5b6d54168468572f395adffff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  group: {fileID: 329017784}
+  openCloseAction: {fileID: 424259012630643665, guid: b84223ae587cd3d48961c77402a736ec, type: 3}
+  entryParent: {fileID: 6809341619628235706}
+  entrySelectablePrefab: {fileID: 4559540509940533059, guid: 5ea364a34e2fc1940a3987d3eed832e8, type: 3}
+  entries:
+  - {fileID: 11400000, guid: 1988fe2adbe004b4d96854866b3e165b, type: 2}
+  - {fileID: 11400000, guid: 98ef778575babaf419da9e1321f699cf, type: 2}
+  - {fileID: 11400000, guid: 8c188d59f8f5c524394b5be34aa736b0, type: 2}
+  - {fileID: 11400000, guid: 5971cd412abf04e4985500799c902a1e, type: 2}
+  - {fileID: 11400000, guid: 66ed712d9532e864b868b91868baa52f, type: 2}
+  - {fileID: 11400000, guid: 282783de776f8894f905836b5920876a, type: 2}
+  - {fileID: 11400000, guid: dcface360443add4e95c1774b3cbf33d, type: 2}
+  - {fileID: 11400000, guid: b2b87fac34ac2ff4aa021058059b84f5, type: 2}
+  - {fileID: 11400000, guid: 2d02b0b58133bd7419f7f10e9e006af8, type: 2}
+  - {fileID: 11400000, guid: 07b199aa11b7cc14aaa6c168293bc796, type: 2}
+  - {fileID: 11400000, guid: 66e94166b9fbe634f982236fa09c4e4a, type: 2}
+  descriptionText: {fileID: 6809341620291741408}
+  titleText: {fileID: 6809341619024547097}
+--- !u!225 &329017784
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6809341619671507205}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6809341619713515491
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,8 +649,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Database
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 30487165937924a4dbe09feda939427a, type: 2}
+  m_sharedMaterial: {fileID: 8774310434705243877, guid: 30487165937924a4dbe09feda939427a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -823,7 +854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -964,8 +995,8 @@ MonoBehaviour:
     the near-html/css workflow should be able to provide easy to use templates so
     you can make more stuff."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 30487165937924a4dbe09feda939427a, type: 2}
+  m_sharedMaterial: {fileID: 8774310434705243877, guid: 30487165937924a4dbe09feda939427a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.06385724, g: 0.115074895, b: 0.3301887, a: 0.8666667}
+  m_Color: {r: 0.17911176, g: 0.1863515, b: 0.21698111, a: 0.8666667}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -236,8 +236,8 @@ MonoBehaviour:
   overlayGroup: {fileID: 920497305200845368}
   fullscreenText: {fileID: 920497306391223203}
   fullscreenGroup: {fileID: 920497305663283859}
-  skipActionRef: {fileID: 5520157698553993289, guid: b84223ae587cd3d48961c77402a736ec, type: 3}
-  continueActionRef: {fileID: 3860020933403528231, guid: b84223ae587cd3d48961c77402a736ec, type: 3}
+  skipActionRef: {fileID: 0}
+  continueActionRef: {fileID: -4978595783601976833, guid: b84223ae587cd3d48961c77402a736ec, type: 3}
   testAsset: {fileID: 0}
 --- !u!1 &920497306391223213
 GameObject:
@@ -310,8 +310,8 @@ MonoBehaviour:
     It helps to preview how the text
     is going to show up on-screen in the game, without being anything in particular.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 30487165937924a4dbe09feda939427a, type: 2}
+  m_sharedMaterial: {fileID: 8774310434705243877, guid: 30487165937924a4dbe09feda939427a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -443,13 +443,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'This is a bunch of preview text...
+  m_text: '<color=#28b9b9>This is a bunch of preview text...
 
-    It helps to preview how the text
-    is going to show up on-screen in the game, without being anything in particular.'
+    It helps to preview
+    how the text is going to show up on-screen in the game, without being anything
+    in particular.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 30487165937924a4dbe09feda939427a, type: 2}
+  m_sharedMaterial: {fileID: 8774310434705243877, guid: 30487165937924a4dbe09feda939427a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
