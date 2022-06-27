@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 220811cf1c059544d93baf4db7b8a5fc, type: 3}
+  m_Name: Solar Taps
+  m_EditorClassIdentifier: 
+  title: Solar Taps
+  description: "Solar Taps are enormous constructions designed to harvest large amounts
+    of energy from stars. They are conceptually similar to <b>Dyson Spheres</b> but
+    differ in that they don\u2019t fully enclose a given star, and instead freely
+    hover around it. These power plants rely on <b>artificial gravity</b> technology
+    to reliably harvest energy and generate fuel for commercial use. The net power
+    output of solar taps is roughly around 3.0 - 12.4 * 10^19W with the only limiting
+    factor being longevity. \r\nA multitude of stars in the old galaxies have been
+    functionally drained through this process of extracting energy from them.\r\n"
