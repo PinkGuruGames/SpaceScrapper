@@ -22,6 +22,8 @@ namespace SpaceScrapper
         [SerializeField]
         LayerMask layerMask;
 
+        private Vector2 velocity;
+
         // Update is called once per frame
         void FixedUpdate()
         {
@@ -44,17 +46,16 @@ namespace SpaceScrapper
             float distance = direction.magnitude;
             direction /= distance;
 
+
             var hit = Physics2D.CircleCast(playerTransform.position, minCollisionDistance, direction, distance, layerMask);
             if(hit)
             {
                 targetPosition = hit.centroid + hit.normal * 0.1f;
             }
-            else
-            {
-                targetPosition = Vector2.Lerp(currentPosition, targetPosition, lerp);
-            }
 
-            transform.position = targetPosition;
+            var nextPos = Vector2.SmoothDamp(currentPosition, targetPosition, ref velocity, lerp);
+
+            transform.position = nextPos;
 
         }
     }

@@ -4222,10 +4222,10 @@ MonoBehaviour:
 
     Skip dialogue:
 
-    Pause
-    Menu:
+    Pause/Restart:
 
-    Database (toggle)'
+    Database
+    (toggle):'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -12355,8 +12355,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 6041643294046458875}
   playerTransform: {fileID: 6041643294046458859}
-  lerp: 0.3
-  maxDistance: 5
+  lerp: 0.2
+  maxDistance: 7.5
   minCollisionDistance: 0.25
   layerMask:
     serializedVersion: 2
@@ -12498,6 +12498,22 @@ PrefabInstance:
     - target: {fileID: 654512989418875153, guid: 6cbb1cdc68d65e24c8609f8865148208, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 654512989418875154, guid: 6cbb1cdc68d65e24c8609f8865148208, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 654512989418875154, guid: 6cbb1cdc68d65e24c8609f8865148208, type: 3}
+      propertyPath: m_Color.b
+      value: 0.16037738
+      objectReference: {fileID: 0}
+    - target: {fileID: 654512989418875154, guid: 6cbb1cdc68d65e24c8609f8865148208, type: 3}
+      propertyPath: m_Color.g
+      value: 0.16037738
+      objectReference: {fileID: 0}
+    - target: {fileID: 654512989418875154, guid: 6cbb1cdc68d65e24c8609f8865148208, type: 3}
+      propertyPath: m_Color.r
+      value: 0.16037738
       objectReference: {fileID: 0}
     - target: {fileID: 654512990937752605, guid: 6cbb1cdc68d65e24c8609f8865148208, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
