@@ -23,3 +23,11 @@ This project was developed and headed by the Brackeys Community Gurus, primarily
 
 - **Unity 2021.2.4f1**
 - **Git**
+- **Blender**
+
+## Credits / Notes
+
+Player spaceship (as of 28. june 2022): [Nordban on Sketchfab](https://sketchfab.com/3d-models/space-ship-concept-textured-dd29fe9836e8401fa287fb20b09c5638) under Creative Commons Attribution-NonCommercial
+
+
+"Play" Font by Jonas Hecksher: [Google Fonts](https://fonts.google.com/specimen/Play?category=Serif,Sans+Serif,Display,Monospace#about) under Open Font License
