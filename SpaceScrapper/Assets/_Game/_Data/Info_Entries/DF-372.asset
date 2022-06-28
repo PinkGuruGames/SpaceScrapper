@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: DF-372
   m_EditorClassIdentifier: 
   title: Sector DF-372
-  description: 'The Sector DF-372 is located near the outer edge of the <b>Interim
-    Galaxy</b>. It is mostly uninhabited, but an infamous haven for refugees and
-    questionable corporations due to the lack of attention of any government of surrounding
-    forces. '
+  description: "The Sector DF-372 is located near the outer edge of the <b>Interim
+    Galaxy</b>. It is mostly uninhabited, but an infamous haven for questionable
+    corporations and social outcasts alike due to the lack of attention of any government
+    of surrounding forces. \r\nYour journey to remember what happened brought you
+    here 8 years ago, a long time in which you have yet to see another living person.\r\n"
