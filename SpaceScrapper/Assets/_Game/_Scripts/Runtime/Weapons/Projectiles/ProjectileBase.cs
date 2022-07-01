@@ -78,11 +78,6 @@ namespace SpaceScrapper.Weapons
                     return;
                 }
             }
-            //static collision => probably a wall
-            else if(other.gameObject.isStatic)
-            {
-                ProcessStaticHit(other);
-            }
             //other object is a collider
             //check for damageable now.
             IDamageable hitDamageable = other.GetComponent<IDamageable>();
@@ -106,7 +101,12 @@ namespace SpaceScrapper.Weapons
                     ProcessDamageEvent(hitDamageable, other);
                 }
             }
-            
+            //every collider that is not a tirgger and not damageable is treated as a static collider.
+            else
+            {
+                ProcessStaticHit(other);
+            }
+
         }
 
         /// <summary>
