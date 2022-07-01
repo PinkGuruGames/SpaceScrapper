@@ -35,6 +35,10 @@ namespace SpaceScrapper
             gameObject.SetActive(false);
         }
 
+        public void QuitCompletely()
+        {
+            Application.Quit();
+        }
 
     }
 }
