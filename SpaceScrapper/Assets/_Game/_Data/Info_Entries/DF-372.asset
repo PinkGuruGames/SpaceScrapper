@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 220811cf1c059544d93baf4db7b8a5fc, type: 3}
+  m_Name: DF-372
+  m_EditorClassIdentifier: 
+  title: Sector DF-372
+  description: "The Sector DF-372 is located near the outer edge of the <b>Interim
+    Galaxy</b>. It is mostly uninhabited, but an infamous haven for questionable
+    corporations and social outcasts alike due to the lack of attention of any government
+    of surrounding forces. \r\nYour journey to remember what happened brought you
+    here 8 years ago, a long time in which you have yet to see another living person.\r\n"

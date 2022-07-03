@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 220811cf1c059544d93baf4db7b8a5fc, type: 3}
+  m_Name: Union
+  m_EditorClassIdentifier: 
+  title: The Union
+  description: "The United Systems of the 8th Wing, commonly referred to simply as
+    \u201CThe Union\u201D, is a political union of 280 of the first 548 colonised
+    solar systems in the <b>Interim Galaxy</b>. With its massive amounts of controlled
+    planets with valuable resources they are generally perceived as very wealthy,
+    which is also represented by the golden crest on their common banner. \r\nMembers
+    of the Union generally value the conflicting concepts of wealth and artistic
+    expression above all and are hesitant to resort to military violence in any given
+    situation.\r\n\n"

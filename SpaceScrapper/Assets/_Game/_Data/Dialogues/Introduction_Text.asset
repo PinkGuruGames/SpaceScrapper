@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 096d980241a430e4db55d9e02a856a37, type: 3}
+  m_Name: Introduction_Text
+  m_EditorClassIdentifier: 
+  type: 0
+  lines:
+  - '[Sector DF-372 - 15274 days since departure]'
+  - <color=#d1d1d1>Automated distress signal received.
+  - <color=#d1d1d1>Signature matched in local data.
+  - '<color=#d1d1d1>Assessment: friendly.'
+  - <color=#d1d1d1>Projected coordinates loaded into navigation.
+  - <color=#d1d1d1>Approaching target....
+  - <color=#d1d1d1>Proceed with caution.
+  - '[[Use W/A/S/D to move]]'

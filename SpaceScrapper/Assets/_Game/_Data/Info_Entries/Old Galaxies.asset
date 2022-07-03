@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 220811cf1c059544d93baf4db7b8a5fc, type: 3}
+  m_Name: Old Galaxies
+  m_EditorClassIdentifier: 
+  title: Old Galaxies
+  description: "\u201COld galaxies\u201D is a blanket term used that includes the
+    Milky Way, Andromeda, and Triangulum Galaxies. The resources in these galaxies
+    have been largely used up, and only few thousands of viable solar systems still
+    exist."

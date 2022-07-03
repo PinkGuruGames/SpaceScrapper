@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 220811cf1c059544d93baf4db7b8a5fc, type: 3}
+  m_Name: Interim
+  m_EditorClassIdentifier: 
+  title: Interim Galaxy
+  description: "The Interim Galaxy was the result of two older galaxies merging and
+    forming new constellations. It wasn\u2019t until the year 8\u2019076\u2019410
+    that humanity has been able to set foot in it. According to current estimates,
+    roughly a quarter of the Interim Galaxy is inhabited by humans in one form or
+    another. Due to its relatively recent colonisation, the political forces don\u2019t
+    have a lot of influence in many places throughout."
