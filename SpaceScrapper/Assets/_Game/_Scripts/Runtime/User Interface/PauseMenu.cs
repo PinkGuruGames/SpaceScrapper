@@ -10,6 +10,8 @@ namespace SpaceScrapper
     /// </summary>
     public class PauseMenu : MonoBehaviour
     {
+        public InputData InputData { get; set; }
+
         void Awake()
         {
             Resume();
@@ -33,6 +35,7 @@ namespace SpaceScrapper
         {
             Time.timeScale = 1;
             gameObject.SetActive(false);
+            InputData.ActivateGameplayControls();
         }
 
         public void QuitCompletely()

@@ -61,7 +61,12 @@ namespace SpaceScrapper
             => playerInput.SwitchCurrentActionMap(dialogueScreenActionMapName);
         public void ActivatePauseMenuControls()
             => playerInput.SwitchCurrentActionMap(pauseMenuActionMapName);
-        
+
+        private void Start()
+        {
+            pauseMenu.InputData = this;
+        }
+
         //Messages sent from PlayerInput:
 #pragma warning disable IDE0051 // Remove unused private members
         private void OnFlightAssistToggle()
@@ -99,7 +104,6 @@ namespace SpaceScrapper
             if(pauseMenu.gameObject.activeSelf)
             {
                 pauseMenu.Resume();
-                ActivateGameplayControls();
             }
             else
             {
